@@ -14,14 +14,25 @@
   font-size: 20px;
 }
 
-.btn-login {
-  background-color: #1E90FF;
-  border: 1px solid #0c75df;
+.btn-actions {
+  background-color: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  color: white;
+}
+
+.btn-login::hover {
   color: white;
 }
 
 .form-control {
   margin-bottom: 20px;
+}
+
+.form-label {
+  color: white;
 }
 
 .password-row {
@@ -40,4 +51,17 @@
   width: 20px;
   margin-left: 20%;
   visibility: hidden;
+}
+
+body {
+  background-color: #150120;
+}
+
+.title {
+  color: white;
+  font-weight: 700;
+}
+
+.card, .card-header, .card-body, .card-footer {
+  border-color: rgb(64, 63, 63);
 }

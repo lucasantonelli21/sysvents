@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{ route("admin.dashboard") }}">SysVents</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +26,8 @@
         <a class="text-end btn btn-dark" type="button" href="{{ route('login.logout') }}">Logout</a>
     @else
     <div class="gap-1">
-        <a class="btn-login text-end btn btn-primary" type="button" href="{{ route('login.index') }}">Login</a>
-        <a class="text-end btn btn-success" type="button" href="{{ route('user.register') }}">Cadastre-se</a>
+        <a class="btn-actions text-end btn btn-light" type="button" href="{{ route('login.index') }}">Login</a>
+        <a class="btn-actions text-end btn btn-light" type="button" href="{{ route('user.register') }}">Cadastre-se</a>
     </div>
     @endif
 </div>
