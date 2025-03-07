@@ -1,16 +1,19 @@
 .home {
     height: 100vh;
+    background-color: rgb(21, 1, 32);
+    color: white;
 
     .subtitle span:nth-child(1){
-        color: rgb(8, 65, 150);
+        color: rgb(8, 165, 251);
+        // color: rgb(8, 165, 251);
     }
 
     .subtitle span:nth-child(2){
-        color: rgb(8, 150, 138);
+        color: rgb(8, 250, 238);
     }
 
     .subtitle span:nth-child(3){
-        color: rgb(8, 150, 55);
+        color: rgb(8, 250, 155);
     }
 
 

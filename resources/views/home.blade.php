@@ -1,6 +1,6 @@
 <x-blank>
 
-    <div class="home">
+    <div class="home pt-5">
         <div class="container">
 
              <div class="text-center">
@@ -9,7 +9,7 @@
                      <h1 class="title">Bem-vindo à Sysvents</h1>
                  </div>
 
-                 <div>
+                 <div class="mb-5">
                      <h2 class="subtitle">Conectando você aos melhores eventos -
                          <span>Descubra</span>,
                          <span>viva</span>,
@@ -17,7 +17,7 @@
                      </h2>
                  </div>
 
-                 <div class="img-container">
+                 <div class="">
                      <img src="{{ asset('images/evento-image-black.webp') }}" class="event-image rounded">
                  </div>
              </div>
