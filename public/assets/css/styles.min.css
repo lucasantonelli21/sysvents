@@ -9,3 +9,16 @@
 .nav-link {
   font-size: 20px;
 }
+
+.home .subtitle span:nth-child(1) {
+  color: rgb(8, 65, 150);
+}
+.home .subtitle span:nth-child(2) {
+  color: rgb(8, 150, 138);
+}
+.home .subtitle span:nth-child(3) {
+  color: rgb(8, 150, 55);
+}
+.home .event-image {
+  height: 25rem;
+}

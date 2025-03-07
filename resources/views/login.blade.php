@@ -1,5 +1,9 @@
 <x-blank>
 
+    <div class="text-center">
+        <h2>oi</h2>
+    </div>
+
     <div class="card">
         <div class="card-header">
             <h2 class="text-center">Por Favor Realize Login!</h2>
