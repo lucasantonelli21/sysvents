@@ -1,5 +1,5 @@
-.navbar {
-  margin-bottom: 3%;
+.container {
+  margin-top: 3%;
 }
 
 .navbar-brand {
@@ -8,4 +8,8 @@
 
 .nav-link {
   font-size: 20px;
+}
+
+.form-group {
+  margin-bottom: 5px;
 }

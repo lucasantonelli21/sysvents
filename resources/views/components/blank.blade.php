@@ -12,6 +12,7 @@
 </head>
 <body>
     @include('components.nav')
+    @include('components.alerts')
     <div class="container">
         {{ $slot }}
     </div>
