@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('theme');
-            $table->id('longitude');
-            $table->id('latitude');
+            $table->integer('longitude');
+            $table->integer('latitude');
             $table->timestamps();
         });
     }
