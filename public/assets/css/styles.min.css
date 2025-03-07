@@ -10,6 +10,9 @@
   font-size: 20px;
 }
 
+.home {
+  height: 100vh;
+}
 .home .subtitle span:nth-child(1) {
   color: rgb(8, 65, 150);
 }

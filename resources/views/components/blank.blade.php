@@ -12,8 +12,6 @@
 </head>
 <body>
     @include('components.nav')
-    <div class="container">
-        {{ $slot }}
-    </div>
+    {{ $slot }}
 </body>
 </html>
