@@ -29,9 +29,9 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             if(Auth::user()->is_admin){
-                return redirect()->route('dashboard.home')->withSuccess('Login realizado com sucesso! Bem-Vindo Admin');
+                return redirect()->route('admin.dashboard')->withSuccess('Login realizado com sucesso! Bem-Vindo '.Auth::user()->name);
             }
-            return redirect()->route('loggedin')->withSuccess('Login realizado com sucesso!');
+            return redirect()->route('admin.dashboard')->withSuccess('Login realizado com sucesso!');
         }
 
         return back()->withErrors([
@@ -43,9 +43,9 @@ class LoginController extends Controller
     public function logout(){
         if(Auth::check()){
             Auth::logout();
-            return redirect()->route('home')->withSuccess('Logout realizado com sucesso!');
+            return redirect()->route('admin.dashboard')->withSuccess('Logout realizado com sucesso!');
         }else{
-            return redirect()->route('home');
+            return redirect()->route('welcome');
         }
     }
 }

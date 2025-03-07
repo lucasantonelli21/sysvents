@@ -9,16 +9,26 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Usuários</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Eventos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Ingressos</a>
-          </li>
+          @if (Auth::check() && Auth::user()->is_admin)
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Usuários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Eventos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Ingressos</a>
+            </li>
+          @endif
         </ul>
-      </div>
     </div>
+    @if (Auth::check())
+        <a class="text-end btn btn-dark" type="button" href="{{ route('login.logout') }}">Logout</a>
+    @else
+    <div class="gap-1">
+        <a class="btn-login text-end btn btn-primary" type="button" href="{{ route('login.index') }}">Login</a>
+        <a class="text-end btn btn-success" type="button" href="{{ route('user.register') }}">Cadastre-se</a>
+    </div>
+    @endif
+</div>
   </nav>

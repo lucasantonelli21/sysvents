@@ -1,3 +1,7 @@
+.resp {
+  width: 100%;
+}
+
 .container {
   margin-top: 3%;
 }
@@ -10,6 +14,30 @@
   font-size: 20px;
 }
 
-.form-group {
-  margin-bottom: 5px;
+.btn-login {
+  background-color: #1E90FF;
+  border: 1px solid #0c75df;
+  color: white;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
+.password-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.password-row .form-control {
+  width: 90%;
+}
+.password-row .password {
+  margin-right: 70%;
+}
+.password-row .img-check {
+  height: 20px;
+  width: 20px;
+  margin-left: 20%;
+  visibility: hidden;
 }
