@@ -31,6 +31,23 @@
   color: white;
 }
 
+body {
+  height: 100vh;
+}
+
+.footer {
+  width: 100%;
+  color: white;
+}
+
+.rights {
+  font-size: 12px;
+}
+
+.icon {
+  color: white;
+}
+
 .form-control {
   margin-bottom: 20px;
 }
