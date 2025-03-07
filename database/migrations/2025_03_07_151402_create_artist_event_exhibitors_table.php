@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('artist_id');
             $table->foreignId('event_id');
-            $table->foreignId('exhibitors_id');
+            $table->foreignId('exhibitor_id');
             $table->timestamps();
         });
     }

@@ -17,7 +17,15 @@ class exhibitorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->streetName(),
+            'category'=>fake()->monthName(),
+            'description'=>fake()->realText()
         ];
     }
+
+
+// - id: key(int)
+// - name: string
+// -category: string
+// -description: string
 }
