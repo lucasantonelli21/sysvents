@@ -11,6 +11,8 @@
     <script type="module" src="{{asset('assets/js/scripts.min.js')}}"></script>
 </head>
 <body>
+    @include('components.nav')
+    @include('components.alerts')
     <div class="container">
         {{ $slot }}
     </div>
