@@ -11,10 +11,12 @@
 }
 
 .home {
-  height: 100vh;
-  background-color: rgb(21, 1, 32);
   color: white;
 }
+body {
+  background-color: rgb(21, 1, 32);
+}
+
 .home .subtitle span:nth-child(1) {
   color: rgb(8, 165, 251);
 }
@@ -26,4 +28,18 @@
 }
 .home .event-image {
   height: 25rem;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  color: white;
+}
+
+.rights {
+  font-size: 12px;
+}
+
+.icon {
+  color: white;
 }

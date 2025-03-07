@@ -9,9 +9,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/styles.min.css') }}" />
     <script src="{{asset('assets/js/vendor.min.js')}}"></script>
     <script type="module" src="{{asset('assets/js/scripts.min.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
     @include('components.nav')
     {{ $slot }}
+    @include('components.footer')
 </body>
 </html>
