@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom m-0">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{ route("admin.dashboard") }}">SysVents</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
           </li>
           @if (Auth::check() && Auth::user()->is_admin)
             <li class="nav-item">

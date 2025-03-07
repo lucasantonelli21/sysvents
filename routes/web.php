@@ -1,11 +1,13 @@
 <?php
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+
+//Home
+Route::get('/', [HomeController::class, 'index']);
 
 
 
