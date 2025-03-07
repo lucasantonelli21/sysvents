@@ -11,9 +11,11 @@
     <script type="module" src="{{asset('assets/js/scripts.min.js')}}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
-<body>
+<body class="d-flex flex-column">
     @include('components.nav')
     {{ $slot }}
-    @include('components.footer')
+    <div class="footer-container d-flex flex-grow-1 align-items-end">
+        @include('components.footer')
+    </div>
 </body>
 </html>

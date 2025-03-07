@@ -30,8 +30,11 @@ body {
   height: 25rem;
 }
 
+body {
+  height: 100vh;
+}
+
 .footer {
-  position: absolute;
   width: 100%;
   color: white;
 }

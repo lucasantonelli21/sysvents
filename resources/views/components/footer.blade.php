@@ -1,5 +1,5 @@
-<footer class="footer border-top bg-dark my-5">
-    <div class="d-flex align-items-center gap-3 footer-container container mt-5 mb-3 border-top">
+<footer class="footer border-top bg-dark mt-5">
+    <div class="d-flex align-items-center gap-3 footer-container container mt-5  border-top">
 
         <div class="me-auto mt-2">
             <h2>SysVents</h2>
@@ -14,8 +14,6 @@
         <a href="{{ url('https://br.linkedin.com/company/sysout-si') }}" target="_blank" rel="noopener noreferrer">
             <i class="icon fa-brands fa-linkedin fa-2x"></i>
         </a>
-
-
 
     </div>
 </footer>
