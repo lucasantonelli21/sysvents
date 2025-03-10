@@ -28,10 +28,13 @@
   color: white;
 }
 
+<<<<<<< Updated upstream
 .alert {
   margin-top: 1%;
 }
 
+=======
+>>>>>>> Stashed changes
 body {
   height: 100vh;
 }
@@ -79,6 +82,59 @@ body {
   visibility: hidden;
 }
 
+.home {
+  color: white;
+}
+body {
+  background-color: rgb(21, 1, 32);
+}
+
+.home .subtitle span:nth-child(1) {
+  color: rgb(8, 165, 251);
+}
+.home .subtitle span:nth-child(2) {
+  color: rgb(8, 250, 238);
+}
+.home .subtitle span:nth-child(3) {
+  color: rgb(8, 250, 155);
+}
+.home .event-image {
+  height: 30rem;
+}
+.home .media-scroller {
+  display: flex;
+  overflow-x: auto;
+}
+.home .media-element {
+  position: relative;
+  height: 600px;
+  aspect-ratio: 3/4;
+}
+.home .media-element > img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+.home .image-overlay {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  opacity: 0;
+}
+.home .media-element:hover {
+  border-style: solid;
+  border-width: 1px;
+}
+.home .media-element:hover .image-overlay {
+  opacity: 1;
+}
+.home .event-title {
+  font-weight: bold;
+}
+
 body {
   background-color: #150120;
 }
@@ -90,6 +146,7 @@ body {
 
 .card, .card-header, .card-body, .card-footer {
   border-color: rgb(64, 63, 63);
+<<<<<<< Updated upstream
 }
 
 .table-buttons {
@@ -116,4 +173,6 @@ body {
 }
 .home .event-image {
   height: 25rem;
+=======
+>>>>>>> Stashed changes
 }
