@@ -42,7 +42,7 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
-        $user->is_admin = false;
+        $user->is_admin = true;
         $user->save();
         return redirect()->route('admin.dashboard')->withSucces('Logado com Sucesso!');
     }
