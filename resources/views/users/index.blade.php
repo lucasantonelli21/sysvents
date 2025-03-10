@@ -1,4 +1,4 @@
-<x-blank :container="true">
+<x-blank >
     <div class="card">
         <div class="card-header bg-dark">
             <h2 class="title text-center">Usuários</h2>

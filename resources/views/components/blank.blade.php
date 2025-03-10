@@ -17,9 +17,9 @@
     @include('components.nav')
     @include('components.alerts')
 
-    @if(!$container){
+    @if(!$container)
             {{ $slot }}
-    }@else
+    @else
         <div class="container">
             {{ $slot }}
         </div>
