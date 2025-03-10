@@ -43,9 +43,9 @@ class LoginController extends Controller
     public function logout(){
         if(Auth::check()){
             Auth::logout();
-            return redirect()->route('admin.dashboard')->withSuccess('Logout realizado com sucesso!');
+            return redirect()->route('home')->withSuccess('Logout realizado com sucesso!');
         }else{
-            return redirect()->route('welcome');
+            return redirect()->route('home');
         }
     }
 }

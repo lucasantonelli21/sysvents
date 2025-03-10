@@ -11,3 +11,10 @@ body{
 .card, .card-header, .card-body, .card-footer{
     border-color: rgb(64, 63, 63);
 }
+
+
+.table-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

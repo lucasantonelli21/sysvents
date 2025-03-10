@@ -7,14 +7,18 @@ use Illuminate\Support\Facades\Route;
 
 
 //Home
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 
-Route::prefix('/usuario')->name('user.')->group(function () {
+Route::prefix('/usuario')->name('users.')->group(function () {
 
-    Route::get('/cadastro', [UserController::class,'showRegister'])->name('register');
-    Route::post('/save',    [UserController::class,'save'])->name('save');
+    Route::get('/home',                 [UserController::class, 'index'])->name('home');
+    Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
+    Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->name('edit');
+    Route::post('/salvar',              [UserController::class,'save'])->name('create');
+    Route::put('/{id}/salvar',          [UserController::class,'save'])->name('update');
+    Route::delete('/{id}/deletar',      [UserController::class,'delete'])->name('delete');
 });
 
 Route::prefix('/login')->name('login.')->controller(LoginController::class)->group(function () {

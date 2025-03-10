@@ -11,7 +11,7 @@
           </li>
           @if (Auth::check() && Auth::user()->is_admin)
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Usuários</a>
+                <a class="nav-link active" aria-current="page" href="{{ route('users.home') }}">Usuários</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Eventos</a>
@@ -23,11 +23,11 @@
         </ul>
     </div>
     @if (Auth::check())
-        <a class="text-end btn btn-dark" type="button" href="{{ route('login.logout') }}">Logout</a>
+        <a class="btn-actions text-end btn btn-light" type="button" href="{{ route('login.logout') }}">Logout</a>
     @else
     <div class="gap-1">
         <a class="btn-actions text-end btn btn-light" type="button" href="{{ route('login.index') }}">Login</a>
-        <a class="btn-actions text-end btn btn-light" type="button" href="{{ route('user.register') }}">Cadastre-se</a>
+        <a class="btn-actions text-end btn btn-light" type="button" href="{{ route('users.register') }}">Cadastre-se</a>
     </div>
     @endif
 </div>

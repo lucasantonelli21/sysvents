@@ -1,7 +1,7 @@
-<x-blank>
+<x-blank :container="true">
 
-    <div class="card">
+        <div class="card">
 
-    </div>
+        </div>
 
 </x-blank>
