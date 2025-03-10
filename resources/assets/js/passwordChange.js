@@ -1,13 +1,3 @@
-
-$("page-dashboard", function () {
-    var $page = $(this);
-    var $eventsChart = $page.find("events-chart");
-    var $ticketsChart = $page.find("tickets-chart");
-
-
-
-});
-
 $(".page-form-users", function(){
 
     var $page = $(this);
@@ -45,22 +35,3 @@ $(".page-form-users", function(){
     });
 
 });
-
-$('page-register',function (){
-    var $page = $(this);
-    var $passwordConfirmation = $page.find('.password-confirmation');
-    var $password = $page.find('.password');
-    var $imgCheck = $page.find('.img-check');
-    $passwordConfirmation.keyup(function(){
-        console.log('oi');
-        if($password.val() == $(this).val()){
-            $imgCheck.css('visibility', 'visible');
-        }else{
-            $imgCheck.css('visibility', 'hidden');
-        }
-
-    });
-
-});
-
-

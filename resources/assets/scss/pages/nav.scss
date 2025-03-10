@@ -1,12 +1,10 @@
-.resp{
-    width: 100%;
-}
+
 .container{
     margin-top: 3%;
 }
 
 .navbar-brand{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .navbar-brand:hover{
@@ -14,7 +12,7 @@
 }
 
 .nav-link{
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .nav-link:hover{
@@ -22,6 +20,7 @@
 }
 
 .btn-actions{
+    font-size: 20px;
     background-color: transparent;
     border-top: none;
     border-right: none;
@@ -30,5 +29,8 @@
     color: white;
 }
 
+.alert{
+    margin-top: 1%;
+}
 
 
