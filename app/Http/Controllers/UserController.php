@@ -15,10 +15,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::orderBy("id", "DESC")->paginate($request->pagination ?? 10); #->withQuerryString();
-        return view(
-            'users.index',
-            ['users' => $users]
-        );
+        return view('users.index',[
+            'users' => $users
+            ]);
     }
 
     public function form(User $user)
@@ -52,23 +51,23 @@ class UserController extends Controller
             'required' => 'O Campo :attribute deve ser preenchido!'
         ]);
         $validator->after(function ($validator) use ($request) {
-            if($request->show_password){
-                if($request->new_password == ''){
-                    $validator->errors()->add($request->new_password,'Você deve preencher o campo da sua nova senha!');
+            if ($request->show_password) {
+                if ($request->new_password == '') {
+                    $validator->errors()->add($request->new_password, 'Você deve preencher o campo da sua nova senha!');
                 }
 
-                if($request->password_confirmation == ''){
-                    $validator->errors()->add($request->password_confirmation,'Você deve confirmar sua senha!');
+                if ($request->password_confirmation == '') {
+                    $validator->errors()->add($request->password_confirmation, 'Você deve confirmar sua senha!');
                 }
 
-                if($request->new_password != $request->password_confirmation){
-                    $validator->errors()->add($request->new_password,'Sua nova senha deve ser igual a confirmação de senha!');
+                if ($request->new_password != $request->password_confirmation) {
+                    $validator->errors()->add($request->new_password, 'Sua nova senha deve ser igual a confirmação de senha!');
                 }
 
-                if(!Hash::check($request->password,Auth::user()->password)){
-                    $validator->errors()->add($request->password,'Senha antiga inválida!');
+                if (!Hash::check($request->password, Auth::user()->password)) {
+                    $validator->errors()->add($request->password, 'Senha antiga inválida!');
                 }
-            }else{
+            } else {
                 if ($request->password != $request->password_confirmation) {
                     $validator->errors()->add($request->password, 'Sua senha deve ser igual a confirmação de senha!');
                 }
@@ -88,7 +87,7 @@ class UserController extends Controller
         $user->is_admin = $request->is_admin ? $request->is_admin : false;
         $user->save();
 
-        if(!$request->id){
+        if (!$request->id) {
             $credentials = [
                 "email" => $request->email,
                 "password" => $request->password
@@ -102,12 +101,13 @@ class UserController extends Controller
 
             return redirect()->route('home')->withSucces('Logado com Sucesso! Bem-Vindo' . Auth::user()->name);
         }
-        return redirect()->route('users.home')->withSuccess('Usuário '. $user->name .' Atualizado com Successo!');
+        return redirect()->route('users.home')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
     }
 
-    public function delete(int $id){
+    public function delete(int $id)
+    {
         $user = User::find($id);
-        if($user){
+        if ($user) {
             $user->delete();
             return redirect()->route("users.home")->withSuccess("Usuário deletado com sucesso!");
         }

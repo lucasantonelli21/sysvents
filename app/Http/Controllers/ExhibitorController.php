@@ -11,7 +11,7 @@ class ExhibitorController extends Controller
     public function index(Request $request)
     {
         $exhibitors = Exhibitor::orderBy('id', 'desc')->paginate($request->pagination ?? 10);
-        return view('exhibitors/index', [
+        return view('exhibitors.index', [
             'exhibitors' => $exhibitors
         ]);
 
