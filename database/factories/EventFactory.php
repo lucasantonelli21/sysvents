@@ -18,6 +18,7 @@ class EventFactory extends Factory
     {
         return [
             'name'=>fake()->name(),
+            'description'=>fake()->text(),
             'start_date'=>fake()->date(),
             'end_date'=>fake()->date(),
             'theme' =>random_int(1, 3) == 1 ? 'musical' : 'cultural',

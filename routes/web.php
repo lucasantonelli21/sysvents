@@ -67,5 +67,6 @@ Route::get('/dashboard', function(){
 
 //Eventos
 Route::prefix('/eventos')->group(function() {
-    // Route::get('/', EventsController::class, 'index');
+    Route::get('/', [EventsController::class, 'index']);
+    Route::get('/{id}', [EventsController::class, 'showEvent']);
 });
