@@ -18,3 +18,9 @@ body{
     justify-content: center;
     gap: 10px;
 }
+
+.card-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}

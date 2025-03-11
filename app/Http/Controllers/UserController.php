@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::orderBy("id", "DESC")->paginate($request->pagination ?? 10); #->withQuerryString();
+        $users = User::search($request)->orderBy('id', 'desc')->paginate($request->pagination ?? 10)->withQuerryString();
         return view('users.index',[
             'users' => $users
             ]);
@@ -87,7 +87,7 @@ class UserController extends Controller
         $user->is_admin = $request->is_admin ? $request->is_admin : false;
         $user->save();
 
-        if (!$request->id) {
+        if (!$request->id && !Auth::check()) {
             $credentials = [
                 "email" => $request->email,
                 "password" => $request->password
@@ -100,6 +100,9 @@ class UserController extends Controller
             }
 
             return redirect()->route('home')->withSucces('Logado com Sucesso! Bem-Vindo' . Auth::user()->name);
+        }
+        if(!$request->id){
+            return redirect()->route('users.home')->withSuccess('Usuário ' . $user->name . ' Criado com Successo!');
         }
         return redirect()->route('users.home')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
     }

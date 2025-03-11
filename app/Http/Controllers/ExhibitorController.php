@@ -10,11 +10,11 @@ class ExhibitorController extends Controller
 {
     public function index(Request $request)
     {
-        $exhibitors = Exhibitor::orderBy('id', 'desc')->paginate($request->pagination ?? 10);
+        $exhibitors = Exhibitor::orderBy('id', 'desc')->paginate($request->pagination ?? 3);
+
         return view('exhibitors.index', [
             'exhibitors' => $exhibitors
         ]);
-
     }
 
     public function save(Request $request)
@@ -41,7 +41,7 @@ class ExhibitorController extends Controller
         return redirect()->route('exhibitor.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
     }
 
-    public function delete($id)// em cada filme listado no index há um botão delete por ter um botao delete por filme, logo o botão delete é vinculado ao ID desse filme
+    public function delete($id) // em cada filme listado no index há um botão delete por ter um botao delete por filme, logo o botão delete é vinculado ao ID desse filme
     //como o botao delete sabe o ID do filme?
     {
         try {
