@@ -2,34 +2,34 @@
 
     <div class="home pt-5">
 
-            <div class="text-center">
+        <div class="text-center">
 
-                <div>
-                    <h1 class="title">Bem-vindo à Sysvents</h1>
-                </div>
-
-                <div class="mb-5">
-                    <h2 class="subtitle">Conectando você aos melhores eventos -
-                        <span>Descubra</span>,
-                        <span>viva</span>,
-                        <span>aproveite</span>
-                    </h2>
-                </div>
-
-                 <div class="">
-                    <img src="{{ asset('images/evento-image.webp') }}" class="event-image rounded">
-                 </div>
-
-
+            <div>
+                <h1 class="title">Bem-vindo à Sysvents</h1>
             </div>
 
-
-            <div class="mt-5">
-                <h2>Sobre nós</h2>
-                <h4>A Sysvents é uma empresa focada em conectar pessoas a experiências únicas por meio de uma plataforma eficiente de divulgação e compra de ingressos para eventos.</h4>
+            <div class="mb-5">
+                <h2 class="subtitle">Conectando você aos melhores eventos -
+                    <span>Descubra</span>,
+                    <span>viva</span>,
+                    <span>aproveite</span>
+                </h2>
             </div>
+
+            <div class="">
+                <img src="{{ asset('images/evento-image.webp') }}" class="event-image rounded">
+            </div>
+
 
         </div>
+
+
+        <div class="mt-5">
+            <h2>Sobre nós</h2>
+            <h4>A Sysvents é uma empresa focada em conectar pessoas a experiências únicas por meio de uma plataforma
+                eficiente de divulgação e compra de ingressos para eventos.</h4>
+        </div>
+
 
 
         <div class="events-container mt-5">
