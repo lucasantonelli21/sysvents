@@ -46,7 +46,7 @@
                     <img src="{{$event->img ? asset(` $event->img `) : asset('images/default-event-image.jpeg')}}" class="rounded">
                     <div class="image-overlay d-flex justify-content-center flex-column">
                         <h2 class="event-title text-center">{{ $event->name }}</h2>
-                        <p class="mx-2 event-description">Um evento.</p>
+                        <p class="mx-2 event-description">{{ $event->description }}</p>
                     </div>
                 </div>
                 @endforeach
