@@ -10,7 +10,7 @@ class HomeController extends Controller
 
     public function index() {
 
-        $events = Event::all();
+        $events = Event::orderBy('id', 'desc')->get();
 
         $data = [
             "events" => $events
