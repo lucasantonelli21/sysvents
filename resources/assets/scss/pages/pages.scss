@@ -28,6 +28,15 @@ body {
     align-items: baseline;
 }
 
+
+.table{
+    th:last-child,
+    td:last-child{
+        width: 10%;
+    }
+}
+
+
 .table-exhibitors {
         table-layout: fixed;
 
@@ -37,7 +46,7 @@ body {
         }
 
         .name-cell,
-        .catgegory-cell,
+        .category-cell,
         .description-cell {
             white-space: nowrap;
             overflow: hidden;

@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\EventsController;
+=======
+use App\Http\Controllers\ArtistController;
+>>>>>>> feature/crud-artists
 use App\Http\Controllers\ExhibitorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -14,10 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
+<<<<<<< HEAD
 //Usuários
 Route::prefix('/usuario')->name('users.')->group(function () {
+=======
 
-    Route::get('/home',                 [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('home');
+Route::prefix('/usuarios')->name('users.')->group(function () {
+>>>>>>> feature/crud-artists
+
+    Route::get('',                      [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
     Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
     Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
     Route::post('/salvar',              [UserController::class,'save'])->name('create');
@@ -33,6 +42,16 @@ Route::prefix('/login')->name('login.')->controller(LoginController::class)->gro
     Route::get('/logout',       'logout')->name('logout');
 
 });
+
+Route::prefix('/artistas')->name('artists.')->group(function () {
+    Route::get('',                      [ArtistController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
+    Route::get('/criar',                [ArtistController::class, 'createOrEdit'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('register');
+    Route::get('/{id}/editar',          [ArtistController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
+    Route::post('/salvar',              [ArtistController::class,'save'])->name('create');
+    Route::put('/{id}/salvar',          [ArtistController::class,'save'])->middleware(VerifyLogin::class)->name('update');
+    Route::delete('/{id}/deletar',      [ArtistController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
+});
+
 
 Route::prefix('/expositores')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('exhibitors.')->group(function () {
 

@@ -42,7 +42,7 @@
                         value="{{ old('cpf') ? old('cpf') : $user->cpf }}" />
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Data de Aniversário</label>
+                    <label class="form-label">Data de Nascimento</label>
                     <input class="form-control" data-bs-theme="dark" max="{{ $dateYearsAgo }}" type="date"
                         name="birth_date" required
                         value="{{ old('birth_date') ? old('birth_date') : $user->birth_date }}" />

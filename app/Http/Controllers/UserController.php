@@ -23,7 +23,7 @@ class UserController extends Controller
     public function form(User $user)
     {
         return view(
-            'users.register',
+            'users.form',
             [
                 "user" => $user
             ]
@@ -108,10 +108,10 @@ class UserController extends Controller
             return redirect()->route('home')->withSucces('Logado com Sucesso! Bem-Vindo' . Auth::user()->name);
         }
         if (!$request->id) {
-            return redirect()->route('users.home')->withSuccess('Usuário ' . $user->name . ' Criado com Successo!');
+            return redirect()->route('users.index')->withSuccess('Usuário ' . $user->name . ' Criado com Successo!');
         }
         if ($request->id && Auth::user()->is_admin){
-            return redirect()->route('users.home')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
+            return redirect()->route('users.index')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
         }
         return redirect()->route('home')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
     }
@@ -121,8 +121,8 @@ class UserController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->delete();
-            return redirect()->route("users.home")->withSuccess("Usuário deletado com sucesso!");
+            return redirect()->route("users.index")->withSuccess("Usuário deletado com sucesso!");
         }
-        return redirect()->route("users.home")->withErrors("Não foi encontrado nenhum usuário com este id");
+        return redirect()->route("users.index")->withErrors("Não foi encontrado nenhum usuário com este id");
     }
 }

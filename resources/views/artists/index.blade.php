@@ -7,7 +7,7 @@
             <div class="card-row">
 
                 <div class="select-pagination">
-                    <form action="{{ route('users.index') }}">
+                    <form action="{{ route('artists.index') }}">
                         <select name="pagination" onchange="this.form.submit()">
                             @foreach ($paginations as $value)
                                 <option {{ $value == request()->pagination ? 'selected' : '' }}
@@ -18,7 +18,7 @@
                 </div>
 
 
-                <h2 class="title text-center">Usuários</h2>
+                <h2 class="title text-center">Artistas</h2>
 
                 <div class="modal-card">
 
@@ -30,7 +30,7 @@
                         </svg>
                     </button>
 
-                    <a href="{{ route('users.register') }}" class="btn btn-primary"> Cadastrar Usuário
+                    <a href="{{ route('artists.register') }}" class="btn btn-primary"> Cadastrar Artista
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus-square" viewBox="0 0 16 16">
                             <path
@@ -50,7 +50,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="{{ route('users.index') }}">
+                            <form action="{{ route('artists.index') }}">
                                 <div class="modal-body">
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -59,14 +59,9 @@
                                                 value="{{ Request::get('name') }}" />
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">E-mail</label>
-                                            <input class="form-control" type="email" name="email"
-                                                value="{{ Request::get('email') }}" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Cpf</label>
-                                            <input class="form-control" type="text" name="cpf"
-                                                value="{{ Request::get('cpf') }}" />
+                                            <label class="form-label">Cachê</label>
+                                            <input class="form-control" type="number" name="fee"
+                                                value="{{ Request::get('fee') }}" />
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Telefone</label>
@@ -89,7 +84,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a type="button" class="btn btn-light" href="{{ route('users.index') }}">Limpar
+                                        <a type="button" class="btn btn-light" href="{{ route('artists.index') }}">Limpar
                                             Filtro</a>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Cancelar</button>
@@ -110,34 +105,31 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Cpf</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Data de Aniversário</th>
+                        <th scope="col">Data de Nascimento</th>
+                        <th scope="col">Cachê</th>
                         <th scope="col">Telefone</th>
-                        <th scope="col">Perfil</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($artists as $artist)
                         <tr>
-                            <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->cpf }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->birth_date }}</td>
-                            <td>{{ $user->phone }}</td>
-                            <td>{{ $user->is_admin ? 'Administrador' : 'Cliente' }}</td>
+                            <th scope="row">{{ $artist->id }}</th>
+                            <td>{{ $artist->name }}</td>
+                            <td>{{ $artist->birth_date }}</td>
+                            <td>R$ {{ $artist->fee }}</td>
+                            <td>{{ $artist->phone }}</td>
+
                             <td>
                                 <div class="table-buttons">
-                                    <a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-warning">
+                                    <a href="{{ route('artists.edit', [$artist->id]) }}" class="btn btn-warning">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                             <path
                                                 d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
                                         </svg>
                                     </a>
-                                    <form action="{{ route('users.delete', [$user->id]) }}" method="POST">
+                                    <form action="{{ route('artists.delete', [$artist->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
@@ -159,7 +151,7 @@
         </div>
     </div>
         <div class="card-footer text-end">
-            {{ $users }}
+            {{ $artists }}
         </div>
     </div>
 </x-blank>
