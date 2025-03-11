@@ -10,7 +10,7 @@ class ExhibitorController extends Controller
 {
     public function index(Request $request)
     {
-        $exhibitors = Exhibitor::orderBy('id', 'desc')->paginate($request->pagination ?? 10);
+        $exhibitors = Exhibitor::search($request)->orderBy('id', 'desc')->paginate($request->pagination ?? 10);
 
         return view('exhibitors.index', [
             'exhibitors' => $exhibitors
@@ -38,7 +38,7 @@ class ExhibitorController extends Controller
 
         $exhibitor->save();
 
-        return redirect()->route('exhibitor.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
+        return redirect()->route('exhibitors.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
     }
 
     public function delete($id) // em cada filme listado no index há um botão delete por ter um botao delete por filme, logo o botão delete é vinculado ao ID desse filme
@@ -47,10 +47,10 @@ class ExhibitorController extends Controller
         try {
             $exhibitor = Exhibitor::find($id);
             if ($exhibitor == null) {
-                return redirect()->route('exhibitor.index')->withErrors("Erro ao deletar o Expositor");
+                return redirect()->route('exhibitors.index')->withErrors("Erro ao deletar o Expositor");
             } else {
                 $exhibitor->delete();
-                return redirect()->route('exhibitor.index')->withSuccess("Expositor deletado com sucesso!");
+                return redirect()->route('exhibitors.index')->withSuccess("Expositor deletado com sucesso!");
             }
         } catch (\Throwable $th) {
         }

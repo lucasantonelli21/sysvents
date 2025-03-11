@@ -21,7 +21,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Ingressos</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('exhibitor.index') }}" class="nav-link active" aria-current="page"
+                        <a href="{{ route('exhibitors.index') }}" class="nav-link active" aria-current="page"
                             href="#">Expositores</a>
                     </li>
                 @endif

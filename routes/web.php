@@ -32,7 +32,7 @@ Route::prefix('/login')->name('login.')->controller(LoginController::class)->gro
 
 });
 
-Route::prefix('/expositores')->name('exhibitor.')->group(function () {
+Route::prefix('/expositores')->name('exhibitors.')->group(function () {
 
     Route::get('/',                 [ExhibitorController::class,'index'])->name('index');
     Route::get('/cadastro',         [ExhibitorController::class,'showRegister'])->name('register');
