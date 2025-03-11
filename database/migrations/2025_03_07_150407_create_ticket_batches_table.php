@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ticket_batches', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('batch');
             $table->decimal('price');
             $table->foreignId('ticket_type_id');
             $table->timestamps();
