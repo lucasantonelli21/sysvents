@@ -40,7 +40,7 @@ Route::prefix('/artistas')->name('artists.')->group(function () {
     Route::get('',                      [ArtistController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
     Route::get('/criar',                [ArtistController::class, 'createOrEdit'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('register');
     Route::get('/{id}/editar',          [ArtistController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
-    Route::post('/salvar',              [ArtistController::class,'save'])->name('create');
+    Route::post('/salvar',              [ArtistController::class,'save'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('create');
     Route::put('/{id}/salvar',          [ArtistController::class,'save'])->middleware(VerifyLogin::class)->name('update');
     Route::delete('/{id}/deletar',      [ArtistController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
 });
@@ -67,5 +67,5 @@ Route::get('/dashboard', function(){
 
 //Eventos
 Route::prefix('/eventos')->group(function() {
-    Route::get('/', EventsController::class, 'index');
+    // Route::get('/', EventsController::class, 'index');
 });
