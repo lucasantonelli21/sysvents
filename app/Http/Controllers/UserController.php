@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::search($request)->orderBy('id', 'desc')->paginate($request->pagination ?? 10);
+        $users = User::search($request)->orderBy('id', 'desc')->paginate($request->pagination ?? 10)->withQueryString();
         return view('users.index', [
             'users' => $users
         ]);
