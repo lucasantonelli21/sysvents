@@ -14,7 +14,7 @@ class ExhibitorSeeder extends Seeder
     public function run(): void
     {
         Exhibitor::factory()
-        ->count(10)
+        ->count(15)
         ->create();
     }
 }

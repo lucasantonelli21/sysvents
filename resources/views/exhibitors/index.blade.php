@@ -8,7 +8,7 @@
 
             <div class="card-body bg-dark ">
                 <div class="table-responsive ">
-                    <table class="table table-bordered table-dark">
+                    <table class="table-exhibitors table table-bordered table-dark">
                         <tr>
                             <th>Nome</th>
                             <th>Categoria</th>
@@ -17,10 +17,11 @@
                         </tr>
                         @foreach ($exhibitors as $exhibitor)
                             <tr>
-                                <td>{{ $exhibitor->name }}</td>
-                                <td>{{ $exhibitor->category }}</td>
-                                <td>{{ $exhibitor->description }}</td>
+                                <td class='name-cell'>{{ $exhibitor->name }}</td>
+                                <td class='category-cell'>{{ $exhibitor->category }}</td>
+                                <td class="description-cell">{{ $exhibitor->description }}</td>
                                 <td>
+
                                     {{-- @if (isset(Auth::user()->is_admin) && Auth::user()->is_admin) --}}
                                     <div class= "table-buttons">
                                         <a href="{{ route('exhibitor.edit', $exhibitor->id) }}" class="btn btn-warning">

@@ -1,19 +1,22 @@
-body{
+body {
     // background-color: rgb(21, 1, 32);
     background-color: #150120;
 }
 
-.title{
-    color:white;
+.title {
+    color: white;
     font-weight: 700;
 }
 
-.card, .card-header, .card-body, .card-footer{
+.card,
+.card-header,
+.card-body,
+.card-footer {
     border-color: rgb(64, 63, 63);
 }
 
 
-.table-buttons{
+.table-buttons {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -23,4 +26,21 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+}
+
+.table-exhibitors {
+        table-layout: fixed;
+
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 920px;
+        }
+
+        .name-cell,
+        .catgegory-cell,
+        .description-cell {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 }
