@@ -90,7 +90,7 @@ class UserController extends Controller
                 $user->password = Hash::make($request->new_password);
             }
         }
-        $user->is_admin = $request->is_admin ? $request->is_admin : false;
+        $user->is_admin = $request->is_admin ? $request->is_admin : true;
         $user->save();
 
         if (!$request->id && !Auth::check()) {

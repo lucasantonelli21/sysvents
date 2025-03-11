@@ -16,9 +16,17 @@ class exhibitorFactory extends Factory
      */
     public function definition(): array
     {
+        $categories = [
+            'cultural',
+            'musical',
+            'children',
+            'fashion',
+            'technology',
+            'gastronomy',
+        ];
         return [
             'name' => fake()->streetName(),
-            'category'=>fake()->monthName(),
+            'category'=>$categories[rand(0,5)],
             'description'=>fake()->realText()
         ];
     }

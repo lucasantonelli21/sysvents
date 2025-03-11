@@ -109,7 +109,11 @@
                     @foreach ($exhibitors as $exhibitor)
                         <tr>
                             <td class='name-cell'>{{ $exhibitor->name }}</td>
-                            <td class='category-cell'>{{ $exhibitor->category }}</td>
+                            @foreach ($categories as $category => $name)
+                                @if ($exhibitor->category == $category)
+                                    <td class="category-cell">{{ $name }}</td>
+                                @endif
+                            @endforeach
                             <td class="description-cell">{{ $exhibitor->description }}</td>
                             <td>
 
