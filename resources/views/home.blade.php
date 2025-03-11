@@ -24,7 +24,7 @@
         </div>
 
 
-        <div class="mt-5">
+        <div class="mt-5 container">
             <h2>Sobre nós</h2>
             <h4>A Sysvents é uma empresa focada em conectar pessoas a experiências únicas por meio de uma plataforma
                 eficiente de divulgação e compra de ingressos para eventos.</h4>
