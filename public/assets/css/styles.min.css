@@ -88,7 +88,10 @@ body {
   font-weight: 700;
 }
 
-.card, .card-header, .card-body, .card-footer {
+.card,
+.card-header,
+.card-body,
+.card-footer {
   border-color: rgb(64, 63, 63);
 }
 
@@ -102,6 +105,21 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+
+.table-exhibitors {
+  table-layout: fixed;
+}
+.table-exhibitors th:nth-child(3),
+.table-exhibitors td:nth-child(3) {
+  width: 920px;
+}
+.table-exhibitors .name-cell,
+.table-exhibitors .catgegory-cell,
+.table-exhibitors .description-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .home {
