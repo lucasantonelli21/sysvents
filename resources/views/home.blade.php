@@ -37,54 +37,20 @@
                 <h2>Eventos</h2>
             </div>
 
+
+
             <div class="media-scroller d-flex gap-3">
-                <div class="media-element rounded">
-                    <img src="{{ asset('images/eventfake1.jpeg') }}" class="rounded">
-                    <div class="image-overlay d-flex justify-content-center flex-column">
-                        <h2 class="event-title text-center">Evento 1</h2>
-                        <p class="mx-2 event-description">Um evento.</p>
-                    </div>
-                </div>
 
+                @foreach ($events as $event)
                 <div class="media-element rounded">
-                    <img src="{{ asset('images/eventfake2.jpeg') }}" class="rounded">
+                    <img src="{{$event->img ? asset(` $event->img `) : asset('images/default-event-image.jpeg')}}" class="rounded">
                     <div class="image-overlay d-flex justify-content-center flex-column">
-                        <h2 class="event-title text-center">Evento 2</h2>
+                        <h2 class="event-title text-center">{{ $event->name }}</h2>
                         <p class="mx-2 event-description">Um evento.</p>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="media-element rounded">
-                    <img src="{{ asset('images/eventfake3.jpeg') }}" class="rounded">
-                    <div class="image-overlay d-flex justify-content-center flex-column">
-                        <h2 class="event-title text-center">Evento 3</h2>
-                        <p class="mx-2 event-description">Um evento.</p>
-                    </div>
-                </div>
-
-                <div class="media-element rounded">
-                    <img src="{{ asset('images/eventfake4.jpeg') }}" class="rounded">
-                    <div class="image-overlay d-flex justify-content-center flex-column">
-                        <h2 class="event-title text-center">Evento 4</h2>
-                        <p class="mx-2 event-description">Um evento.</p>
-                    </div>
-                </div>
-
-                <div class="media-element rounded">
-                    <img src="{{ asset('images/eventfake5.jpeg') }}" class="rounded">
-                    <div class="image-overlay d-flex justify-content-center flex-column">
-                        <h2 class="event-title text-center">Evento 5</h2>
-                        <p class="mx-2 event-description">Um evento.</p>
-                    </div>
-                </div>
-
-                <div class="media-element rounded">
-                    <img src="{{ asset('images/eventfake6.jpeg') }}" class="rounded">
-                    <div class="image-overlay d-flex justify-content-center flex-column">
-                        <h2 class="event-title text-center">Evento 6</h2>
-                        <p class="mx-2 event-description">Um evento.</p>
-                    </div>
-                </div>
 
             </div>
 
