@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ExhibitorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-
+//Usuários
 Route::prefix('/usuario')->name('users.')->group(function () {
 
     Route::get('/home',                 [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('home');
@@ -24,6 +25,7 @@ Route::prefix('/usuario')->name('users.')->group(function () {
     Route::delete('/{id}/deletar',      [UserController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
 });
 
+//Login
 Route::prefix('/login')->name('login.')->controller(LoginController::class)->group(function () {
 
     Route::get('/',             'index')->name('index');
@@ -46,6 +48,12 @@ Route::prefix('/expositores')->middleware(VerifyLogin::class, AuthenticateRoutes
 
 });
 
+//Admin dashboard
 Route::get('/dashboard', function(){
     return view('admin.dashboard');
 })->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('admin.dashboard');
+
+//Eventos
+Route::prefix('/eventos')->group(function() {
+    Route::get('/', EventsController::class, 'index');
+});
