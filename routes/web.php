@@ -1,10 +1,7 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\EventsController;
-=======
 use App\Http\Controllers\ArtistController;
->>>>>>> feature/crud-artists
 use App\Http\Controllers\ExhibitorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -18,13 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-<<<<<<< HEAD
 //Usuários
-Route::prefix('/usuario')->name('users.')->group(function () {
-=======
 
 Route::prefix('/usuarios')->name('users.')->group(function () {
->>>>>>> feature/crud-artists
 
     Route::get('',                      [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
     Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
