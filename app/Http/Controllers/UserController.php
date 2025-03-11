@@ -14,10 +14,10 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::search($request)->orderBy('id', 'desc')->paginate($request->pagination ?? 10)->withQuerryString();
-        return view('users.index',[
+        $users = User::search($request)->orderBy('id', 'desc')->paginate($request->pagination ?? 10);
+        return view('users.index', [
             'users' => $users
-            ]);
+        ]);
     }
 
     public function form(User $user)
@@ -83,7 +83,13 @@ class UserController extends Controller
         $user->cpf = $request->cpf;
         $user->birth_date = $request->birth_date;
         $user->phone = $request->phone;
-        $user->password = Hash::make($request->password);
+        if (!$user->id) {
+            $user->password = Hash::make($request->password);
+        } else {
+            if ($request->show_password) {
+                $user->password = Hash::make($request->new_password);
+            }
+        }
         $user->is_admin = $request->is_admin ? $request->is_admin : false;
         $user->save();
 
@@ -101,10 +107,13 @@ class UserController extends Controller
 
             return redirect()->route('home')->withSucces('Logado com Sucesso! Bem-Vindo' . Auth::user()->name);
         }
-        if(!$request->id){
+        if (!$request->id) {
             return redirect()->route('users.home')->withSuccess('Usuário ' . $user->name . ' Criado com Successo!');
         }
-        return redirect()->route('users.home')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
+        if ($request->id && Auth::user()->is_admin){
+            return redirect()->route('users.home')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
+        }
+        return redirect()->route('home')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
     }
 
     public function delete(int $id)

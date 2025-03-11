@@ -4,6 +4,8 @@ use App\Http\Controllers\ExhibitorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\AuthenticateRoutes;
+use App\Http\Middleware\VerifyLogin;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,12 +16,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('/usuario')->name('users.')->group(function () {
 
-    Route::get('/home',                 [UserController::class, 'index'])->name('home');
+    Route::get('/home',                 [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('home');
     Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
-    Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->name('edit');
+    Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
     Route::post('/salvar',              [UserController::class,'save'])->name('create');
-    Route::put('/{id}/salvar',          [UserController::class,'save'])->name('update');
-    Route::delete('/{id}/deletar',      [UserController::class,'delete'])->name('delete');
+    Route::put('/{id}/salvar',          [UserController::class,'save'])->middleware(VerifyLogin::class)->name('update');
+    Route::delete('/{id}/deletar',      [UserController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
 });
 
 Route::prefix('/login')->name('login.')->controller(LoginController::class)->group(function () {
@@ -46,4 +48,4 @@ Route::prefix('/expositores')->name('exhibitor.')->group(function () {
 
 Route::get('/dashboard', function(){
     return view('admin.dashboard');
-})->name('admin.dashboard');
+})->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('admin.dashboard');

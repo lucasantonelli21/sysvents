@@ -1,4 +1,4 @@
-<x-blank>
+<x-blank :container="false">
 
     <div class="home pt-5">
 

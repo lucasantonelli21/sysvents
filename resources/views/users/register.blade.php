@@ -1,5 +1,11 @@
 @php
     $dateYearsAgo = date('Y-m-d', strtotime('-15 years'));
+
+    if($user->id){
+        if(!Auth::user()->is_admin){
+            $user = Auth::user();
+        }
+    }
 @endphp
 
 
