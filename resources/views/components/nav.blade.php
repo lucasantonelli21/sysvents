@@ -12,10 +12,13 @@
                 </li>
                 @if (Auth::check() && Auth::user()->is_admin)
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('users.home') }}">Usuários</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('users.index') }}">Usuários</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('artists.index') }}">Artistas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Ingressos</a>
