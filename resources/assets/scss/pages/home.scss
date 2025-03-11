@@ -10,7 +10,6 @@
 
     .subtitle span:nth-child(1){
         color: rgb(8, 165, 251);
-        // color: rgb(8, 165, 251);
     }
 
     .subtitle span:nth-child(2){
@@ -29,8 +28,6 @@
 
     .media-scroller {
         display: flex;
-        // grid-auto-flow: column;
-        // grid-auto-columns: 20%;
         overflow-x: auto;
     }
 
@@ -45,37 +42,6 @@
         block-size: 100%;
         object-fit: cover;
     }
-
-
-    // @media (min-width: 1000px) {
-    //     .media-scroller {
-    //         grid-auto-columns: 40%;
-    //     }
-    // }
-
-    // @media (min-width: 1300px) {
-    //     .media-scroller {
-    //         grid-auto-columns: 30%;
-    //     }
-    // }
-
-    // @media (min-width: 1600px) {
-    //     .media-scroller {
-    //         grid-auto-columns: 25%;
-    //     }
-    // }
-
-    // @media (min-width: 1800px) {
-    //     .media-scroller {
-    //         grid-auto-columns: 25%;
-    //     }
-    // }
-
-    // @media (min-width: 2200px) {
-    //     .media-scroller {
-    //         grid-auto-columns: 20%;
-    //     }
-    // }
 
     .image-overlay {
         position: absolute;
