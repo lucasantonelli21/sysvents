@@ -71,6 +71,7 @@ var vendorJsFiles = [
     'node_modules/bootstrap/dist/js/bootstrap.js',
     'node_modules/select2/dist/js/select2.js',
     'node_modules/chart.js/dist/chart.umd.js',
+    'node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js',
     // 'node_modules/select2/dist/js/i18n/pt-BR.js',
     // 'node_modules/parsleyjs/dist/parsley.js',
 	// 'node_modules/parsleyjs/dist/i18n/pt-br.js',

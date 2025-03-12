@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ExhibitorController;
@@ -61,9 +63,9 @@ Route::prefix('/expositores')->middleware(VerifyLogin::class, AuthenticateRoutes
 });
 
 //Admin dashboard
-Route::get('/dashboard', function(){
-    return view('admin.dashboard');
-})->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('admin.dashboard');
+Route::prefix('/admin')->name('admin.')->group(function () {
+    Route::get('/dashboard',                      [AdminController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('dashboard');
+});
 
 //Eventos
 Route::prefix('/eventos')->name('events.')->group(function() {

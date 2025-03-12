@@ -1,0 +1,43 @@
+.page-dashboard{
+    .title{
+        margin-bottom: 20px;
+    }
+    .canvas-row{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .card-events{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background-color: #0C182C;
+            width: 90%;
+            max-width: 620px;
+            min-width: 370px;
+            min-height: 400px;
+            border: 1px solid #495057;
+            border-radius: 10px;
+            position: relative;
+
+            h2{
+                margin: unset;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .canvas-wrapper {
+                padding-top: 100px;
+                width: 100%;
+
+                canvas {
+                }
+
+            }
+        }
+    }
+}
