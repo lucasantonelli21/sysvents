@@ -1,4 +1,4 @@
-<footer class="footer border-top bg-dark mt-5">
+<footer class="footer border-top mt-5">
     <div class="d-flex align-items-center gap-3 footer-container container mt-5 border-top">
 
         <div class="me-auto mt-2">
