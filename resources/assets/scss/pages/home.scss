@@ -2,7 +2,8 @@
 .home {
 
     @at-root body {
-        background-color: rgb(21, 1, 32);
+        // background-color: #1D3867;
+        background-color: #142748;
     }
 
     color: white;
@@ -39,8 +40,8 @@
     }
 
     .media-element > img {
-        inline-size: 100%;
-        block-size: 100%;
+        // inline-size: 100%;
+        // block-size: 100%;
         object-fit: cover;
     }
 

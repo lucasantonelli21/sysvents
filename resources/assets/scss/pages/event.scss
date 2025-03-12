@@ -1,0 +1,60 @@
+.event {
+
+    color: white;
+
+
+    .left-section {
+        border: solid;
+        border-width: 1px 1px 1px 1px;
+        border-color: rgb(8, 250, 155);
+        width: 30vw;
+    }
+
+    .right-section {
+        border: solid;
+        border-width: 1px 1px 1px 0px;
+        border-color: rgb(8, 250, 155);
+        width: 70vw;
+    }
+
+
+    .event-image-container {
+        border: solid;
+        border-width: 1px;
+        border-color: rgb(8, 250, 155);
+        max-height: 600px;
+        aspect-ratio: 3/4;
+    }
+
+    .event-image-container > img {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+    }
+
+
+    .map {
+        width: 100%;
+        min-height: 150px;
+        max-height: 300px;
+        height:auto;
+    }
+
+    @media screen and (min-width: 1550px) {
+        .event-image-container {
+            height: 600px;
+        }
+
+        .left-section {
+            width: auto;
+            // background-color: black !important;
+        }
+
+        .right-section {
+            width: 100%;
+        }
+    }
+
+
+
+}
