@@ -15,7 +15,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('users.index') }}">Usuários</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Eventos</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('events.index')}}">Eventos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('artists.index') }}">Artistas</a>

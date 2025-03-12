@@ -23,6 +23,11 @@ class ArtistFactory extends Factory
             'fee'=>fake()->numberBetween(10000, 50000),
 
         ];
+        // $table->string('name');
+        // $table->string('phone', 14);
+        // $table->date('birth_date');
+        // $table->timestamps();
+        // $table->decimal('fee');
     }
 
 //     Artists

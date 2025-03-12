@@ -29,6 +29,7 @@ body {
 }
 
 .table {
+
     th:last-child,
     td:last-child {
         width: 10%;
@@ -36,6 +37,7 @@ body {
 }
 
 .custom-table {
+
     th,
     td {
         background-color: #0c182c;
@@ -51,7 +53,7 @@ body {
     }
 
     .name-cell,
-    .category-cell,
+    .catgegory-cell,
     .description-cell {
         white-space: nowrap;
         overflow: hidden;
@@ -59,3 +61,19 @@ body {
     }
 }
 
+.table-events {
+    table-layout: fixed;
+
+    th:nth-child(3),
+    td:nth-child(3) {
+        width: 30%;
+    }
+
+    .name-cell,
+    .theme-cell,
+    .description-cell {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
