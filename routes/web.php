@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\EventsController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ExhibitorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AuthenticateRoutes;
 use App\Http\Middleware\VerifyLogin;
+use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,7 +39,6 @@ Route::prefix('/expositores')->middleware(VerifyLogin::class, AuthenticateRoutes
 
     Route::get('/',                 [ExhibitorController::class,'index'])->name('index');
     Route::get('/cadastro',         [ExhibitorController::class,'showRegister'])->name('register');
-    Route::post('/save',            [ExhibitorController::class,'save'])->name('save');
     Route::get('/criar',            [ExhibitorController::class, 'createOrEdit'])->name('create');
     Route::get('/{id}/editar',      [ExhibitorController::class, 'createOrEdit'])->name('edit');
 
@@ -54,6 +54,14 @@ Route::get('/dashboard', function(){
 })->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('admin.dashboard');
 
 //Eventos
-Route::prefix('/eventos')->group(function() {
-    Route::get('/', EventsController::class, 'index');
+Route::prefix('/eventos')->name('events.')->group(function() {
+    Route::get('/',                 [EventController::class,'index'])->name('index');
+    Route::get('/cadastro',         [EventController::class,'showRegister'])->name('register');
+
+    Route::get('/criar',            [EventController::class, 'createOrEdit'])->name('create');
+    Route::get('/{id}/editar',      [EventController::class, 'createOrEdit'])->name('edit');
+
+    Route::post('/salvar',          [EventController::class, 'save'])->name('save');
+    Route::put('/salvar',           [EventController::class, 'save'])->name('update');
+    Route::delete('/{id}/deletar',  [EventController::class, 'delete'])->name('delete');
 });

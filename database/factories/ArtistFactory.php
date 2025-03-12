@@ -18,11 +18,16 @@ class ArtistFactory extends Factory
     {
         return [
             'name'=>fake()->name(),
+            'phone'=>substr(fake()->phoneNumber(), 0, 14),
             'birth_date'=>fake()->date(),
-            'phone'=>fake()->phoneNumber(),
             'fee'=>fake()->numberBetween(10000, 50000),
 
         ];
+        // $table->string('name');
+        // $table->string('phone', 14);
+        // $table->date('birth_date');
+        // $table->timestamps();
+        // $table->decimal('fee');
     }
 
 //     Artists

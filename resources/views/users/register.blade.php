@@ -64,7 +64,7 @@
                     </div>
                     <div class="password-row">
                         <div class="password-box form-group {{ old('show_password') ? '' : 'd-none' }} ">
-                            <div class="d-flex flex-row "">
+                            <div class="d-flex flex-row ">
                                 <input class="new-password form-control" placeholder="Nova senha"
                                     type="password" name="new_password" value="{{ old('new_password') }}" />
 

@@ -22,25 +22,41 @@ body {
     gap: 10px;
 }
 
-.card-row{
+.card-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
 }
 
 .table-exhibitors {
-        table-layout: fixed;
+    table-layout: fixed;
 
-        th:nth-child(3),
-        td:nth-child(3) {
-            width: 70%;
-        }
+    th:nth-child(3),
+    td:nth-child(3) {
+        width: 70%;
+    }
 
-        .name-cell,
-        .catgegory-cell,
-        .description-cell {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    .name-cell,
+    .catgegory-cell,
+    .description-cell {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+.table-events {
+    table-layout: fixed;
+
+    th:nth-child(3),
+    td:nth-child(3) {
+        width: 30%;
+    }
+
+    .name-cell,
+    .theme-cell,
+    .description-cell {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

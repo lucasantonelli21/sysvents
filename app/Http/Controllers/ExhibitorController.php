@@ -67,7 +67,7 @@ class ExhibitorController extends Controller
 
     private function form(Exhibitor $exhibitor) //Aqui não deveria ter um ($movie = null)?
     {
-        return view('exhibitors/form', [
+        return view('exhibitors.form', [
             'exhibitor' => $exhibitor
         ]);
     }

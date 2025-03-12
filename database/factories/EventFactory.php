@@ -18,8 +18,9 @@ class EventFactory extends Factory
     {
         return [
             'name'=>fake()->name(),
-            'start_date'=>fake()->date(),
-            'end_date'=>fake()->date(),
+            'description'=>fake()->realText(),
+            'start_date'=>fake()->dateTime(),
+            'end_date'=>fake()->dateTime(),
             'theme' =>random_int(1, 3) == 1 ? 'musical' : 'cultural',
             'longitude' => fake()->longitude(),
             'latitude' => fake()->latitude(),
