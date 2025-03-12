@@ -1,9 +1,19 @@
 .form-control{
     margin-bottom: 20px;
+    background-color: #0C182C;
+    color: white;
+}
+
+.form-control:focus
+{
+    margin-bottom: 20px;
+    background-color: #0C182C;
+    color: white;
 }
 
 .form-label{
     color: white;
+    font-weight: 500;
 
 }
 

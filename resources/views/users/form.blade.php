@@ -10,46 +10,46 @@
 
 
 <x-blank>
-    <div class="page-form-users card bg-dark">
+    <div class="page-form-users card ">
         <div class="card-header">
             <h2 class="title text-center">{{ $user->id ? 'Atualize o Usuário ' . $user->name : 'Se Registre Aqui' }}</h2>
         </div>
         <form action="{{ route($user->id ? 'users.update' : 'users.create', $user->id ?? [$user->id]) }}" method="POST">
             @csrf
             @method($user->id ? 'PUT' : 'POST')
-            <div class="card-body bg-dark">
+            <div class="card-body ">
                 @if ($user->id)
                     <div class="form-group">
-                        <input type="hidden" class="form-control" data-bs-theme="dark" type="text" name="id"
+                        <input type="hidden" class="form-control"  type="text" name="id"
                             required value="{{ $user->id }}" />
-                        <input type="hidden" class="form-control" data-bs-theme="dark" type="text" name="is_admin"
+                        <input type="hidden" class="form-control"  type="text" name="is_admin"
                             required value="{{ $user->is_admin }}" />
                     </div>
                 @endif
                 <div class="form-group">
                     <label class="form-label">Nome</label>
-                    <input class="form-control" data-bs-theme="dark" type="text" name="name" required
+                    <input class="form-control"  type="text" name="name" required
                         value="{{ old('name') ? old('name') : $user->name }}" />
                 </div>
                 <div class="form-group">
                     <label class="form-label">E-mail</label>
-                    <input class="form-control" data-bs-theme="dark" type="email" name="email" required
+                    <input class="form-control"  type="email" name="email" required
                         value="{{ old('email') ? old('email') : $user->email }}" />
                 </div>
                 <div class="form-group">
                     <label class="form-label">CPF</label>
-                    <input class="form-control" data-bs-theme="dark" type="text" name="cpf" required
+                    <input class="form-control"  type="text" name="cpf" required
                         value="{{ old('cpf') ? old('cpf') : $user->cpf }}" />
                 </div>
                 <div class="form-group">
                     <label class="form-label">Data de Nascimento</label>
-                    <input class="form-control" data-bs-theme="dark" max="{{ $dateYearsAgo }}" type="date"
+                    <input class="form-control"  max="{{ $dateYearsAgo }}" type="date"
                         name="birth_date" required
                         value="{{ old('birth_date') ? old('birth_date') : $user->birth_date }}" />
                 </div>
                 <div class="form-group">
                     <label class="form-label">Telefone</label>
-                    <input class="form-control" data-bs-theme="dark" type="phone" name="phone" required
+                    <input class="form-control"  type="phone" name="phone" required
                         value="{{ old('phone') ? old('phone') : $user->phone }}" />
                 </div>
 
@@ -88,7 +88,7 @@
                     <div class="password-row">
                         <div class="form-group">
                             <label class="form-label">Senha</label>
-                            <input class="password form-control" data-bs-theme="dark" type="password" name="password"
+                            <input class="password form-control"  type="password" name="password"
                                 required />
                         </div>
                         <div class="form-group">
@@ -100,7 +100,7 @@
                                         d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                 </svg>
                             </div>
-                            <input class="password-confirmation form-control" data-bs-theme="dark" type="password"
+                            <input class="password-confirmation form-control"  type="password"
                                 name="password_confirmation" required />
                         </div>
                     </div>
@@ -108,7 +108,7 @@
 
 
             </div>
-            <div class="text-end card-footer bg-dark">
+            <div class="text-end card-footer ">
                 <button class="btn-actions btn btn-light">{{ $user->id ? 'Atualizar' : 'Cadastrar' }}</button>
             </div>
 

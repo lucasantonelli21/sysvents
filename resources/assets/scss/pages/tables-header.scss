@@ -1,11 +1,22 @@
 .select-pagination{
     select{
         margin-right: 4px;
+        background-color: #0c182c;
+        border-color: #495057;
     }
+
+    select:focus{
+        border-color: #495057;
+    }
+
+
 }
 
 .modal-card{
-    .btn-light{
+    .btn-outline-light{
         margin-right: 4px;
+        // height: 1%;
     }
 }
+
+

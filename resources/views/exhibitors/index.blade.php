@@ -13,7 +13,7 @@
 <x-blank>
 
     <div class="card">
-        <div class="card-header bg-dark text-light">
+        <div class="card-header text-light">
             <div class="card-row">
 
                 <div class="select-pagination">
@@ -32,7 +32,7 @@
 
                 <div class="modal-card">
 
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-funnel" viewBox="0 0 16 16">
                             <path
@@ -40,7 +40,7 @@
                         </svg>
                     </button>
 
-                    <a href="{{ route('exhibitors.create') }}" class="btn btn-primary"> Adicionar Expositor
+                    <a href="{{ route('exhibitors.create') }}" class="btn btn-outline-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus-square" viewBox="0 0 16 16">
                             <path
@@ -97,9 +97,9 @@
             </div>
         </div>
 
-        <div class="card-body bg-dark ">
+        <div class="card-body ">
             <div class="table-responsive ">
-                <table class="table-exhibitors table table-bordered table-dark">
+                <table class="table-exhibitors table table-striped custom-table">
                     <tr>
                         <th>Nome</th>
                         <th>Categoria</th>
@@ -119,7 +119,7 @@
 
                                 {{-- @if (isset(Auth::user()->is_admin) && Auth::user()->is_admin) --}}
                                 <div class= "table-buttons">
-                                    <a href="{{ route('exhibitors.edit', $exhibitor->id) }}" class="btn btn-warning">
+                                    <a href="{{ route('exhibitors.edit', $exhibitor->id) }}" class="btn btn-outline-info">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                             <path
@@ -129,7 +129,7 @@
                                     <form action="{{ route('exhibitors.delete', $exhibitor->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-outline-danger">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                 <path

@@ -3,7 +3,7 @@
 @endphp
 <x-blank>
     <div class="card">
-        <div class="card-header bg-dark">
+        <div class="card-header">
             <div class="card-row">
 
                 <div class="select-pagination">
@@ -22,7 +22,7 @@
 
                 <div class="modal-card">
 
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-funnel" viewBox="0 0 16 16">
                             <path
@@ -30,7 +30,7 @@
                         </svg>
                     </button>
 
-                    <a href="{{ route('artists.register') }}" class="btn btn-primary"> Cadastrar Artista
+                    <a href="{{ route('artists.register') }}" class="btn btn-outline-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus-square" viewBox="0 0 16 16">
                             <path
@@ -97,10 +97,10 @@
             </div>
         </div>
     </div>
-    <div class="card-body bg-dark">
+    <div class="card-body">
         <div class="table-responsive">
 
-            <table class="table table-bordered table-dark">
+            <table class="table table-striped custom-table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -122,7 +122,7 @@
 
                             <td>
                                 <div class="table-buttons">
-                                    <a href="{{ route('artists.edit', [$artist->id]) }}" class="btn btn-warning">
+                                    <a href="{{ route('artists.edit', [$artist->id]) }}" class="btn btn-outline-info">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                             <path
@@ -132,7 +132,7 @@
                                     <form action="{{ route('artists.delete', [$artist->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-outline-danger">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                 <path
