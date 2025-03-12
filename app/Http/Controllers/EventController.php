@@ -42,7 +42,7 @@ class EventController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'theme' => 'required|',
-            'longetude' =>'required',
+            'longitude' =>'required',
             'latitude' =>'required',
             'batch' =>'required',
         ]);
@@ -58,13 +58,13 @@ class EventController extends Controller
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;
         $event->theme = $request->theme;
-        $event->longetude = $request->longetude;
+        $event->longitude = $request->longitude;
         $event->latitude = $request->latitude;
         $event->batch = $request->batch;
 
         $event->save();
 
-        return redirect()->route('event$events.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
+        return redirect()->route('events.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
     }
     public function createOrEdit($id = null)
     {

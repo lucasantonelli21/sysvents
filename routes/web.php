@@ -18,9 +18,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //Usuários
 
-Route::prefix('/usuarios')->name('users.')->group(function () {
+Route::prefix('/usuarios')->name('users.')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->group(function () {
 
-    Route::get('',                      [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
+    Route::get('/',                      [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
     Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
     Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
     Route::post('/salvar',              [UserController::class,'save'])->name('create');
@@ -37,8 +37,8 @@ Route::prefix('/login')->name('login.')->controller(LoginController::class)->gro
 
 });
 
-Route::prefix('/artistas')->name('artists.')->group(function () {
-    Route::get('',                      [ArtistController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
+Route::prefix('/artistas')->name('artists.')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->group(function () {
+    Route::get('/',                      [ArtistController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
     Route::get('/criar',                [ArtistController::class, 'createOrEdit'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('register');
     Route::get('/{id}/editar',          [ArtistController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
     Route::post('/salvar',              [ArtistController::class,'save'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('create');
