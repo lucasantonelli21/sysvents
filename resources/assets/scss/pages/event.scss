@@ -4,16 +4,18 @@
 
 
     .left-section {
+        background-color: #0C182C;
         border: solid;
         border-width: 1px 1px 1px 1px;
-        border-color: rgb(8, 250, 155);
+        border-color: white;
         width: 30vw;
     }
 
     .right-section {
+        background-color: #0C182C;
         border: solid;
         border-width: 1px 1px 1px 0px;
-        border-color: rgb(8, 250, 155);
+        border-color: white;
         width: 70vw;
     }
 
@@ -21,7 +23,7 @@
     .event-image-container {
         border: solid;
         border-width: 1px;
-        border-color: rgb(8, 250, 155);
+        border-color: white;
         max-height: 600px;
         aspect-ratio: 3/4;
     }
@@ -53,6 +55,13 @@
         .right-section {
             width: 100%;
         }
+    }
+
+
+    .ticket-button:hover {
+        border: solid;
+        border-width: 1px;
+        border-color: white;
     }
 
 
