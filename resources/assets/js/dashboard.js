@@ -3,16 +3,8 @@ $(".page-dashboard", function () {
     var $events = $page.find(".events");
     var $eventsChart = $page.find("#event-chart");
     var $ticketsChart = $page.find("#tickets-chart");
-    if ($eventsChart.length === 0) {
-        console.error("Elemento #event-chart não encontrado.");
-        return;
-    }
 
     var eventsData = $events.data("events");
-    if (!eventsData || eventsData.length === 0) {
-        console.error("Dados de eventos não encontrados ou estão vazios.");
-        return;
-    }
 
     var eventsNames = [];
     var eventsTickets = [];

@@ -2,13 +2,13 @@
     $paginations = [10, 15, 20, 30];
 @endphp
 <x-blank>
-    <div class="card">
+    <div class="index-pages card">
         <div class="card-header">
             <div class="card-row">
 
                 <div class="select-pagination">
-                    <form action="{{ route('artists.index') }}">
-                        <select name="pagination" onchange="this.form.submit()">
+                    <form class="form-pagination"  action="{{ route('artists.index') }}">
+                        <select class="paginator-selector" name="pagination" >
                             @foreach ($paginations as $value)
                                 <option {{ $value == request()->pagination ? 'selected' : '' }}
                                     value="{{ $value }}">{{ $value }}</option>
@@ -50,7 +50,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="{{ route('artists.index') }}">
+                            <form class="form-filter" action="{{ route('artists.index') }}">
                                 <div class="modal-body">
                                     <div class="modal-body">
                                         <div class="form-group">

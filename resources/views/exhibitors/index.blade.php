@@ -12,13 +12,13 @@
 @endphp
 <x-blank>
 
-    <div class="card">
+    <div class="index-pages card">
         <div class="card-header text-light">
             <div class="card-row">
 
                 <div class="select-pagination">
-                    <form action="{{ route('exhibitors.index') }}">
-                        <select name="pagination" onchange="this.form.submit()">
+                    <form class="form-pagination" action="{{ route('exhibitors.index') }}">
+                        <select class="paginator-selector" name="pagination">
                             @foreach ($paginations as $value)
                                 <option {{ $value == request()->pagination ? 'selected' : '' }}
                                     value="{{ $value }}">{{ $value }}</option>
@@ -61,7 +61,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="{{ route('exhibitors.index') }}">
+                            <form class="form-filter" action="{{ route('exhibitors.index') }}">
                                 <div class="modal-body">
                                     <div class="modal-body">
                                         <div class="form-group">
