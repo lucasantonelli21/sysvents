@@ -126,8 +126,8 @@
                             @endif
                         @endforeach
                         <td class='description-cell'>{{ $event->description }}</td>
-                        <td>{{ $event->start_date }}</td>
-                        <td>{{ $event->end_date }}</td>
+                        <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
+                        <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>
                         <td>{{ $event->longitude }}</td>
                         <td>{{ $event->latitude }}</td>
                         <td>{{ $event->batch }}</td>

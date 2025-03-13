@@ -127,7 +127,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->cpf }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->birth_date }}</td>
+                            <td>{{ formatDate($user->birth_date, "d/m/Y") }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->is_admin ? 'Administrador' : 'Cliente' }}</td>
                             <td>

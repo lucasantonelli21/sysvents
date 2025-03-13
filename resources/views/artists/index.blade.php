@@ -116,7 +116,7 @@
                         <tr>
                             <th scope="row">{{ $artist->id }}</th>
                             <td>{{ $artist->name }}</td>
-                            <td>{{ $artist->birth_date }}</td>
+                            <td>{{ formatDate($artist->birth_date, "d/m/Y") }}</td>
                             <td>R$ {{ $artist->fee }}</td>
                             <td>{{ $artist->phone }}</td>
 
