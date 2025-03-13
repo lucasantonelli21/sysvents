@@ -8,6 +8,7 @@ use App\Http\Controllers\ExhibitorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Middleware\AuthenticateRoutes;
 use App\Http\Middleware\VerifyLogin;
 use App\Models\Event;
@@ -48,7 +49,6 @@ Route::prefix('/artistas')->name('artists.')->middleware(VerifyLogin::class, Aut
     Route::delete('/{id}/deletar',      [ArtistController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
 });
 
-
 Route::prefix('/expositores')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('exhibitors.')->group(function () {
 
     Route::get('/',                 [ExhibitorController::class,'index'])->name('index');
@@ -64,7 +64,7 @@ Route::prefix('/expositores')->middleware(VerifyLogin::class, AuthenticateRoutes
 
 //Admin dashboard
 Route::prefix('/admin')->name('admin.')->group(function () {
-    Route::get('/dashboard',                      [AdminController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('dashboard');
+    Route::get('/dashboard',        [AdminController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('dashboard');
 });
 
 //Eventos
@@ -78,4 +78,16 @@ Route::prefix('/eventos')->name('events.')->group(function() {
     Route::post('/salvar',          [EventController::class, 'save'])->name('save');
     Route::put('/salvar',           [EventController::class, 'save'])->name('update');
     Route::delete('/{id}/deletar',  [EventController::class, 'delete'])->name('delete');
+});
+
+Route::prefix('/transações')->name('transactions.')->group(function() {
+    Route::get('/',                 [TransactionController::class,'index'])->name('index');
+    Route::get('/cadastro',         [TransactionController::class,'showRegister'])->name('register');
+
+    Route::get('/criar',            [TransactionController::class, 'createOrEdit'])->name('create');
+    Route::get('/{id}/editar',      [TransactionController::class, 'createOrEdit'])->name('edit');
+
+    Route::post('/salvar',          [TransactionController::class, 'save'])->name('save');
+    Route::put('/salvar',           [TransactionController::class, 'save'])->name('update');
+    Route::delete('/{id}/deletar',  [TransactionController::class, 'delete'])->name('delete');
 });

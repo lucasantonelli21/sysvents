@@ -15,6 +15,7 @@ class EventController extends Controller
         $events = Event::search($request)->orderBy('id', 'desc')->paginate($request->pagination ?? 10)->withQueryString();
 
         return view('events.index', [
+
             'events' => $events
         ]);
     }
@@ -39,6 +40,7 @@ class EventController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'description' => 'required|string|min:10',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'theme' => 'required|',
@@ -51,10 +53,13 @@ class EventController extends Controller
             return back()->withErrors($validator->errors())
                 ->withInput();
         }
+        $filename = $request->getSchemeAndHttpHost() . '/assets/images/' . time() . '.' . $request->image_path->extension();
 
+        $request->image_path->move(public_path('/assets/images/'), $filename);
         $event = Event::findOrNew($request->id);
         $event->name = $request->name;
         $event->description = $request->description;
+        $event->image_path = $filename;
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;
         $event->theme = $request->theme;

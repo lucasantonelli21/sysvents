@@ -24,8 +24,10 @@
                         <a class="nav-link active" aria-current="page" href="#">Ingressos</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('exhibitors.index') }}" class="nav-link active" aria-current="page"
-                            href="#">Expositores</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('exhibitors.index') }}">Expositores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href= {{route('transactions.index')}}>Transações</a>
                     </li>
                 @endif
             </ul>
