@@ -18,7 +18,7 @@
                     <p class="mb-2">Evento: {{ $event->name }}</p>
                     <p class="mb-2">Tema: {{ $event->theme }}</p>
                     <p class="mb-2">Data: {{ $event->start_date == $event->end_date ? formatDate($event->start_date,'d/m/Y')  : formatDate($event->start_date,'d/m/Y').' - '.formatDate($event->end_date,'d/m/Y') }}</p>
-                    <button class="btn btn-primary w-100 p-2">
+                    <button class="btn ticket-button btn-primary w-100 p-2">
                         Comprar Ingresso
                     </button>
                 </div>
