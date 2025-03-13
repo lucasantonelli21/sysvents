@@ -6,7 +6,7 @@
         <div class="container">
 
             <div class="card">
-                <div class="card-header bg-dark text-light">
+                <div class="card-header text-light">
                     @if ($exhibitor->id)
                         <h2 class="text-center">Atualize o Expositor: {{ $exhibitor->name }}</h2>
                     @else
@@ -16,7 +16,7 @@
 
                 <form class="form" action="{{ route($exhibitor->id ? 'exhibitors.update' : 'exhibitors.save') }}"
                     method="post" required>
-                    <div class="card-body bg-dark">
+                    <div class="card-body">
 
 
                         @method($exhibitor->id ? 'PUT' : 'POST')
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="card-footer text-end">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="submit" class="btn btn-outline-primary">Salvar</button>
                     </div>
 
                 </form>

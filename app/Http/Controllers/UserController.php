@@ -20,6 +20,7 @@ class UserController extends Controller
         ]);
     }
 
+
     public function form(User $user)
     {
         return view(

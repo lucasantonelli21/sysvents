@@ -161,7 +161,7 @@
         </div>
     </div>
     <div class="card-footer text-end">
-        {{ $users }}
+        {{ $users->links() }}
     </div>
     </div>
 </x-blank>
