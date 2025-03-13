@@ -12,11 +12,15 @@
                         <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded" alt="">
                     </div>
 
+                </div>
+
                 <div>
                     <p class="mb-2">Evento: {{ $event->name }}</p>
                     <p class="mb-2">Tema: {{ $event->theme }}</p>
                     <p class="mb-2">Data: {{ $event->start_date == $event->end_date ? formatDate($event->start_date,'d/m/Y')  : formatDate($event->start_date,'d/m/Y').' - '.formatDate($event->end_date,'d/m/Y') }}</p>
-                    <p class="mb-2">Botão comprar ingresso</p>
+                    <button class="btn btn-primary w-100 p-2">
+                        Comprar Ingresso
+                    </button>
                 </div>
 
 
@@ -39,41 +43,6 @@
 
         </div>
 
-
-
-
-
-
-
-        {{-- <div class="bg-dark flex-grow-1"></div>
-
-        <div class="bg-danger flex-grow-1"></div>
-
-        <div class="container d-flex h-100 bg-primary">
-
-
-        </div> --}}
-
-
-
-        {{-- <div>
-
-                <div class="ratio ratio-1x1">
-
-                    <img src="{{ asset('images/eventfake1.jpeg') }}" class="" alt="">
-                </div>
-
-                <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" alt="">
-                <h1>
-
-                    {{ $event->name }}
-                </h1>
-
-                <p>
-
-                    {{ $event->description }}
-                </p>
-            </div> --}}
     </div>
 
 </x-blank>
