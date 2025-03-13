@@ -16,7 +16,9 @@
                         <p class="mb-2">Evento: {{ $event->name }}</p>
                         <p class="mb-2">Tema: {{ $event->theme }}</p>
                         <p class="mb-2">Data: {{ $event->start_date == $event->end_date ? \Carbon\Carbon::parse($event->start_date)->format('d/m/Y')  : \Carbon\Carbon::parse($event->start_date)->format('d/m/Y').' - '.\Carbon\Carbon::parse($event->end_date)->format('d/m/Y') }}</p>
-                        <p class="mb-2">Botão comprar ingresso</p>
+                        <button class="btn btn-primary ticket-button w-100 p-2">
+                            Comprar ingresso
+                        </button>
                     </div>
                 </div>
 
