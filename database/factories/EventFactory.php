@@ -16,21 +16,21 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-        $theames = [
-            'technology' => 'Tecnologia',
-            'cultural' => 'Cultura',
-            'musical' => 'Música',
-            'art' => 'Arte',
-            'sport' => 'Esportes',
-            'gastronomy' => 'Gastronomia',
-            'health' => 'Saúde e Bem-estar',
+        $themes = [
+            'technology',
+            'cultural',
+            'musical',
+            'art',
+            'sport',
+            'gastronomy',
+            'health',
         ];
         return [
             'name'=>fake()->name(),
             'description'=>fake()->realText(),
             'start_date'=>fake()->dateTime(),
             'end_date'=>fake()->dateTime(),
-            'theme' =>$theames[rand(0,6)],
+            'theme' =>$themes[rand(0,6)],
             'longitude' => fake()->longitude(),
             'latitude' => fake()->latitude(),
             'batch' => random_int(1, 5)

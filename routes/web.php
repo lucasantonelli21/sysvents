@@ -20,7 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //Usuários
 
-Route::prefix('/usuarios')->name('users.')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->group(function () {
+Route::prefix('/usuarios')->name('users.')->group(function () {
 
     Route::get('/',                      [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
     Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');

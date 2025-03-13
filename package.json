@@ -16,6 +16,7 @@
     "dependencies": {
         "bootstrap": "^5.3.3",
         "chart.js": "^4.4.8",
+        "chartjs": "^0.3.24",
         "chartjs-plugin-datalabels": "^2.2.0",
         "del": "^8.0.0",
         "gulp": "^5.0.0",
