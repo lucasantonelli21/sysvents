@@ -14,7 +14,7 @@
 
                     <p>Evento: {{ $event->name }}</p>
                     <p>Tema: {{ $event->theme }}</p>
-                    <p>Data: {{ $event->start_date == $event->end_date ? \Carbon\Carbon::parse($event->start_date)->format('d/m/Y')  : \Carbon\Carbon::parse($event->start_date)->format('d/m/Y').' - '.\Carbon\Carbon::parse($event->end_date)->format('d/m/Y') }}</p>
+                    <p>Data: {{ $event->start_date == $event->end_date ? formatDate($event->start_date,'d/m/Y')  : formatDate($event->start_date,'d/m/Y').' - '.formatDate($event->end_date,'d/m/Y') }}</p>
                     <p>Botão comprar ingresso</p>
                 </div>
 
@@ -41,7 +41,7 @@
 
 
 
-
+g
 
 
         {{-- <div class="bg-dark flex-grow-1"></div>

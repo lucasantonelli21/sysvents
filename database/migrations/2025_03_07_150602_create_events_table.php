@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name', 50);
             $table->text('description');
             $table->string('image_path')->nullable();
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->string('theme');
             $table->decimal('longitude');
             $table->decimal('latitude');
