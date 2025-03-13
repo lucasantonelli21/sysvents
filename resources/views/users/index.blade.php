@@ -117,6 +117,8 @@
                         <th scope="col">Data de Aniversário</th>
                         <th scope="col">Telefone</th>
                         <th scope="col">Perfil</th>
+                        <th scope="col">Criado em</th>
+                        <th scope="col">Editado em</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -130,6 +132,8 @@
                             <td>{{ formatDate($user->birth_date, 'd/m/Y') }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->is_admin ? 'Administrador' : 'Cliente' }}</td>
+                            <td>{{ formatDate($user->created_at,'d/m/Y') }}</td>
+                            <td>{{ formatDate($user->created_at,'d/m/Y') }}</td>
                             <td>
                                 <div class="table-buttons">
                                     <a href="{{ route('panel.users.edit', [$user->id]) }}" class="btn btn-outline-info">

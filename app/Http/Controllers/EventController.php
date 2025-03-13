@@ -37,10 +37,10 @@ class EventController extends Controller
         try {
             $event = Event::find($id);
             if ($event == null) {
-                return redirect()->route('panel.events.index')->withErrors("Erro ao deletar o Expositor");
+                return redirect()->route('events.index')->withErrors("Evento ao deletar o Expositor");
             } else {
                 $event->delete();
-                return redirect()->route('panel.events.index')->withSuccess("Expositor deletado com sucesso!");
+                return redirect()->route('events.index')->withSuccess("Evento deletado com sucesso!");
             }
         } catch (\Throwable $th) {
         }

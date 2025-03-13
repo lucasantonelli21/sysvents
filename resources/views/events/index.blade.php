@@ -112,9 +112,11 @@
                     <th>Descrição</th>
                     <th>Data de início</th>
                     <th>Data do fim</th>
-                    <th>Longitude</th>
-                    <th>Latitude</th>
+                    {{-- <th>Longitude</th>
+                    <th>Latitude</th> --}}
                     <th>Lote</th>
+                    <th>Criado em</th>
+                    <th>Editado em</th>
                     <th>Ações</th>
                 </tr>
                 @foreach ($events as $event)
@@ -122,17 +124,20 @@
                         <td class='name-cell'>{{ $event->name }}</td>
                         @foreach ($theames as $value => $name)
                             @if ($value == $event->theme)
-                                <td class="theames-cell">{{ $name }}</td>
+                                <td class="themes-cell">{{ $name }}</td>
                             @endif
                         @endforeach
-                        <td class='description-cell'>{{ $event->description }}</td>
+                        <td class='description-cell'>
+                            {{ $event->description }}
+                        </td>
                         <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>
-                        <td>{{ $event->longitude }}</td>
-                        <td>{{ $event->latitude }}</td>
+                        {{-- <td>{{ $event->longitude }}</td>
+                        <td>{{ $event->latitude }}</td> --}}
                         <td>{{ $event->batch }}</td>
+                        <td>{{ formatDate($event->created_at,'d/m/Y') }}</td>
+                        <td>{{ formatDate($event->updated_at,'d/m/Y') }}</td>
                         <td>
-                            {{-- @if (isset(Auth::user()->is_admin) && Auth::user()->is_admin) --}}
                             <div class= "table-buttons">
                                 <a href="{{ route('panel.events.edit', $event->id) }}" class="btn btn-outline-info">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -154,8 +159,14 @@
                                         </svg>
                                     </button>
                                 </form>
+                                <a href="{{ route('events.tickets.types.index',$event->id) }}" class="btn btn-outline-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-ticket" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5z" />
+                                    </svg>
+                                </a>
                             </div>
-                            {{-- @endif --}}
                         </td>
                     </tr>
                 @endforeach
