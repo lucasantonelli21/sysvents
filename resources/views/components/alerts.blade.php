@@ -8,7 +8,7 @@
 @if ($messagesError)
 
 
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <div class="alert alert-danger d-flex align-items-center mx-3" role="alert">
         <div class="me-2">
             <i class="fa-solid fa-triangle-exclamation"></i>
         </div>
@@ -22,7 +22,7 @@
 @endif
 
 @if ($messagesSuccess)
-    <div class="alert alert-success d-flex align-items-center" role="alert">
+    <div class="alert alert-success d-flex align-items-center mx-3" role="alert">
         <div class="me-2">
             <i class="fa-solid fa-circle-check"></i>
         </div>
