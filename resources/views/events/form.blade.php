@@ -6,7 +6,7 @@
         <div class="container">
 
             <div class="card">
-                <div class="card-header bg-dark text-light text-end">
+                <div class="card-header text-light text-end">
                     @if ($event->id)
                         <h2 class="text-center">Atualize o Evento: {{ $event->name }}</h2>
                     @else
@@ -17,7 +17,7 @@
 
                 <form class="form" action="{{ route($event->id ? 'events.update' : 'events.save') }}" method="post"
                     required>
-                    <div class="card-body bg-dark">
+                    <div class="card-body">
 
 
                         @method($event->id ? 'PUT' : 'POST')
@@ -105,7 +105,7 @@
 
 
                     </div>
-                    <div class="card-footer bg-dark text-end">
+                    <div class="card-footer text-end">
                         <button class="btn-actions btn btn-light">{{ $event->id ? 'Atualizar' : 'Cadastrar' }}</button>
                     </div>
                 </form>

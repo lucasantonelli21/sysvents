@@ -8,7 +8,7 @@
 
                 <div class="select-pagination">
                     <form class="form-pagination" action="{{ route('users.index') }}">
-                        <select class="paginator-selector" name="pagination" >
+                        <select class="paginator-selector" name="pagination">
                             @foreach ($paginations as $value)
                                 <option {{ $value == request()->pagination ? 'selected' : '' }}
                                     value="{{ $value }}">{{ $value }}</option>
@@ -127,7 +127,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->cpf }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ formatDate($user->birth_date, "d/m/Y") }}</td>
+                            <td>{{ formatDate($user->birth_date, 'd/m/Y') }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->is_admin ? 'Administrador' : 'Cliente' }}</td>
                             <td>
