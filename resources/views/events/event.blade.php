@@ -8,8 +8,8 @@
             <div class="left-section p-3">
 
                 <div>
-                    <div class="event-image-container">
-                        <img src="{{ asset('images/eventfake1.jpeg') }}" class="" alt="">
+                    <div class="event-image-container rounded">
+                        <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded" alt="">
                     </div>
 
                     <div class="mt-2">
