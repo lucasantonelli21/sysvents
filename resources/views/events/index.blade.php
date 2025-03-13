@@ -115,6 +115,8 @@
                     {{-- <th>Longitude</th>
                     <th>Latitude</th> --}}
                     <th>Lote</th>
+                    <th>Criado em</th>
+                    <th>Editado em</th>
                     <th>Ações</th>
                 </tr>
                 @foreach ($events as $event)
@@ -133,6 +135,8 @@
                         {{-- <td>{{ $event->longitude }}</td>
                         <td>{{ $event->latitude }}</td> --}}
                         <td>{{ $event->batch }}</td>
+                        <td>{{ formatDate($event->created_at,'d/m/Y') }}</td>
+                        <td>{{ formatDate($event->updated_at,'d/m/Y') }}</td>
                         <td>
                             <div class= "table-buttons">
                                 <a href="{{ route('events.edit', $event->id) }}" class="btn btn-outline-info">

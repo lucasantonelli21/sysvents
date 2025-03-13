@@ -7,8 +7,8 @@
             <div class="card-row">
 
                 <div class="select-pagination">
-                    <form class="form-pagination"  action="{{ route('artists.index') }}">
-                        <select class="paginator-selector" name="pagination" >
+                    <form class="form-pagination" action="{{ route('artists.index') }}">
+                        <select class="paginator-selector" name="pagination">
                             @foreach ($paginations as $value)
                                 <option {{ $value == request()->pagination ? 'selected' : '' }}
                                     value="{{ $value }}">{{ $value }}</option>
@@ -22,7 +22,8 @@
 
                 <div class="modal-card">
 
-                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-funnel" viewBox="0 0 16 16">
                             <path
@@ -84,7 +85,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a type="button" class="btn btn-light" href="{{ route('artists.index') }}">Limpar
+                                        <a type="button" class="btn btn-light"
+                                            href="{{ route('artists.index') }}">Limpar
                                             Filtro</a>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Cancelar</button>
@@ -108,6 +110,9 @@
                         <th scope="col">Data de Nascimento</th>
                         <th scope="col">Cachê</th>
                         <th scope="col">Telefone</th>
+                        <th scope="col">Criado em</th>
+                        <th scope="col">Editado em</th>
+
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -116,10 +121,11 @@
                         <tr>
                             <th scope="row">{{ $artist->id }}</th>
                             <td>{{ $artist->name }}</td>
-                            <td>{{ formatDate($artist->birth_date, "d/m/Y") }}</td>
+                            <td>{{ formatDate($artist->birth_date, 'd/m/Y') }}</td>
                             <td>R$ {{ $artist->fee }}</td>
                             <td>{{ $artist->phone }}</td>
-
+                            <td>{{ formatDate($artist->created_at,'d/m/Y') }}</td>
+                            <td>{{ formatDate($artist->updated_at,'d/m/Y') }}</td>
                             <td>
                                 <div class="table-buttons">
                                     <a href="{{ route('artists.edit', [$artist->id]) }}" class="btn btn-outline-info">
@@ -150,8 +156,8 @@
             </table>
         </div>
     </div>
-        <div class="card-footer text-end">
-            {{ $artists }}
-        </div>
+    <div class="card-footer text-end">
+        {{ $artists }}
+    </div>
     </div>
 </x-blank>

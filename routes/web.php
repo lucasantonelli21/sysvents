@@ -68,10 +68,10 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 });
 
 //Eventos
-Route::prefix('/eventos')->name('events.')->group(function() {
-    Route::get('/',                 [EventController::class,'index'])->name('index');
+Route::prefix('/eventos')->name('events.')->group(function () {
+    Route::get('/',                 [EventController::class, 'index'])->name('index');
     Route::get('/{id}',             [EventController::class, 'showEvent']);
-    Route::get('/cadastro',         [EventController::class,'showRegister'])->name('register');
+    Route::get('/cadastro',         [EventController::class, 'showRegister'])->name('register');
 
     Route::get('/criar',            [EventController::class, 'createOrEdit'])->name('create');
     Route::get('/{id}/editar',      [EventController::class, 'createOrEdit'])->name('edit');
@@ -80,9 +80,14 @@ Route::prefix('/eventos')->name('events.')->group(function() {
     Route::put('/salvar',           [EventController::class, 'save'])->name('update');
     Route::delete('/{id}/deletar',  [EventController::class, 'delete'])->name('delete');
 
-    Route::prefix('{id}/ingressos')->name('tickets.')->group(function () {
+    Route::prefix('{eventId}/ingressos')->name('tickets.')->group(function () {
         Route::prefix('/tipos')->name('types.')->group(function () {
-            Route::get('/',         [TicketTypeController::class, 'index'])->name('index');
+            Route::get('/',                     [TicketTypeController::class, 'index'])->name('index');
+            Route::get('/criar',                [TicketTypeController::class, 'createOrEdit'])->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('register');
+            Route::get('/{id}/editar',          [TicketTypeController::class, 'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
+            Route::post('/salvar',              [TicketTypeController::class, 'save'])->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('create');
+            Route::put('/{id}/salvar',          [TicketTypeController::class, 'save'])->middleware(VerifyLogin::class)->name('update');
+            Route::delete('/{id}/deletar',      [TicketTypeController::class, 'delete'])->name('delete');
         });
     });
 });

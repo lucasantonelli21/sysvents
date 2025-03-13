@@ -104,6 +104,8 @@
                         <th>Nome</th>
                         <th>Categoria</th>
                         <th>Descrição</th>
+                        <th>Criado em</th>
+                        <th>Editado em</th>
                         <th>Ações</th>
                     </tr>
                     @foreach ($exhibitors as $exhibitor)
@@ -115,6 +117,8 @@
                                 @endif
                             @endforeach
                             <td class="description-cell">{{ $exhibitor->description }}</td>
+                            <td>{{ formatDate($exhibitor->created_at, 'd/m/Y') }}</td>
+                            <td>{{ formatDate($exhibitor->updated_at, 'd/m/Y') }}</td>
                             <td>
 
                                 {{-- @if (isset(Auth::user()->is_admin) && Auth::user()->is_admin) --}}
