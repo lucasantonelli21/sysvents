@@ -14,7 +14,7 @@
                     @endif
                 </div>
 
-                <form class="form" action="{{ route($exhibitor->id ? 'exhibitors.update' : 'exhibitors.save') }}"
+                <form class="form" action="{{ route($exhibitor->id ? 'panel.exhibitors.update' : 'panel.exhibitors.save') }}"
                     method="post" required>
                     <div class="card-body">
 

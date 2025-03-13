@@ -15,7 +15,7 @@
 
                 </div>
 
-                <form class="form" action="{{ route($event->id ? 'events.update' : 'events.save') }}" method="post"
+                <form class="form" action="{{ route($event->id ? 'panel.events.update' : 'panel.events.save') }}" method="post"
                     required>
                     <div class="card-body">
 

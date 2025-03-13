@@ -18,18 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-//Usuários
-
-Route::prefix('/usuarios')->name('users.')->group(function () {
-
-    Route::get('/',                      [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
-    Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
-    Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
-    Route::post('/salvar',              [UserController::class,'save'])->name('create');
-    Route::put('/{id}/salvar',          [UserController::class,'save'])->middleware(VerifyLogin::class)->name('update');
-    Route::delete('/{id}/deletar',      [UserController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
-});
-
 //Login
 Route::prefix('/login')->name('login.')->controller(LoginController::class)->group(function () {
 
@@ -39,44 +27,65 @@ Route::prefix('/login')->name('login.')->controller(LoginController::class)->gro
 
 });
 
-Route::prefix('/artistas')->name('artists.')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->group(function () {
-    Route::get('/',                      [ArtistController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
-    Route::get('/criar',                [ArtistController::class, 'createOrEdit'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('register');
-    Route::get('/{id}/editar',          [ArtistController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
-    Route::post('/salvar',              [ArtistController::class,'save'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('create');
-    Route::put('/{id}/salvar',          [ArtistController::class,'save'])->middleware(VerifyLogin::class)->name('update');
-    Route::delete('/{id}/deletar',      [ArtistController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
-});
-
-
-Route::prefix('/expositores')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('exhibitors.')->group(function () {
-
-    Route::get('/',                 [ExhibitorController::class,'index'])->name('index');
-    Route::get('/cadastro',         [ExhibitorController::class,'showRegister'])->name('register');
-    Route::get('/criar',            [ExhibitorController::class, 'createOrEdit'])->name('create');
-    Route::get('/{id}/editar',      [ExhibitorController::class, 'createOrEdit'])->name('edit');
-
-    Route::post('/salvar',          [ExhibitorController::class, 'save'])->name('save');
-    Route::put('/salvar',           [ExhibitorController::class, 'save'])->name('update');
-    Route::delete('/{id}/deletar',  [ExhibitorController::class, 'delete'])->name('delete');
+//Eventos (Usuário)
+Route::prefix('/eventos')->name('events.')->group(function() {
+    // Route::get('/',                 [EventController::class,'index'])->name('index');
+    Route::get('/{id}',             [EventController::class, 'showEvent']);
 
 });
 
 //Admin dashboard
-Route::prefix('/admin')->name('admin.')->group(function () {
-    Route::get('/dashboard',                      [AdminController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('dashboard');
+Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->group(function () {
+    //Dashboard
+    Route::get('/',                      [AdminController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('dashboard');
+
+    //Usuários
+    Route::prefix('/usuarios')->name('users.')->group(function () {
+        Route::get('/',                      [UserController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
+        Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
+        Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
+        Route::post('/salvar',              [UserController::class,'save'])->name('create');
+        Route::put('/{id}/salvar',          [UserController::class,'save'])->middleware(VerifyLogin::class)->name('update');
+        Route::delete('/{id}/deletar',      [UserController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
+    });
+
+    //Eventos (Admin)
+    Route::prefix('/eventos')->name('events.')->group(function() {
+        Route::get('/',                 [EventController::class,'index'])->name('index');
+        Route::get('/cadastro',         [EventController::class,'showRegister'])->name('register');
+
+        Route::get('/criar',            [EventController::class, 'createOrEdit'])->name('create');
+        Route::get('/{id}/editar',      [EventController::class, 'createOrEdit'])->name('edit');
+
+        Route::post('/salvar',          [EventController::class, 'save'])->name('save');
+        Route::put('/salvar',           [EventController::class, 'save'])->name('update');
+        Route::delete('/{id}/deletar',  [EventController::class, 'delete'])->name('delete');
+    });
+
+    //Artistas
+    Route::prefix('/artistas')->name('artists.')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->group(function () {
+        Route::get('/',                      [ArtistController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('index');
+        Route::get('/criar',                [ArtistController::class, 'createOrEdit'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('register');
+        Route::get('/{id}/editar',          [ArtistController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
+        Route::post('/salvar',              [ArtistController::class,'save'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('create');
+        Route::put('/{id}/salvar',          [ArtistController::class,'save'])->middleware(VerifyLogin::class)->name('update');
+        Route::delete('/{id}/deletar',      [ArtistController::class,'delete'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('delete');
+
+    });
+
+    //Expositores
+    Route::prefix('/expositores')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('exhibitors.')->group(function () {
+
+        Route::get('/',                 [ExhibitorController::class,'index'])->name('index');
+        Route::get('/cadastro',         [ExhibitorController::class,'showRegister'])->name('register');
+        Route::get('/criar',            [ExhibitorController::class, 'createOrEdit'])->name('create');
+        Route::get('/{id}/editar',      [ExhibitorController::class, 'createOrEdit'])->name('edit');
+
+        Route::post('/salvar',          [ExhibitorController::class, 'save'])->name('save');
+        Route::put('/salvar',           [ExhibitorController::class, 'save'])->name('update');
+        Route::delete('/{id}/deletar',  [ExhibitorController::class, 'delete'])->name('delete');
+
+    });
+
 });
 
-//Eventos
-Route::prefix('/eventos')->name('events.')->group(function() {
-    Route::get('/',                 [EventController::class,'index'])->name('index');
-    Route::get('/{id}',             [EventController::class, 'showEvent']);
-    Route::get('/cadastro',         [EventController::class,'showRegister'])->name('register');
-
-    Route::get('/criar',            [EventController::class, 'createOrEdit'])->name('create');
-    Route::get('/{id}/editar',      [EventController::class, 'createOrEdit'])->name('edit');
-
-    Route::post('/salvar',          [EventController::class, 'save'])->name('save');
-    Route::put('/salvar',           [EventController::class, 'save'])->name('update');
-    Route::delete('/{id}/deletar',  [EventController::class, 'delete'])->name('delete');
-});

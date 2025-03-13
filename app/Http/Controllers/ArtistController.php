@@ -51,9 +51,9 @@ class ArtistController extends Controller
         $artist->save();
 
         if (!$request->id) {
-            return redirect()->route('artists.index')->withSuccess('Artista ' . $artist->name . ' Criado com Successo!');
+            return redirect()->route('panel.artists.index')->withSuccess('Artista ' . $artist->name . ' Criado com Successo!');
         }
-        return redirect()->route('artists.index')->withSuccess('Artista ' . $artist->name . ' Atualizado com Successo!');
+        return redirect()->route('panel.artists.index')->withSuccess('Artista ' . $artist->name . ' Atualizado com Successo!');
     }
 
     public function delete(int $id)
@@ -61,8 +61,8 @@ class ArtistController extends Controller
         $artist = Artist::find($id);
         if ($artist) {
             $artist->delete();
-            return redirect()->route("artists.index")->withSuccess("Artista deletado com sucesso!");
+            return redirect()->route("panel.artists.index")->withSuccess("Artista deletado com sucesso!");
         }
-        return redirect()->route("artists.index")->withErrors("Não foi encontrado nenhum artista com este id");
+        return redirect()->route("panel.artists.index")->withErrors("Não foi encontrado nenhum artista com este id");
     }
 }

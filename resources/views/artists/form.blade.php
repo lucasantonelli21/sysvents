@@ -11,7 +11,7 @@
             <h2 class="title text-center">{{ $artist->id ? 'Atualize o Artista ' . $artist->name : 'Cadastrar Artista' }}
             </h2>
         </div>
-        <form action=" {{ route($artist->id ? 'artists.update' : 'artists.create', $artist->id ?? [$artist->id])  }}" method="POST">
+        <form action=" {{ route($artist->id ? 'panel.artists.update' : 'panel.artists.create', $artist->id ?? [$artist->id])  }}" method="POST">
             @csrf
             @method($artist->id ? 'PUT' : 'POST')
             <div class="card-body">
@@ -48,8 +48,5 @@
             </div>
         </form>
     </div>
-
-
-
 
 </x-blank>

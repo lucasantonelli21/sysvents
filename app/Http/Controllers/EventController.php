@@ -36,10 +36,10 @@ class EventController extends Controller
         try {
             $event = Event::find($id);
             if ($event == null) {
-                return redirect()->route('events.index')->withErrors("Erro ao deletar o Expositor");
+                return redirect()->route('panel.events.index')->withErrors("Erro ao deletar o Expositor");
             } else {
                 $event->delete();
-                return redirect()->route('events.index')->withSuccess("Expositor deletado com sucesso!");
+                return redirect()->route('panel.events.index')->withSuccess("Expositor deletado com sucesso!");
             }
         } catch (\Throwable $th) {
         }
@@ -75,7 +75,7 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('events.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
+        return redirect()->route('panel.events.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
     }
     public function createOrEdit($id = null)
     {
