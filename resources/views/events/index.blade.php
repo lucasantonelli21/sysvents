@@ -164,7 +164,7 @@
         </div>
     </div>
     <div class="card-footer text-end">
-        {{ $events }}
+        {{ $events->links() }}
     </div>
     </div>
 

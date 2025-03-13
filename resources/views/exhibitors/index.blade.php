@@ -150,7 +150,7 @@
         </div>
     </div>
     <div class="card-footer text-end">
-        {{ $exhibitors }}
+        {{ $exhibitors->links() }}
     </div>
     </div>
 
