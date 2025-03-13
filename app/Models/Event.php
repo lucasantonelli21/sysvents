@@ -10,6 +10,10 @@ class Event extends Model
 
     use HasFactory;
 
+    public function ticketTypes(){
+        return $this->hasMany(TicketType::class);
+    }
+
     public function scopeSearch($query, $request){
         if ($request->name) {
             $query->where('name', 'ilike', '%' . $request->name . '%');
@@ -18,6 +22,8 @@ class Event extends Model
         if ($request->theme) {
             $query->where('theme', 'ilike', $request->theme);
         }
+
+        // $query->selectRaw('*, description::varchar(10)');
 
         return $query;
     }

@@ -30,10 +30,14 @@ body {
 
 .table {
 
-    th:last-child,
-    td:last-child {
-        width: 10%;
+    th:last-child {
+        text-align: center;
     }
+
+    .ticket-types{
+        text-align: center;
+    }
+
 }
 
 .custom-table {
@@ -72,6 +76,7 @@ body {
     .name-cell,
     .theme-cell,
     .description-cell {
+        width: 30%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
