@@ -70,6 +70,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 //Eventos
 Route::prefix('/eventos')->name('events.')->group(function() {
     Route::get('/',                 [EventController::class,'index'])->name('index');
+    Route::get('/{id}',             [EventController::class, 'showEvent']);
     Route::get('/cadastro',         [EventController::class,'showRegister'])->name('register');
 
     Route::get('/criar',            [EventController::class, 'createOrEdit'])->name('create');
