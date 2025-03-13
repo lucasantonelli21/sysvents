@@ -29,7 +29,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             if(Auth::user()->is_admin){
-                return redirect()->route('admin.dashboard')->withSuccess('Login realizado com sucesso! Bem-Vindo '.Auth::user()->name);
+                return redirect()->route('admin.dashboard')->withSuccess('Login realizado com sucesso! Bem-vindo, '.Auth::user()->name.'.');
             }
             return redirect()->route('admin.dashboard')->withSuccess('Login realizado com sucesso!');
         }
