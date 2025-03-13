@@ -22,3 +22,18 @@
     background-color: #0c182c ;
 }
 
+.row-title-button {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      flex: 1;
+      text-align: center;
+    }
+
+    a {
+      margin-left: auto;
+    }
+  }
+
+

@@ -159,7 +159,7 @@
                                         </svg>
                                     </button>
                                 </form>
-                                <a href="{{ route('events.tickets.types.index',$event->id) }}" class="btn btn-outline-success">
+                                <a href="{{ route('panel.events.tickets.types.index',$event->id) }}" class="btn btn-outline-success">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-ticket" viewBox="0 0 16 16">
                                         <path

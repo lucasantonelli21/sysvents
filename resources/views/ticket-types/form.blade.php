@@ -10,7 +10,7 @@
             @endif
         </div>
 
-        <form class="form" action="{{ route($ticketType->id ? 'events.tickets.types.update' : 'events.tickets.types.create', $ticketType->id ? [$event->id,$ticketType->id] : $event->id) }}"
+        <form class="form" action="{{ route($ticketType->id ? 'panel.events.tickets.types.update' : 'panel.events.tickets.types.create', $ticketType->id ? [$event->id,$ticketType->id] : $event->id) }}"
             method="post" required>
             <div class="card-body">
 
