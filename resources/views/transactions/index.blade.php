@@ -17,7 +17,7 @@
             <div class="card-row">
 
                 <div class="select-pagination">
-                    <form class="form-pagination" action="{{ route('transactions.index') }}">
+                    <form class="form-pagination" action="{{ route('panel.transactions.index') }}">
                         <select class="paginator-selector" name="pagination">
                             @foreach ($paginations as $value)
                                 <option {{ $value == request()->pagination ? 'selected' : '' }}
@@ -40,7 +40,7 @@
                         </svg>
                     </button>
 
-                    <a href="{{ route('exhibitors.create') }}" class="btn btn-outline-primary">
+                    <a href="{{ route('panel.exhibitors.create') }}" class="btn btn-outline-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus-square" viewBox="0 0 16 16">
                             <path
@@ -119,14 +119,14 @@
 
                                 {{-- @if (isset(Auth::user()->is_admin) && Auth::user()->is_admin) --}}
                                 <div class= "table-buttons">
-                                    <a href="{{ route('exhibitors.edit', $exhibitor->id) }}" class="btn btn-outline-info">
+                                    <a href="{{ route('panel.exhibitors.edit', $exhibitor->id) }}" class="btn btn-outline-info">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                             <path
                                                 d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
                                         </svg>
                                     </a>
-                                    <form action="{{ route('exhibitors.delete', $exhibitor->id) }}" method="POST">
+                                    <form action="{{ route('panel.exhibitors.delete', $exhibitor->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-outline-danger">
