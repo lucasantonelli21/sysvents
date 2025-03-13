@@ -15,7 +15,7 @@
 
                 </div>
 
-                <form class="form" action="{{ route($event->id ? 'events.update' : 'events.save') }}" method="post"
+                <form class="form" action="{{ route($event->id ? 'events.update' : 'events.save') }}" method="post" enctype='multipart/form-data'
                     required>
                     <div class="card-body">
 
@@ -34,6 +34,11 @@
                         <div class="form-group">
                             <label class="form-label" for="description">Descrição</label>
                             <textarea class="form-control" type="text" name="description" id="description" required>{{ old('description', $event->description) }} </textarea>
+                        </div>
+                        @csrf
+                        <div class="form-group">
+                            <label class="form-label" for="image_path">Foto do Evento</label>
+                            <input class ="form-control" type="file" name="image_path">
                         </div>
 
                         <div class="form-group">

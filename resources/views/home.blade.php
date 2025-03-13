@@ -17,7 +17,7 @@
             </div>
 
             <div class="">
-                <img src="{{ asset('images/evento-image.webp') }}" class="event-image rounded">
+                <img src="{{ 'images/evento-image.webp' }}" class="event-image rounded">
             </div>
 
 
