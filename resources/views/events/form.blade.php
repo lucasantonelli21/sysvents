@@ -13,10 +13,12 @@
                         <h2 class="text-center">Crie um novo Evento</h2>
                     @endif
 
+
                 </div>
 
+
+
                 <form class="form" action="{{ route($event->id ? 'panel.events.update' : 'panel.events.save') }}" method="post" enctype="multipart/form-data">
-                    required>
                     <div class="card-body">
 
 
@@ -38,8 +40,9 @@
                         @csrf
                         <div class="form-group">
                             <label class="form-label" for="image_path">Foto do Evento</label>
+                            <label for=""></label>
                             <input class ="form-control" type="file" name="image_path" id ="image_path"
-                            value="{{ old('name', $event->image_path) }}">
+                            value="{{ old('name', asset($event->image_path)) }}">
                         </div>
 
                         <div class="form-group">

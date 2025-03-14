@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -101,6 +102,7 @@ class EventController extends Controller
         // $event->start_date = new Carbon($event->start_date);
 
         // dd($event, $teste->format("d/m/Y H:m:s"));
+        $image = asset($event->image_path);
 
         return view('events.form', [
             'event' => $event
