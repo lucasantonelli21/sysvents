@@ -9,7 +9,7 @@
 
                 <div>
                     <div class="event-image-container rounded">
-                        <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded" alt="">
+                        <img src="{{$event->image_path ? asset($event->image_path) : asset('assets/images/default-event-image.jpeg')}}" class="rounded" alt="">
                     </div>
 
                 </div>
