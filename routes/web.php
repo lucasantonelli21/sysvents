@@ -42,7 +42,7 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
 
     //Usuários
     Route::prefix('/usuarios')->name('users.')->group(function () {
-        Route::get('/',                      [UserController::class, 'index'])->name('index');
+        Route::get('/',                     [UserController::class, 'index'])->name('index');
         Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
         Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->name('edit');
         Route::post('/salvar',              [UserController::class,'save'])->name('create');
