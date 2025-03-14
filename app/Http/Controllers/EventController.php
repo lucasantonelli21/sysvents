@@ -49,6 +49,7 @@ class EventController extends Controller
     public function save(Request $request)
     {
         $validator = Validator::make($request->all(), [
+
             'name' => 'required|string|max:255',
             'description' => 'required|string|min:10',
             'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -64,6 +65,7 @@ class EventController extends Controller
             return back()->withErrors($validator->errors())
                 ->withInput();
         }
+
         $filename = $request->getSchemeAndHttpHost() . '/assets/images/' . time() . '.' . $request->image_path->extension();
 
         $request->image_path->move(public_path('/assets/images/'), $filename);

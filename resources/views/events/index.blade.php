@@ -1,7 +1,7 @@
 @php
     $paginations = [10, 15, 20, 30];
 
-    $theames = [
+    $themes = [
         'technology' => 'Tecnologia',
         'cultural' => 'Cultura',
         'musical' => 'Música',
@@ -78,7 +78,7 @@
                                             <label class="form-label">Tema</label>
                                             <select class="form-control" name="theme">
                                                 <option value="">Selecione uma opção</option>
-                                                @foreach ($theames as $value => $name)
+                                                @foreach ($themes as $value => $name)
                                                     <option {{ Request::get('theme') == $value ? 'selected' : '' }}
                                                         value="{{ $value }}">{{ $name }}</option>
                                                 @endforeach
@@ -122,6 +122,7 @@
                 @foreach ($events as $event)
                     <tr>
                         <td class='name-cell'>{{ $event->name }}</td>
+<<<<<<< Updated upstream
                         @foreach ($theames as $value => $name)
                             @if ($value == $event->theme)
                                 <td class="themes-cell">{{ $name }}</td>
@@ -130,6 +131,14 @@
                         <td class='description-cell'>
                             {{ $event->description }}
                         </td>
+=======
+                        {{-- @foreach ($themes as $value => $name)
+                            @if ($value == $event->theme) --}}
+                                <td class="themes-cell">{{ $name }}</td>
+                            {{-- @endif
+                        @endforeach --}}
+                        <td class='description-cell'>{{ $event->description }}</td>
+>>>>>>> Stashed changes
                         <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>
                         {{-- <td>{{ $event->longitude }}</td>
