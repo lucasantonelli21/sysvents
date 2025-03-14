@@ -111,7 +111,7 @@ class UserController extends Controller
         if (!$request->id) {
             return redirect()->route('panel.users.index')->withSuccess('Usuário ' . $user->name . ' Criado com Successo!');
         }
-        if ($request->id && Auth::user()->is_admin){
+        if ($request->id && Auth::user()->is_admin) {
             return redirect()->route('panel.users.index')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
         }
         return redirect()->route('home')->withSuccess('Usuário ' . $user->name . ' Atualizado com Successo!');
@@ -125,5 +125,11 @@ class UserController extends Controller
             return redirect()->route("panel.users.index")->withSuccess("Usuário deletado com sucesso!");
         }
         return redirect()->route("panel.users.index")->withErrors("Não foi encontrado nenhum usuário com este id");
+    }
+
+
+    public function showProfile()
+    {
+        return view('users.profile');
     }
 }

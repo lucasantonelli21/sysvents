@@ -32,6 +32,10 @@ nav {
   color: white;
 }
 
+.btn-profile {
+  margin-right: 10px;
+}
+
 .alert {
   margin-top: 1%;
   color: white;
@@ -91,6 +95,18 @@ body {
   height: 20px;
   width: 20px;
   margin-left: 20%;
+  visibility: hidden;
+}
+
+.switch {
+  margin-bottom: 10px;
+}
+
+.img-check2 {
+  color: green;
+  height: 40px;
+  width: 40px;
+  margin-left: 10%;
   visibility: hidden;
 }
 
@@ -301,7 +317,7 @@ body {
   display: flex;
   align-items: center;
 }
-.row-title-button h2 {
+.row-title-button .title {
   flex: 1;
   text-align: center;
 }
@@ -347,4 +363,10 @@ body {
 .page-dashboard .canvas-row .card-events .canvas-wrapper {
   padding-top: 100px;
   width: 100%;
+}
+.list-group-item {
+  background-color: #0c182c;
+}
+.list-group-item .bg-light {
+  color: black;
 }

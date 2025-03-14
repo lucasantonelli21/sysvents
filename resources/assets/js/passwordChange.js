@@ -7,7 +7,7 @@ $(".page-form-users", function(){
     var $passwordBox = $page.find('.password-box');
     var $newPassword = $page.find('.new-password');
     var $password = $page.find('.password');
-    var $imgCheck = $page.find('.img-check');
+    var $imgCheck = $page.find('.img-check2');
 
     $checkboxButton.on('change', function (){
         $passwordBox.toggleClass('d-none');
