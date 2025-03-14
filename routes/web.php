@@ -59,7 +59,7 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
     Route::prefix('/eventos')->name('events.')->group(function() {
         Route::get('/',                 [EventController::class,'index'])->name('index');
         Route::get('/cadastro',         [EventController::class,'showRegister'])->name('register');
-
+        Route::get('/nomes',            [EventController::class, 'getEvents']);
         Route::get('/criar',            [EventController::class, 'createOrEdit'])->name('create');
         Route::get('/{id}/editar',      [EventController::class, 'createOrEdit'])->name('edit');
 

@@ -329,8 +329,25 @@ body {
   background-color: #0c182c !important;
 }
 
-.page-dashboard .title {
-  margin-bottom: 20px;
+.page-dashboard .select2-container, .page-dashboard .select2-selection--single, .page-dashboard .select2-selection {
+  border-radius: 5px;
+  background-color: #0C182C;
+  height: 35px !important;
+}
+.page-dashboard .select2-dropdown, .page-dashboard .select2-dropdown--below, .page-dashboard .select2-selection__choice, .page-dashboard .select2-search__field, .page-dashboard .select2-selection__choice__display {
+  color: white;
+  background-color: #0C182C !important;
+}
+.page-dashboard .header-wrapper {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.page-dashboard .header-wrapper .btn-filter {
+  padding: 6px 6px;
+  font-size: 10px;
 }
 .page-dashboard .canvas-row {
   display: flex;

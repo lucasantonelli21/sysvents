@@ -10,11 +10,13 @@ class Event extends Model
 
     use HasFactory;
 
-    public function ticketTypes(){
+    public function ticketTypes()
+    {
         return $this->hasMany(TicketType::class);
     }
 
-    public function scopeSearch($query, $request){
+    public function scopeSearch($query, $request)
+    {
         if ($request->name) {
             $query->where('name', 'ilike', '%' . $request->name . '%');
         }
@@ -28,26 +30,34 @@ class Event extends Model
         return $query;
     }
 
-    protected function casts():array {
+    protected function casts(): array
+    {
         return [
             "start_date" => "datetime"
         ];
     }
 
 
-    public function scopeSoldTickets($query){
-        return $query->from('events as event') // Defina o alias "event" aqui
-        ->join('ticket_types as ticket_type', 'ticket_type.event_id', '=', 'event.id')
-        ->join('ticket_batches as ticket_batch', 'ticket_batch.ticket_type_id', '=', 'ticket_type.id')
-        ->join('tickets as ticket', 'ticket.ticket_batch_id', '=', 'ticket_batch.id')
-        ->selectRaw(
-            'event.id AS event_id,
-             event.name AS event_name,
-             count(ticket.id) AS total_tickets,
-             sum(ticket_batch.price) AS total_revenue'
-        )
-        ->groupBy('event.id', 'event.name');
+    public function scopeSoldTickets($query, $request)
+    {
 
+        $query->from('events as e')
+            ->join('ticket_types as tp', 'tp.event_id', '=', 'e.id')
+            ->join('ticket_batches as tb', 'tb.ticket_type_id', '=', 'tp.id')
+            ->join('tickets as t', 't.ticket_batch_id', '=', 'tb.id')
+            ->selectRaw(
+                'e.id AS event_id,
+                e.name AS event_name,
+                count(t.id) AS total_tickets,
+                sum(tb.price) AS total_revenue'
+            )
+            ->groupBy('e.id', 'e.name');
+
+        if ($request->events) {
+            $query->whereIn('e.id', $request->events);
+        }
+
+        return $query;
 
     }
 }

@@ -1,5 +1,34 @@
 $(".page-dashboard", function () {
+
     var $page = $(this);
+    var $selectEvents = $page.find("#select2-events");
+    $selectEvents.select2({
+        width: "100%",
+        placeholder : "Insira o nome do evento",
+        dropdownParent: $(".modal"),
+        // dropdownCssClass: "drop-down-select",
+        // selectionCssClass: ":all:",
+        theme: "classic",
+        language: {
+            "noResults": function(){
+                return "Não foram encontrados eventos com este nome ! ";
+            }
+        },
+        ajax: {
+            url: "http://127.0.0.1:8000/painel/eventos/nomes",
+            delay: 200,
+            data: function(params){
+                var query = {
+                    search: params.term,
+                    type: 'public'
+                  }
+                return query;
+            },
+            processResults: function(data){
+                return {results: data};
+            }
+        }
+    });
     var $events = $page.find(".events");
     var $eventsChart = $page.find("#event-chart");
     var $ticketsChart = $page.find("#tickets-chart");
