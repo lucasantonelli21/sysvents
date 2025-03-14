@@ -21,4 +21,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-public/assets
+public/assets/fonts
+public/assets/js
+public/assets/scss
