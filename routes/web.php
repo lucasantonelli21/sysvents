@@ -39,6 +39,7 @@ Route::prefix('/eventos')->name('events.')->group(function() {
 Route::prefix('/usuarios')->name('users.')->group(function () {
     Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
     Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->name('edit');
+    Route::get('/profile',         [UserController::class,'showProfile'])->name('profile');
     Route::post('/salvar',              [UserController::class,'save'])->name('create');
     Route::put('/{id}/salvar',          [UserController::class,'save'])->name('update');
 });

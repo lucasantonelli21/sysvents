@@ -33,6 +33,7 @@
             </ul>
         </div>
         @if (Auth::check())
+            <a class="btn-actions btn-profile text-end btn btn-light" type="button" href="{{ route('users.profile') }}">Perfil</a>
             <a class="btn-actions text-end btn btn-light" type="button" href="{{ route('login.logout') }}">Logout</a>
         @else
             <div class="gap-1">
