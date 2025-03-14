@@ -122,23 +122,12 @@
                 @foreach ($events as $event)
                     <tr>
                         <td class='name-cell'>{{ $event->name }}</td>
-<<<<<<< Updated upstream
-                        @foreach ($theames as $value => $name)
-                            @if ($value == $event->theme)
-                                <td class="themes-cell">{{ $name }}</td>
-                            @endif
-                        @endforeach
-                        <td class='description-cell'>
-                            {{ $event->description }}
-                        </td>
-=======
                         {{-- @foreach ($themes as $value => $name)
                             @if ($value == $event->theme) --}}
                                 <td class="themes-cell">{{ $name }}</td>
                             {{-- @endif
                         @endforeach --}}
                         <td class='description-cell'>{{ $event->description }}</td>
->>>>>>> Stashed changes
                         <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>
                         {{-- <td>{{ $event->longitude }}</td>
