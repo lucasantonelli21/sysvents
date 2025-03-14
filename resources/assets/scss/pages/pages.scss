@@ -69,22 +69,44 @@ body {
 .table-events {
     table-layout: fixed;
 
-    th:nth-child(3),
-    td:nth-child(3) {
+    th:nth-child(4),
+    td:nth-child(4) {
         width: 12%;
     }
+    th:nth-child(1),
+    td:nth-child(1) {
+        width: 3%;
+    }
 
-    th:nth-child(6),
-    td:nth-child(6) {
+    th:nth-child(7),
+    td:nth-child(7) {
         width: 5%;
+    }
+    th:last-child {
+        text-align: center;
+        width: 13%;
     }
 
     .name-cell,
     .theme-cell,
     .description-cell {
-        width: 30%;
+        width: 20%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+}
+
+.imageEvent {
+    max-width: 100%;
+
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: auto;
+        min-width: 490px;
+        max-width: 490px;
+        object-fit: cover;
     }
 }

@@ -107,6 +107,7 @@
         <div class="table-responsive ">
             <table class="table-events table table-striped custom-table">
                 <tr>
+                    <th>#</th>
                     <th>Nome</th>
                     <th>Tema</th>
                     <th>Descrição</th>
@@ -121,6 +122,7 @@
                 </tr>
                 @foreach ($events as $event)
                     <tr>
+                        <th>{{ $event->id }}</th>
                         <td class='name-cell'>{{ $event->name }}</td>
                         @foreach ($themes as $theme => $name)
                             @if ($event->theme == $theme)

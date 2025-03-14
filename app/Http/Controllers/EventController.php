@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class EventController extends Controller
 
@@ -49,31 +50,44 @@ class EventController extends Controller
 
     public function save(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|min:10',
-            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'theme' => 'required|',
-            'longitude' =>'required',
-            'latitude' =>'required',
-            'batch' =>'required',
-        ]);
+        if(!$request->id){
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'description' => 'required|string|min:10',
+                'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
+                'theme' => 'required|',
+                'longitude' =>'required',
+                'latitude' =>'required',
+                'batch' =>'required',
+                ]);
+            }else{
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required|string|max:255',
+                    'description' => 'required|string|min:10',
+                    'start_date' => 'required|date',
+                    'end_date' => 'required|date',
+                    'theme' => 'required|',
+                    'longitude' =>'required',
+                    'latitude' =>'required',
+                    'batch' =>'required',
+                    ]);
+            }
 
         if ($validator->fails()) {
             return back()->withErrors($validator->errors())
                 ->withInput();
         }
 
-        $filename =  'images/' . time() . '.' . $request->image_path->extension();
-
-        $request->image_path->move(public_path('images/'), $filename);
         $event = Event::findOrNew($request->id);
         $event->name = $request->name;
         $event->description = $request->description;
-        $event->image_path = $filename;
+        if($request->image_path){
+            $filename =  'images/' . time() . '.' . $request->image_path->extension();
+            $request->image_path->move(public_path('images/'), $filename);
+            $event->image_path = $filename;
+        }
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;
         $event->theme = $request->theme;

@@ -169,21 +169,41 @@ body {
 .table-events {
   table-layout: fixed;
 }
-.table-events th:nth-child(3),
-.table-events td:nth-child(3) {
+.table-events th:nth-child(4),
+.table-events td:nth-child(4) {
   width: 12%;
 }
-.table-events th:nth-child(6),
-.table-events td:nth-child(6) {
+.table-events th:nth-child(1),
+.table-events td:nth-child(1) {
+  width: 3%;
+}
+.table-events th:nth-child(7),
+.table-events td:nth-child(7) {
   width: 5%;
+}
+.table-events th:last-child {
+  text-align: center;
+  width: 13%;
 }
 .table-events .name-cell,
 .table-events .theme-cell,
 .table-events .description-cell {
-  width: 30%;
+  width: 20%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.imageEvent {
+  max-width: 100%;
+  overflow: hidden;
+}
+.imageEvent img {
+  width: 100%;
+  height: auto;
+  min-width: 490px;
+  max-width: 490px;
+  object-fit: cover;
 }
 
 .home {
