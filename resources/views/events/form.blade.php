@@ -18,7 +18,9 @@
 
 
 
-                <form class="form" action="{{ route($event->id ? 'panel.events.update' : 'panel.events.save') }}" method="post" enctype="multipart/form-data">
+
+                <form class="form" action="{{ route($event->id ? 'panel.events.update' : 'panel.events.save') }}"
+                    method="post" enctype="multipart/form-data">
                     <div class="card-body">
 
 
@@ -27,80 +29,99 @@
 
                         <input type="hidden" name="id" value="{{ $event->id }}">
 
-                        <div class="form-group">
-                            <label class="form-label" for="name">Nome do Evento</label>
-                            <input class="form-control" type="text" name="name" id="name"
-                                value="{{ old('name', $event->name) }}" required>
+                        <div class="card-body d-flex gap-2">
+                            <div class="imageInfo">
+                                <img src="{{ $event->image_path ? asset($event->image_path) : 'assets/images/default-event-image.jpeg' }}"
+                                    class="rounded">
+                                <div class="form-group">
+
+                                    <label for=""></label>
+                                    <input class ="form-control" type="file" name="image_path" id ="image_path"
+                                        value="{{ old('name', asset($event->image_path)) }}">
+                                </div>
+                            </div>
+                            <div class="image-overlay d-flex justify-content-center flex-column rounded">
+                            </div>
+                            <div class="afterImage w-100">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Nome do Evento</label>
+                                    <input class="form-control" type="text" name="name" id="name"
+                                        value="{{ old('name', $event->name) }}" required>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="form-label" for="description">Descrição</label>
+                                    <textarea rows="9" cols="50" class="form-control w-100" type="text" name="description" id="description"
+                                        required>{{ old('description', $event->description) }} </textarea>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="description">Descrição</label>
-                            <textarea class="form-control" type="text" name="description" id="description" required>{{ old('description', $event->description) }} </textarea>
-                        </div>
-                        @csrf
-                        <div class="form-group">
-                            <label class="form-label" for="image_path">Foto do Evento</label>
-                            <label for=""></label>
-                            <input class ="form-control" type="file" name="image_path" id ="image_path"
-                            value="{{ old('name', asset($event->image_path)) }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Data de Início</label>
+                        <div class="row">
+                            <div class="form-group col-sm">
+                                <label class="form-label">Data de Início</label>
                                 <input class="form-control" type="datetime-local" id="date-time" name="start_date"
-                                value="{{ old('start_date') ? formatDate(old('start_date'), 'Y-m-d\TH:i') : formatDate($event->start_date, 'Y-m-d\TH:i') }}"
-                                min="2024-06-07T00:00" max="2028-06-14T00:00" />
+                                    value="{{ old('start_date') ? formatDate(old('start_date'), 'Y-m-d\TH:i') : formatDate($event->start_date, 'Y-m-d\TH:i') }}"
+                                    min="2024-06-07T00:00" max="2028-06-14T00:00" />
+                            </div>
+
+                            <div class="form-group col-sm">
+                                <label class="form-label">Data do Fim</label>
+                                <input class="form-control" type="datetime-local" id="date-time" name="end_date"
+                                    value="{{ old('end_date') ? formatDate(old('end_date'), 'Y-m-d\TH:i') : formatDate($event->end_date, 'Y-m-d\TH:i') }}"
+                                    min="2023-06-07T00:00" max="2028-06-14T00:00" />
+                            </div>
+
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Data do Fim</label>
-                            <input class="form-control" type="datetime-local" id="date-time" name="end_date"
-                                value="{{ old('end_date') ? formatDate(old('end_date'), 'Y-m-d\TH:i') : formatDate($event->end_date, 'Y-m-d\TH:i') }}"
-                                min="2023-06-07T00:00" max="2028-06-14T00:00" />
+
+                        <div class="row">
+
+                            <div class="form-group col-sm">
+                                <label class="form-label" for="longitude">Longitude</label>
+                                <input class="form-control" type="text" name="longitude" id="longitude"
+                                    value="{{ old('longitude', $event->longitude) }}" required>
+                            </div>
+                            <div class="form-group col-sm">
+                                <label class="form-label" for="latitude">Latitude</label>
+                                <input class="form-control" type="text" name="latitude" id="latitude"
+                                    value="{{ old('latitude', $event->latitude) }}" required>
+                            </div>
                         </div>
+                        <div class="row">
+                            @php
+                                $themes = [
+                                    'technology' => 'Tecnologia',
+                                    'cultural' => 'Cultura',
+                                    'musical' => 'Música',
+                                    'art' => 'Arte',
+                                    'sport' => 'Esportes',
+                                    'gastronomy' => 'Gastronomia',
+                                    'health' => 'Saúde e Bem-estar',
+                                ];
 
-                        @php
-                            $themes = [
-                                'technology' => 'Tecnologia',
-                                'cultural' => 'Cultura',
-                                'musical' => 'Música',
-                                'art' => 'Arte',
-                                'sport' => 'Esportes',
-                                'gastronomy' => 'Gastronomia',
-                                'health' => 'Saúde e Bem-estar',
-                            ];
+                            @endphp
 
-                        @endphp
+                            <div class="form-group col-sm">
 
-                        <div class="form-group">
+                                <label class="form-label" for="theme">Tema</label>
 
-                            <label class="form-label" for="theme">Tema</label>
+                                <select class="form-control" name="theme" id="theme" required>
+                                    <option value="">Selecione uma opção</option>
+                                    @foreach ($themes as $key => $name)
+                                        <option value="{{ $key }}"
+                                            {{ old('theme', $event->theme) == $key ? 'selected' : '' }}>
+                                            {{ $name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                            <select class="form-control" name="theme" id="theme" required>
-                                <option value="">Selecione uma opção</option>
-                                @foreach ($themes as $key => $name)
-                                    <option value="{{ $key }}"
-                                        {{ old('theme', $event->theme) == $key ? 'selected' : '' }}>
-                                        {{ $name }}</option>
-                                @endforeach
-                            </select>
+                            <div class="form-group col-sm">
+                                <label class="form-label" for="batch">Lote</label>
+                                <input class="form-control" type="text" name="batch" id="batch"
+                                    value="{{ old('batch', $event->batch) }}" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label" for="longitude">Longitude</label>
-                            <input class="form-control" type="text" name="longitude" id="longitude"
-                                value="{{ old('longitude', $event->longitude) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="latitude">Latitude</label>
-                            <input class="form-control" type="text" name="latitude" id="latitude"
-                                value="{{ old('latitude', $event->latitude) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="batch">Lote</label>
-                            <input class="form-control" type="text" name="batch" id="batch"
-                                value="{{ old('batch', $event->batch) }}" required>
-                        </div>
-
 
                         {{-- $table->string('name');
                         $table->string('description');
