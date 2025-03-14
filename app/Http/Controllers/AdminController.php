@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index() {
-        $events = Event::soldTickets()->get();
+    public function index(Request $request){
+        $events = Event::soldTickets($request)->get();
         return view('admin.dashboard', ["events" => $events]);
     }
 

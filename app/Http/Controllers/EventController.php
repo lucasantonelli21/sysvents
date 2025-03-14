@@ -122,4 +122,10 @@ class EventController extends Controller
             'event' => $event
         ]);
     }
+
+
+    public function getEvents(Request $request){
+        return Event::select('id','name as text')->where('name', 'ilike', '%'.$request->search.'%')->limit(5)->get();
+    }
+
 }

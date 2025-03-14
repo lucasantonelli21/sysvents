@@ -1,6 +1,27 @@
 .page-dashboard{
-    .title{
-        margin-bottom: 20px;
+
+    .select2-container, .select2-selection--single, .select2-selection {
+        border-radius: 5px;
+        background-color: #0C182C;
+        height: 35px !important;
+    }
+
+    .select2-dropdown, .select2-dropdown--below,.select2-selection__choice, .select2-search__field,.select2-selection__choice__display{
+        color:white;
+        background-color: #0C182C !important;
+    }
+
+
+    .header-wrapper{
+        margin-bottom: 10px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        .btn-filter{
+            padding: 6px 6px;
+            font-size: 10px;
+        }
     }
     .canvas-row{
         display: flex;
