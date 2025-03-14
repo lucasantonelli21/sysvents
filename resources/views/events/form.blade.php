@@ -58,9 +58,9 @@
 
                         @php
                             $themes = [
-                                'tecnology' => 'Tecnologia',
-                                'culture' => 'Cultura',
-                                'music' => 'Música',
+                                'technology' => 'Tecnologia',
+                                'cultural' => 'Cultura',
+                                'musical' => 'Música',
                                 'art' => 'Arte',
                                 'sport' => 'Esportes',
                                 'gastronomy' => 'Gastronomia',

@@ -122,11 +122,14 @@
                 @foreach ($events as $event)
                     <tr>
                         <td class='name-cell'>{{ $event->name }}</td>
-                        {{-- @foreach ($themes as $value => $name)
-                            @if ($value == $event->theme) --}}
+                        @foreach ($themes as $theme => $name)
+                            @if ($event->theme == $theme)
                                 <td class="themes-cell">{{ $name }}</td>
-                            {{-- @endif
-                        @endforeach --}}
+                            @endif
+                        @endforeach
+
+
+
                         <td class='description-cell'>{{ $event->description }}</td>
                         <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>

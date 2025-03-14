@@ -37,10 +37,10 @@ class EventController extends Controller
         try {
             $event = Event::find($id);
             if ($event == null) {
-                return redirect()->route('events.index')->withErrors("Evento ao deletar o Expositor");
+                return redirect()->route('panel.events.index')->withErrors("Evento ao deletar o Expositor");
             } else {
                 $event->delete();
-                return redirect()->route('events.index')->withSuccess("Evento deletado com sucesso!");
+                return redirect()->route('panel.events.index')->withSuccess("Evento deletado com sucesso!");
             }
         } catch (\Throwable $th) {
         }
@@ -66,9 +66,9 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        $filename = $request->getSchemeAndHttpHost() . '/assets/images/' . time() . '.' . $request->image_path->extension();
+        $filename =  'images/' . time() . '.' . $request->image_path->extension();
 
-        $request->image_path->move(public_path('/assets/images/'), $filename);
+        $request->image_path->move(public_path('images/'), $filename);
         $event = Event::findOrNew($request->id);
         $event->name = $request->name;
         $event->description = $request->description;
