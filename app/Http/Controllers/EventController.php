@@ -34,8 +34,13 @@ class EventController extends Controller
 
     public function showLibrary() {
 
+        $events = Event::orderBy('id', 'desc')->get();
 
-        return view('events.library');
+        $data = [
+            "events" => $events
+        ];
+
+        return view('events.library', $data);
     }
 
     public function delete($id) // em cada filme listado no index há um botão delete por ter um botao delete por filme, logo o botão delete é vinculado ao ID desse filme
