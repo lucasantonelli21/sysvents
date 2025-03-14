@@ -31,7 +31,7 @@
                         </svg>
                     </button>
 
-                    <a href="{{ route('panel.users.register') }}" class="btn btn-outline-primary">
+                    <a href="{{ route('users.register') }}" class="btn btn-outline-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus-square" viewBox="0 0 16 16">
                             <path
@@ -136,7 +136,7 @@
                             <td>{{ formatDate($user->created_at,'d/m/Y') }}</td>
                             <td>
                                 <div class="table-buttons">
-                                    <a href="{{ route('panel.users.edit', [$user->id]) }}" class="btn btn-outline-info">
+                                    <a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-outline-info">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                             <path

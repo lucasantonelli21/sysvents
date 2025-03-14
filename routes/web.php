@@ -35,18 +35,22 @@ Route::prefix('/eventos')->name('events.')->group(function() {
 
 });
 
+//Usuários (Usuário)
+Route::prefix('/usuarios')->name('users.')->group(function () {
+    Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
+    Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->name('edit');
+    Route::post('/salvar',              [UserController::class,'save'])->name('create');
+    Route::put('/{id}/salvar',          [UserController::class,'save'])->name('update');
+});
+
 //Admin dashboard
 Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->group(function () {
     //Dashboard
     Route::get('/',                      [AdminController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('dashboard');
 
-    //Usuários
+    //Usuários (admin)
     Route::prefix('/usuarios')->name('users.')->group(function () {
         Route::get('/',                      [UserController::class, 'index'])->name('index');
-        Route::get('/criar',                [UserController::class,'createOrEdit'])->name('register');
-        Route::get('/{id}/editar',          [UserController::class,'createOrEdit'])->name('edit');
-        Route::post('/salvar',              [UserController::class,'save'])->name('create');
-        Route::put('/{id}/salvar',          [UserController::class,'save'])->name('update');
         Route::delete('/{id}/deletar',      [UserController::class,'delete'])->name('delete');
     });
 

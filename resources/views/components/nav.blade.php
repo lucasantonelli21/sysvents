@@ -38,7 +38,7 @@
             <div class="gap-1">
                 <a class="btn-actions text-end btn btn-light" type="button" href="{{ route('login.index') }}">Login</a>
                 <a class="btn-actions text-end btn btn-light" type="button"
-                    href="{{ route('panel.users.register') }}">Cadastre-se</a>
+                    href="{{ route('users.register') }}">Cadastre-se</a>
             </div>
         @endif
     </div>

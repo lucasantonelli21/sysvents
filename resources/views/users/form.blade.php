@@ -14,7 +14,7 @@
         <div class="card-header">
             <h2 class="title text-center">{{ $user->id ? 'Atualize o Usuário ' . $user->name : 'Se Registre Aqui' }}</h2>
         </div>
-        <form action="{{ route($user->id ? 'panel.users.update' : 'panel.users.create', $user->id ?? [$user->id]) }}" method="POST">
+        <form action="{{ route($user->id ? 'users.update' : 'users.create', $user->id ?? [$user->id]) }}" method="POST">
             @csrf
             @method($user->id ? 'PUT' : 'POST')
             <div class="card-body ">
