@@ -196,7 +196,12 @@ body {
 
 .imageEvent {
   max-width: 100%;
+  position: relative;
   overflow: hidden;
+}
+.imageEvent svg {
+  height: 50px;
+  width: 50px;
 }
 .imageEvent img {
   width: 100%;
@@ -204,6 +209,27 @@ body {
   min-width: 490px;
   max-width: 490px;
   object-fit: cover;
+  cursor: pointer;
+  position: relative;
+}
+.imageEvent .editImageIcon {
+  visibility: hidden;
+  font-size: 1000px;
+  font-weight: 50px;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.imageEvent:hover {
+  cursor: pointer;
+}
+.imageEvent:hover img {
+  opacity: 0.4;
+}
+.imageEvent:hover .editImageIcon {
+  visibility: visible;
 }
 
 .home {

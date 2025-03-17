@@ -2,13 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
+
 class EventFactory extends Factory
 {
+
+
+    protected $model = Event::class;
     /**
      * Define the model's default state.
      *
@@ -26,8 +31,9 @@ class EventFactory extends Factory
             'health',
         ];
         return [
-            'name'=>fake()->name(),
+            'name' => $this->faker->name,
             'description'=>fake()->realText(),
+            'image_path' => fake()->randomElement(['/images/default-event-image.jpeg', '/images/evento-image.webp', '']),
             'start_date'=>fake()->dateTime(),
             'end_date'=>fake()->dateTime(),
             'theme' =>$themes[rand(0,6)],
