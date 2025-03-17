@@ -378,7 +378,6 @@ body {
 .page-dashboard .select2-container, .page-dashboard .select2-selection--single, .page-dashboard .select2-selection {
   border-radius: 5px;
   background-color: #0C182C;
-  height: 35px !important;
 }
 .page-dashboard .select2-dropdown, .page-dashboard .select2-dropdown--below, .page-dashboard .select2-selection__choice, .page-dashboard .select2-search__field, .page-dashboard .select2-selection__choice__display {
   color: white;
@@ -402,31 +401,21 @@ body {
   justify-content: center;
 }
 .page-dashboard .canvas-row .card-events {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
   background-color: #0C182C;
+  border: 1px solid #495057;
   width: 90%;
   max-width: 620px;
   min-width: 370px;
-  min-height: 400px;
-  border: 1px solid #495057;
+  min-height: 500px;
   border-radius: 10px;
   position: relative;
 }
-.page-dashboard .canvas-row .card-events h2 {
-  margin: unset;
+.page-dashboard .canvas-row .card-events #tickets-chart {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
+  top: 50%;
+  transform: translate(0px, -50%);
 }
-.page-dashboard .canvas-row .card-events .canvas-wrapper {
-  padding-top: 100px;
-  width: 100%;
-}
+
 .list-group-item {
   background-color: #0c182c;
 }

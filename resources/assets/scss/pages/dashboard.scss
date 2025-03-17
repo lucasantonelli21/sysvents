@@ -3,7 +3,6 @@
     .select2-container, .select2-selection--single, .select2-selection {
         border-radius: 5px;
         background-color: #0C182C;
-        height: 35px !important;
     }
 
     .select2-dropdown, .select2-dropdown--below,.select2-selection__choice, .select2-search__field,.select2-selection__choice__display{
@@ -29,36 +28,30 @@
         gap: 20px;
         justify-content: center;
         .card-events{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
+
             background-color: #0C182C;
+            border: 1px solid #495057;
             width: 90%;
+
             max-width: 620px;
             min-width: 370px;
-            min-height: 400px;
-            border: 1px solid #495057;
+            min-height: 500px;
+
             border-radius: 10px;
             position: relative;
 
-            h2{
-                margin: unset;
+            #tickets-chart {
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                text-align: center;
+                top: 50%;
+                transform: translate(0px, -50%);
             }
 
-            .canvas-wrapper {
-                padding-top: 100px;
-                width: 100%;
+            // .canvas-wrapper {
+            //     background-color: red;
+            //     // padding-top: 100px;
+            //     width: 100%;
+            // }
 
-                canvas {
-                }
-
-            }
         }
     }
 }

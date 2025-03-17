@@ -1,15 +1,15 @@
+
 $(".page-dashboard", function () {
     var $page = $(this);
     var $selectEvents = $page.find("#select2-events");
     var $eventsName = $page.find(".events-name");
     var eventsName = $eventsName.data("events-name");
-    console.log(eventsName);
     $selectEvents.select2({
         width: "100%",
         placeholder: "Insira o nome do evento",
         dropdownParent: $(".modal"),
         // dropdownCssClass: "drop-down-select",
-        // selectionCssClass: ":all:",
+        // selectionCssClass: ":all:",S
         theme: "classic",
         language: {
             noResults: function () {
@@ -45,7 +45,18 @@ $(".page-dashboard", function () {
         eventsTickets.push(element.total_tickets);
         eventsProfit.push(element.total_revenue);
     });
+
+    var backgroundColors = [
+        "rgb(255, 99, 132)",
+        "rgb(255, 159, 64)",
+        "rgb(255, 205, 86)",
+        "rgb(75, 192, 192)",
+        "rgb(54, 162, 235)",
+        "rgb(153, 102, 255)",
+    ];
+
     Chart.register(ChartDataLabels);
+
     var eventChart = new Chart($eventsChart, {
         type: "pie",
         data: {
@@ -55,14 +66,7 @@ $(".page-dashboard", function () {
                     label: `Número de Ingressos vendidos`,
                     data: eventsTickets,
                     //borderWidth: 1,
-                    backgroundColor: [
-                       "rgb(255, 99, 132)",
-                        "rgb(255, 159, 64)",
-                        "rgb(255, 205, 86)",
-                        "rgb(75, 192, 192)",
-                        "rgb(54, 162, 235)",
-                        "rgb(153, 102, 255)",
-                    ],
+                    backgroundColor: backgroundColors,
                 },
             ],
         },
@@ -89,27 +93,50 @@ $(".page-dashboard", function () {
     var ticketsChart = new Chart($ticketsChart, {
         type: "bar",
         data: {
-            labels: eventsNames,
-            datasets: [
-                {
-                    label: `Lucro de cada Evento`,
-                    data: eventsProfit,
-                    borderWidth: 1,
-                    backgroundColor: [
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 159, 64)",
-                        "rgb(255, 205, 86)",
-                        "rgb(75, 192, 192)",
-                        "rgb(54, 162, 235)",
-                        "rgb(153, 102, 255)",
-                    ],
-                },
-            ],
+            datasets: eventsNames.map((name, index) => ({
+                label: name,
+                data: [{ x: index, y: eventsProfit[index] }],
+                backgroundColor: backgroundColors[index > 5 ? index % 5 : index],
+                xAxisID: "x1",
+                yAxisID: "y",
+            })),
         },
         options: {
             responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        color: "white",
+                        display: true,
+                        text: "Número de Vendas",
+                    },
+                },
+                x: {
+                    labels: eventsNames,
+                    title: {
+                        color: "white",
+                        display: true,
+                        text: "Eventos",
+                    }
+                },
+                x1: {
+                    display: false,
+                    offset: true
+                },
+            },
             plugins: {
+                legend: {
+                    display: true,
+                    position: "top",
+                    labels: {
+                        boxHeight: 5,
+                        color: "white",
+                    },
+                },
                 datalabels: {
+                    anchor: "center",
+                    align: "top",
                     labels: {
                         title: {
                             font: {
@@ -119,10 +146,12 @@ $(".page-dashboard", function () {
                     },
                     color: "white",
                     formatter: (value, context) => {
-                        return "$" + value;
+                        return "$" + value.y;
                     },
-                },
-            },
+                }
+            }
         },
     });
+
+
 });

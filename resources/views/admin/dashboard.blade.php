@@ -39,7 +39,6 @@
                                             @endif
                                         </select>
                                     </div>
-
                                 </div>
                                 <div class="modal-footer">
                                     <a type="button" class="btn btn-light" href="{{ route('panel.dashboard') }}">Limpar
@@ -59,15 +58,15 @@
     <div class="canvas-row">
         <div class="card-events">
             <h2 class="text-center">Número de Ingressos comprados por Evento</h2>
-            <div class="canvas-wrapper">
-                <canvas id="event-chart"></canvas>
-            </div>
+            {{-- <div class="canvas-wrapper"> --}}
+            <canvas id="event-chart"></canvas>
+            {{-- </div> --}}
         </div>
         <div class="card-events">
             <h2 class="text-center">Receita gerada por Evento</h2>
-            <div class="canvas-wrapper">
-                <canvas id="tickets-chart"></canvas>
-            </div>
+            {{-- <div class="canvas-wrapper"> --}}
+            <canvas id="tickets-chart"></canvas>
+            {{-- </div> --}}
         </div>
     </div>
     </div>
