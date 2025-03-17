@@ -15,7 +15,7 @@
 
 <x-blank :container=false>
 
-    <div class="library h-100">
+    <div class="library">
 
         <div class="page d-flex mt-5 mx-5">
             <div class="left-section">
@@ -76,22 +76,17 @@
 
                 <div class="d-flex justify-content-between flex-wrap gap-3">
                     @foreach ($events as $event)
-                        {{-- <div> --}}
-                            <div class="media-element mb-1 rounded" href="{{ url('eventos/'.$event->id) }}">
-                                <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded">
-                                <div class="image-overlay d-flex justify-content-center flex-column rounded">
-                                    <h2 class="event-title text-center">{{ $event->name }}</h2>
-                                    <p class="mx-2 event-description">{{ $event->description }}</p>
-                                </div>
+                        <div class="media-element mb-1 rounded" href="{{ url('eventos/'.$event->id) }}">
+                            <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded">
+                            <div class="image-overlay d-flex justify-content-center flex-column rounded">
+                                <h2 class="event-title text-center">{{ $event->name }}</h2>
+                                <p class="mx-2 event-description">{{ $event->description }}</p>
                             </div>
+                        </div>
 
-                        {{-- </div> --}}
                     @endforeach
 
                 </div>
-
-
-
 
             </div>
 
