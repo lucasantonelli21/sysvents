@@ -73,6 +73,7 @@ body {
     td:nth-child(4) {
         width: 12%;
     }
+
     th:nth-child(1),
     td:nth-child(1) {
         width: 3%;
@@ -82,6 +83,7 @@ body {
     td:nth-child(7) {
         width: 5%;
     }
+
     th:last-child {
         text-align: center;
         width: 13%;
@@ -99,8 +101,13 @@ body {
 
 .imageEvent {
     max-width: 100%;
-
+    position: relative;
     overflow: hidden;
+
+    svg {
+        height: 50px;
+        width: 50px;
+    }
 
     img {
         width: 100%;
@@ -108,5 +115,32 @@ body {
         min-width: 490px;
         max-width: 490px;
         object-fit: cover;
+        cursor: pointer;
+        position: relative;
+
+
+    }
+
+    .editImageIcon {
+        visibility: hidden;
+        font-size: 1000px;
+        font-weight: 50px;
+        z-index: 2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+
+    &:hover {
+        cursor: pointer;
+        img {
+            opacity: 0.4;
+        }
+        .editImageIcon {
+            visibility: visible;
+        }
+
     }
 }
