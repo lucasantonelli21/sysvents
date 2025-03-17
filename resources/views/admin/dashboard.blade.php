@@ -1,5 +1,6 @@
 <x-blank>
     <div class="page-dashboard">
+        {{-- @dd($eventsName) --}}
         <div class="header-wrapper">
             <h1 class="title text-center">DashBoard para Administradores</h1>
             <div class="modal-card">
@@ -28,7 +29,15 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label class="form-label">Nome</label>
-                                        <select name="events[]" class="form-control" id="select2-events" multiple="multiple"></select>
+                                        <select name="events[]" class="form-control" id="select2-events"
+                                            multiple="multiple">
+                                            @if ($eventsName)
+                                                @foreach ($eventsName as $value => $name)
+                                                    <option selected value="{{ $value }}">{{ $name }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        </select>
                                     </div>
 
                                 </div>
