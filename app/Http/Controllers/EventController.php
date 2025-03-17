@@ -32,9 +32,9 @@ class EventController extends Controller
         return view('events.event', $data);
     }
 
-    public function showLibrary() {
+    public function showLibrary(Request $request) {
 
-        $events = Event::orderBy('id', 'desc')->get();
+        $events = Event::search($request)->orderBy('id', 'desc')->get();
 
         $data = [
             "events" => $events
@@ -44,8 +44,8 @@ class EventController extends Controller
     }
 
     public function delete($id) // em cada filme listado no index há um botão delete por ter um botao delete por filme, logo o botão delete é vinculado ao ID desse filme
-    //como o botao delete sabe o ID do filme?
     {
+        //como o botao delete sabe o ID do filme?
         try {
             $event = Event::find($id);
             if ($event == null) {
@@ -118,5 +118,17 @@ class EventController extends Controller
         return view('events.form', [
             'event' => $event
         ]);
+    }
+
+    public function searchEvents(Request $request) {
+
+        $events = Event::search($request)->select('id')->orderBy('id', 'desc')->get();
+
+        $data = [
+            "events" => $events
+        ];
+
+        return $data;
+
     }
 }

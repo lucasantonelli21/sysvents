@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="url" content="{{ url()->current() }}">
     <title>SysVents</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendor.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/styles.min.css') }}" />
