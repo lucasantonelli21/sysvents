@@ -108,20 +108,8 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
         Route::delete('/{id}/deletar',  [ExhibitorController::class, 'delete'])->name('delete');
     });
 
-<<<<<<< Updated upstream
     Route::prefix('/transações')->name('transactions.')->group(function() {
         Route::get('/',                 [TransactionController::class,'index'])->name('index');
-=======
-    Route::prefix('/transações')->name('transactions.')->group(function () {
-        Route::get('/',                 [TransactionController::class, 'index'])->name('index');
-        Route::get('/cadastro',         [TransactionController::class, 'showRegister'])->name('register');
-
-        Route::get('/criar',            [TransactionController::class, 'createOrEdit'])->name('create');
-        Route::get('/{id}/editar',      [TransactionController::class, 'createOrEdit'])->name('edit');
-
-        Route::post('/salvar',          [TransactionController::class, 'save'])->name('save');
-        Route::put('/salvar',           [TransactionController::class, 'save'])->name('update');
->>>>>>> Stashed changes
         Route::delete('/{id}/deletar',  [TransactionController::class, 'delete'])->name('delete');
     });
 });
