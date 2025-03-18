@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\Themes;
 
 class Event extends Model
 {
@@ -19,18 +20,21 @@ class Event extends Model
             $query->where('name', 'ilike', '%' . $request->name . '%');
         }
 
-        if ($request->theme) {
-            $query->where('theme', 'ilike', $request->theme);
+        if($request->themes) {
+            // $query->Where('theme', 'like', $request->theme->first());
+            //JOIN?
+            foreach($request->themes as $theme) {
+                $query->orWhere('theme', 'like', $theme);
+            }
         }
-
-        // $query->selectRaw('*, description::varchar(10)');
 
         return $query;
     }
 
     protected function casts():array {
         return [
-            "start_date" => "datetime"
+            "start_date" => "datetime",
+            "theme" => Themes::class
         ];
     }
 

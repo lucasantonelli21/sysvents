@@ -7,18 +7,23 @@ $(".library", function() {
         for(let i = 0; i < data.events.length; i++) {
             $("#evento"+data.events[i].id).removeClass("d-none");
         }
-        console.log("Sucesso");
     }
     const errorCallback = function() {
         console.log("Erro");
     }
 
-    $( ".filter" ).on( "keyup", function() {
+    function search() {
+        let name = $( ".name-search" ).val();
+        let themes = [];
+        let $themes = $('input[name=theme]:checked');
 
-        let name = $( ".filter" ).val();
+        for(let i = 0; i < $themes.length; i++) {
+            themes.push($themes[i].attributes.id.value);
+        }
 
         let data = {
-            "name": name
+            "name": name,
+            "themes": themes
         };
 
         console.log(data);
@@ -28,11 +33,17 @@ $(".library", function() {
             url: url,
             success: successCallback,
             error: errorCallback,
-            dataType: "json",
             data: data
         })
+    }
+
+    $( ".name-search" ).on( "keyup", function() {
+        search();
     });
 
+    $( ".categories-container" ).on( "change", function() {
+        search();
+    });
 
 
 });

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Enums\Themes;
 
 class EventController extends Controller
 
@@ -36,8 +37,11 @@ class EventController extends Controller
 
         $events = Event::search($request)->orderBy('id', 'desc')->get();
 
+        $themes = Themes::toArray();
+
         $data = [
-            "events" => $events
+            "events" => $events,
+            "themes" => $themes
         ];
 
         return view('events.library', $data);

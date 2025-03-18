@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Themes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,21 +17,15 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-        $themes = [
-            'technology',
-            'cultural',
-            'musical',
-            'art',
-            'sport',
-            'gastronomy',
-            'health',
-        ];
+        $themes = Themes::cases();
+        $theme = $themes[0];
+
         return [
             'name'=>fake()->name(),
             'description'=>fake()->realText(),
             'start_date'=>fake()->dateTime(),
             'end_date'=>fake()->dateTime(),
-            'theme' =>$themes[rand(0,6)],
+            'theme' =>$theme,
             'longitude' => fake()->longitude(),
             'latitude' => fake()->latitude(),
             'batch' => random_int(1, 5)
