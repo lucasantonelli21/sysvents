@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header text-light">
             @if ($ticketType->id)
-                <h2 class="text-center">Atualize o Ingresso do Tipo  {{ $ticketType->name }} do evento : {{ $event->name }}</h2>
+                <h2 class="text-center">Atualize o Lote{{ $ticketBatch->id }}} o Ingresso do Tipo  {{ $ticketType->name }} do evento : {{ $event->name }}</h2>
             @else
                 <h2 class="text-center">Crie um novo Expositor</h2>
             @endif
