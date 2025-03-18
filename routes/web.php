@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TicketBatchController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketTypeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Middleware\AuthenticateRoutes;
@@ -27,46 +28,51 @@ Route::prefix('/login')->name('login.')->controller(LoginController::class)->gro
     Route::get('/',             'index')->name('index');
     Route::post('/autenticar',  'authenticate')->name('authenticate');
     Route::get('/logout',       'logout')->name('logout');
+
 });
 
 //Eventos (Usuário)
-Route::prefix('/eventos')->name('events.')->group(function () {
-    Route::get('/{id}',             [EventController::class, 'showEvent']);
+Route::prefix('/eventos')->name('events.')->group(function() {
+    Route::get('/{id}',                             [EventController::class, 'showEvent']);
+
 });
 
 //Usuários (Usuário)
 Route::prefix('/usuarios')->name('users.')->group(function () {
-    Route::get('/criar',                [UserController::class, 'createOrEdit'])->name('register');
-    Route::get('/{id}/editar',          [UserController::class, 'createOrEdit'])->name('edit');
-    Route::get('/profile',         [UserController::class, 'showProfile'])->name('profile');
-    Route::post('/salvar',              [UserController::class, 'save'])->name('create');
-    Route::put('/{id}/salvar',          [UserController::class, 'save'])->name('update');
+    Route::get('/criar',                            [UserController::class,'createOrEdit'])->name('register');
+    Route::get('/{id}/editar',                      [UserController::class,'createOrEdit'])->name('edit');
+    Route::get('/profile',                          [UserController::class,'showProfile'])->name('profile');
+    Route::post('/salvar',                          [UserController::class,'save'])->name('create');
+    Route::put('/{id}/salvar',                      [UserController::class,'save'])->name('update');
 });
 
 //Admin dashboard
 Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, AuthenticateRoutes::class)->group(function () {
     //Dashboard
-    Route::get('/',                      [AdminController::class, 'index'])->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('dashboard');
+    Route::get('/',                                 [AdminController::class, 'index'])->middleware(VerifyLogin::class,AuthenticateRoutes::class)->name('dashboard');
 
     //Usuários (admin)
     Route::prefix('/usuarios')->name('users.')->group(function () {
-        Route::get('/',                      [UserController::class, 'index'])->name('index');
-        Route::delete('/{id}/deletar',      [UserController::class, 'delete'])->name('delete');
+        Route::get('/',                             [UserController::class, 'index'])->name('index');
+        Route::delete('/{id}/deletar',              [UserController::class,'delete'])->name('delete');
     });
 
     //Eventos (Admin)
-    Route::prefix('/eventos')->name('events.')->group(function () {
-        Route::get('/',                 [EventController::class, 'index'])->name('index');
-        Route::get('/cadastro',         [EventController::class, 'showRegister'])->name('register');
-        Route::get('/nomes',            [EventController::class, 'getEvents']);
-        Route::get('/criar',            [EventController::class, 'createOrEdit'])->name('create');
-        Route::get('/{id}/editar',      [EventController::class, 'createOrEdit'])->name('edit');
+    Route::prefix('/eventos')->name('events.')->group(function() {
+        Route::get('/',                             [EventController::class,'index'])->name('index');
+        Route::get('/cadastro',                     [EventController::class,'showRegister'])->name('register');
+        Route::get('/nomes',                        [EventController::class, 'getEvents']);
+        Route::get('/criar',                        [EventController::class, 'createOrEdit'])->name('create');
+        Route::get('/{id}/editar',                  [EventController::class, 'createOrEdit'])->name('edit');
 
-        Route::post('/salvar',          [EventController::class, 'save'])->name('save');
-        Route::put('/salvar',           [EventController::class, 'save'])->name('update');
-        Route::delete('/{id}/deletar',  [EventController::class, 'delete'])->name('delete');
+        Route::post('/salvar',                      [EventController::class, 'save'])->name('save');
+        Route::put('/salvar',                       [EventController::class, 'save'])->name('update');
+        Route::delete('/{id}/deletar',              [EventController::class, 'delete'])->name('delete');
 
         Route::prefix('{eventId}/ingressos')->name('tickets.')->group(function () {
+            Route::get('/',                         [TicketController::class,'index'])->name('index');
+            Route::delete('/{id}/deletar',          [TicketController::class, 'delete'])->name('delete');
+
             Route::prefix('/tipos')->name('types.')->group(function () {
                 Route::get('/',                     [TicketTypeController::class, 'index'])->name('index');
                 Route::get('/criar',                [TicketTypeController::class, 'createOrEdit'])->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('register');
@@ -84,33 +90,39 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
                 });
             });
         });
+
     });
 
     //Artistas
     Route::prefix('/artistas')->name('artists.')->group(function () {
-        Route::get('/',                      [ArtistController::class, 'index'])->name('index');
-        Route::get('/criar',                [ArtistController::class, 'createOrEdit'])->name('register');
-        Route::get('/{id}/editar',          [ArtistController::class, 'createOrEdit'])->name('edit');
-        Route::post('/salvar',              [ArtistController::class, 'save'])->name('create');
-        Route::put('/{id}/salvar',          [ArtistController::class, 'save'])->name('update');
-        Route::delete('/{id}/deletar',      [ArtistController::class, 'delete'])->name('delete');
+        Route::get('/',                             [ArtistController::class, 'index'])->name('index');
+        Route::get('/criar',                        [ArtistController::class, 'createOrEdit'])->name('register');
+        Route::get('/{id}/editar',                  [ArtistController::class,'createOrEdit'])->name('edit');
+        Route::post('/salvar',                      [ArtistController::class,'save'])->name('create');
+        Route::put('/{id}/salvar',                  [ArtistController::class,'save'])->name('update');
+        Route::delete('/{id}/deletar',              [ArtistController::class,'delete'])->name('delete');
+
     });
 
     //Expositores
     Route::prefix('/expositores')->name('exhibitors.')->group(function () {
 
-        Route::get('/',                 [ExhibitorController::class, 'index'])->name('index');
-        Route::get('/cadastro',         [ExhibitorController::class, 'showRegister'])->name('register');
-        Route::get('/criar',            [ExhibitorController::class, 'createOrEdit'])->name('create');
-        Route::get('/{id}/editar',      [ExhibitorController::class, 'createOrEdit'])->name('edit');
+        Route::get('/',                             [ExhibitorController::class,'index'])->name('index');
+        Route::get('/cadastro',                     [ExhibitorController::class,'showRegister'])->name('register');
+        Route::get('/criar',                        [ExhibitorController::class, 'createOrEdit'])->name('create');
+        Route::get('/{id}/editar',                  [ExhibitorController::class, 'createOrEdit'])->name('edit');
 
-        Route::post('/salvar',          [ExhibitorController::class, 'save'])->name('save');
-        Route::put('/salvar',           [ExhibitorController::class, 'save'])->name('update');
-        Route::delete('/{id}/deletar',  [ExhibitorController::class, 'delete'])->name('delete');
+        Route::post('/salvar',                      [ExhibitorController::class, 'save'])->name('save');
+        Route::put('/salvar',                       [ExhibitorController::class, 'save'])->name('update');
+        Route::delete('/{id}/deletar',              [ExhibitorController::class, 'delete'])->name('delete');
+
     });
 
     Route::prefix('/transações')->name('transactions.')->group(function() {
-        Route::get('/',                 [TransactionController::class,'index'])->name('index');
-        Route::delete('/{id}/deletar',  [TransactionController::class, 'delete'])->name('delete');
+        Route::get('/',                             [TransactionController::class,'index'])->name('index');
+        Route::delete('/{id}/deletar',              [TransactionController::class, 'delete'])->name('delete');
     });
+
+
+
 });

@@ -24,10 +24,10 @@ class TransactionController extends Controller
         try {
             $event = Transaction::find($id);
             if ($event == null) {
-                return redirect()->route('panel.transactions.index')->withErrors("Evento ao deletar o Expositor");
+                return redirect()->route('panel.transactions.index')->withErrors("Erro ao deletar a transação");
             } else {
                 $event->delete();
-                return redirect()->route('panel.transactions.index')->withSuccess("Evento deletado com sucesso!");
+                return redirect()->route('panel.transactions.index')->withSuccess("Transação deletada com sucesso!");
             }
         } catch (\Throwable $th) {
         }
