@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use App\Models\TicketBatch;
 use App\Models\TicketType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TicketBatchController extends Controller
 {
@@ -34,8 +35,34 @@ class TicketBatchController extends Controller
         ]);
     }
 
-    public function save(Request $request){
+    public function save(Request $request, $eventId,$ticketTypeId, $id = null){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'price' => 'required',
+            'batch' => 'required',
+        ], [
+            'required' => 'O Campo :attribute deve ser preenchido!'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors())->withInput();
+        }
 
+        $ticketBatch = TicketBatch::findOrNew($id);
+        $ticketBatch->batch = $request->batch;
+        $ticketBatch->name = $request->name;
+        $ticketBatch->price = $request->price;
+        $ticketBatch->ticket_type_id = $ticketTypeId;
+        $ticketBatch->save();
+        if (!$request->id) {
+            return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Tipo de Ingresso ' . $ticketBatch->name . ' Criado com Successo!');
+        }
+        return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Tipo de Ingresso ' . $ticketBatch->name . ' Atualizado com Successo!');
+    }
+
+    public function delete($eventId, $ticketTypeId, $id){
+        $ticketBatch = TicketBatch::find($id);
+        $ticketBatch->delete();
+        return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Lote de Ingresso ' . $ticketBatch->name . ' Deletado com Successo!');
     }
 
 

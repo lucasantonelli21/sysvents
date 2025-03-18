@@ -80,6 +80,7 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
                     Route::get('/{id}/editar',          [TicketBatchController::class, 'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
                     Route::post('/salvar',              [TicketBatchController::class, 'save'])->middleware(VerifyLogin::class, AuthenticateRoutes::class)->name('create');
                     Route::put('/{id}/salvar',          [TicketBatchController::class, 'save'])->middleware(VerifyLogin::class)->name('update');
+                    Route::delete('/{id}/deletar',      [TicketBatchController::class, 'delete'])->name('delete');
                 });
             });
         });

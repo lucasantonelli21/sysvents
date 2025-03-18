@@ -3,27 +3,38 @@
 
     <div class="card">
         <div class="card-header text-light">
-            @if ($ticketType->id)
-                <h2 class="text-center">Atualize o Lote{{ $ticketBatch->id }}} o Ingresso do Tipo  {{ $ticketType->name }} do evento : {{ $event->name }}</h2>
+            @if ($ticketBatch->id)
+                <h2 class="text-center">Atualize o Lote{{ $ticketBatch->name }} o Ingresso do Tipo  {{ $ticketType->name }} do evento : {{ $event->name }}</h2>
             @else
-                <h2 class="text-center">Crie um novo Expositor</h2>
+                <h2 class="text-center">Crie um novo Lote</h2>
             @endif
         </div>
 
-        <form class="form" action="{{ route($ticketType->id ? 'panel.events.tickets.types.update' : 'panel.events.tickets.types.create', $ticketType->id ? [$event->id,$ticketType->id] : $event->id) }}"
+        <form class="form" action="{{ route($ticketBatch->id ? 'panel.events.tickets.types.batches.update' : 'panel.events.tickets.types.batches.create', $ticketBatch->id ? [$event->id,$ticketType->id,$ticketBatch->id] : [$event->id,$ticketType->id]) }}"
             method="post" required>
             <div class="card-body">
 
 
-                @method($ticketType->id ? 'PUT' : 'POST')
+                @method($ticketBatch->id ? 'PUT' : 'POST')
                 @csrf
 
                 <input type="hidden" name="id" value="{{ $ticketType->id }}">
 
                 <div class="form-group">
-                    <label class="form-label" for="name">Nome do Tipo de Ingresso</label>
-                    <input class="form-control" type="text" name="name" id="name"
-                        value="{{ old('name', $ticketType->name) }}" required>
+                    <label class="form-label" for="batch">Número do Lote</label>
+                    <input class="form-control" type="number" name="batch"
+                        value="{{ old('batch') ? old('batch') : $ticketBatch->batch }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="name">Nome do Lote</label>
+                    <input class="form-control" type="text" name="name"
+                        value="{{ old('name') ? old('name') : $ticketBatch->name }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="name">Preço do Lote</label>
+                    <input class="form-control" type="price" name="price"
+                        value="{{ old('price') ? old('price') : $ticketBatch->price }}" required>
                 </div>
 
             </div>

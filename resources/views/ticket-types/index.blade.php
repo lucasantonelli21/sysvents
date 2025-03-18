@@ -5,7 +5,7 @@
         <div class="card-header">
 
             <div class="row-title-button">
-                <h2 class="title text-center">Tipos de Ingresso do Evento {{ $event->name }}</h2>
+                <h2 class="title text-center">Tipos de Ingresso do Evento <span class="text-info">{{ $event->name }}</span></h2>
                 <a class="btn btn-outline-primary" href="{{ route('panel.events.tickets.types.register', $event->id) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-plus-square" viewBox="0 0 16 16">

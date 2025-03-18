@@ -5,7 +5,7 @@
         <div class="card-header">
 
             <div class="row-title-button">
-                <h2 class="title text-center">Lotes do Ingresso {{ $ticketType->name }} do Evento {{ $event->name }}</h2>
+                <h2 class="title text-center">Lotes do Ingresso <span class="text-primary">{{ $ticketType->name }}</span> do Evento <span class="text-info">{{ $event->name }}</span></h2>
                 <a class="btn btn-outline-primary" href="{{ route('panel.events.tickets.types.batches.register', [$event->id, $ticketType->id]) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-plus-square" viewBox="0 0 16 16">
@@ -22,8 +22,9 @@
             <div class="table-responsive ">
                 <table class="table table-striped custom-table">
                     <tr>
+                        <th>Número do Lote</th>
                         <th>Nome</th>
-                        <th>Lotes Cadastrados</th>
+                        <th>Preço</th>
                         <th>Criado em</th>
                         <th>Atualizado em</th>
                         <th>Ações</th>
@@ -31,13 +32,14 @@
 
                     @foreach ($ticketBatches as $ticketBatch)
                         <tr>
+                            <td>{{ $ticketBatch->batch }}</td>
                             <td>{{ $ticketBatch->name }}</td>
-                            <td>{{ $ticketBatch->name }}</td>
+                            <td>R${{ $ticketBatch->price }}</td>
                             <td>{{ formatDate($ticketBatch->created_at, 'd/m/Y') }}</td>
                             <td>{{ formatDate($ticketBatch->updated_at, 'd/m/Y') }}</td>
                             <td>
                                 <div class= "table-buttons">
-                                    <a href="{{ route('panel.events.tickets.types.edit', [$event->id, $ticketType->id]) }}"
+                                    <a href="{{ route('panel.events.tickets.types.batches.edit', [$event->id, $ticketType->id, $ticketBatch->id]) }}"
                                         class="btn btn-outline-info">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
@@ -45,7 +47,7 @@
                                                 d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
                                         </svg>
                                     </a>
-                                    <form action="{{ route('panel.events.tickets.types.delete',[$event->id,$ticketType->id]) }}" method="POST">
+                                    <form action="{{ route('panel.events.tickets.types.batches.delete',[$event->id,$ticketType->id,$ticketBatch->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-outline-danger">
@@ -58,13 +60,6 @@
                                             </svg>
                                         </button>
                                     </form>
-                                    <a href="{{ route('panel.events.tickets.types.index',$event->id) }}" class="btn btn-outline-success">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-ticket" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5z" />
-                                        </svg>
-                                    </a>
                                 </div>
                             </td>
                         </tr>
