@@ -10,7 +10,7 @@ class TicketController extends Controller
 {
     public function index(Request $request, $eventId)
     {
-        $tickets = Ticket::TicketEvent($eventId)->paginate($request->pagination ?? 10);
+        $tickets = Ticket::TicketEvent($eventId,$request)->paginate($request->pagination ?? 10)->withQueryString();
         $event = Event::find($eventId);
         return view('tickets.index', [
             'tickets' => $tickets,

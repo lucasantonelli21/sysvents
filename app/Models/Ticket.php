@@ -14,15 +14,13 @@ class Ticket extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
-    public function scopeTicketEvent($query, $eventId)
+    public function scopeTicketEvent($query, $eventId, $request)
     {
         $query->from('tickets as t')
             ->join('ticket_batches as tb', 't.ticket_batch_id', '=', 'tb.id')
             ->join('ticket_types as tp', 'tb.ticket_type_id', '=', 'tp.id')
             ->join('events as e', 'tp.event_id', '=', 'e.id')
             ->leftJoin('users as u', 't.user_id', '=', 'u.id')
-
-            // ->leftJoin('tickets', 'transactions.id', 'tickets.transaction_id')
             ->select(
                 't.id AS ticket_id',
                 'e.name AS event_name',
@@ -34,6 +32,25 @@ class Ticket extends Model
 
             ->where('e.id', $eventId)
             ->groupBy('t.id', 'e.name', 'tb.batch', 'tp.name', 'tb.price', 'u.name');
+
+
+        if ($request->name) {
+            $query->where('u.name', 'like', '%' . $request->name . '%');
+        }
+
+        if ($request->batch) {
+            $query->where('tb.batch', 'like', '%' . $request->batch . '%');
+        }
+
+        if ($request->ticket_type) {
+            $query->where('tp.name', 'like', '%' . $request->ticket_type . '%');
+        }
+
+        if ($request->price) {
+            $query->where('tb.price', $request->price);
+        }
+
+
 
         return $query;
     }
