@@ -19,8 +19,8 @@
             <div class="card-row">
 
                 <div class="select-pagination">
-                    <form class="form-pagination"  action="{{ route('panel.events.index') }}">
-                        <select class="paginator-selector" name="pagination" >
+                    <form class="form-pagination" action="{{ route('panel.events.index') }}">
+                        <select class="paginator-selector" name="pagination">
                             @foreach ($paginations as $value)
                                 <option {{ $value == request()->pagination ? 'selected' : '' }}
                                     value="{{ $value }}">{{ $value }}</option>
@@ -138,8 +138,8 @@
                         {{-- <td>{{ $event->longitude }}</td>
                         <td>{{ $event->latitude }}</td> --}}
                         <td>{{ $event->batch }}</td>
-                        <td>{{ formatDate($event->created_at,'d/m/Y') }}</td>
-                        <td>{{ formatDate($event->updated_at,'d/m/Y') }}</td>
+                        <td>{{ formatDate($event->created_at, 'd/m/Y') }}</td>
+                        <td>{{ formatDate($event->updated_at, 'd/m/Y') }}</td>
                         <td>
                             <div class= "table-buttons">
                                 <a href="{{ route('panel.events.edit', $event->id) }}" class="btn btn-outline-info">
@@ -162,11 +162,20 @@
                                         </svg>
                                     </button>
                                 </form>
-                                <a href="{{ route('panel.events.tickets.types.index',$event->id) }}" class="btn btn-outline-success">
+                                <a href="{{ route('panel.events.tickets.types.index', $event->id) }}"
+                                    class="btn btn-outline-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-ticket" viewBox="0 0 16 16">
                                         <path
                                             d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5z" />
+                                    </svg>
+                                </a>
+                                <a href="{{ route('panel.events.tickets.index', $event->id) }}"
+                                    class="btn btn-outline-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" />
                                     </svg>
                                 </a>
                             </div>

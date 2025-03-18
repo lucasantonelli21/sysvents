@@ -21,9 +21,6 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('panel.artists.index') }}">Artistas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Ingressos</a>
-                    </li>
-                    <li class="nav-item">
                         <a  class="nav-link active" aria-current="page" href="{{ route('panel.exhibitors.index') }}">Expositores</a>
                     </li>
                     <li class="nav-item">

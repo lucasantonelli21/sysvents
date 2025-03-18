@@ -19,8 +19,8 @@ class TicketBatchFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'batch' => random_int(1, 3),
-            'price' => fake()->unique()->numberBetween(100, 500),
+            'batch' => $batch = random_int(1, 3),
+            'price' => fake()->unique()->numberBetween(100, 500) * $batch,
             'ticket_type_id' => TicketType::all()->random()->id,
         ];
     }

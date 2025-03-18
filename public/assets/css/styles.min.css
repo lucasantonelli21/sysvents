@@ -171,7 +171,7 @@ body {
 }
 .table-events th:nth-child(4),
 .table-events td:nth-child(4) {
-  width: 12%;
+  width: 10%;
 }
 .table-events th:nth-child(1),
 .table-events td:nth-child(1) {
@@ -179,11 +179,11 @@ body {
 }
 .table-events th:nth-child(7),
 .table-events td:nth-child(7) {
-  width: 5%;
+  width: 4%;
 }
 .table-events th:last-child {
   text-align: center;
-  width: 13%;
+  width: 18%;
 }
 .table-events .name-cell,
 .table-events .theme-cell,
