@@ -107,7 +107,6 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
 
     Route::prefix('/transações')->name('transactions.')->group(function() {
         Route::get('/',                 [TransactionController::class,'index'])->name('index');
-        Route::get('/cadastro',         [TransactionController::class,'showRegister'])->name('register');
         Route::delete('/{id}/deletar',  [TransactionController::class, 'delete'])->name('delete');
     });
 
