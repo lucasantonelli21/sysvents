@@ -18,6 +18,15 @@ class TransactionController extends Controller
         ]);
     }
 
+    public function showTransaction($id){
+
+
+        $transaction = Transaction::info($id)->get();
+        return view('transactions.info', [
+            'transaction' => $transaction
+        ]);
+    }
+
 
     public function delete($id)
     {
