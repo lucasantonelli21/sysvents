@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <label class="form-label">Quantidade de Ingressos</label>
                                             <input class="form-control" type="number" name="ticket_amount"
-                                                value="{{ Request::get('email') }}" />
+                                                value="{{ Request::get('ticket_amount') }}" />
                                         </div>
 
 

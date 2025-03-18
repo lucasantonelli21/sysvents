@@ -31,7 +31,7 @@ class LoginController extends Controller
             if(Auth::user()->is_admin){
                 return redirect()->route('panel.dashboard')->withSuccess('Login realizado com sucesso! Bem-vindo, '.Auth::user()->name.'.');
             }
-            return redirect()->route('panel.dashboard')->withSuccess('Login realizado com sucesso!');
+            return redirect()->route('home')->withSuccess('Login realizado com sucesso!');
         }
 
         return back()->withErrors([
