@@ -14,7 +14,7 @@ class TicketSeeder extends Seeder
      */
     public function run(): void{
         Ticket::factory()
-        ->count(50)
+        ->count(500)
         ->create();
     }
 }

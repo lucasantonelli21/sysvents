@@ -30,8 +30,7 @@ class ExhibitorController extends Controller
                 ->withInput();
         }
 
-        // Este findOrNew sera oque vai decidir se o Botão ira atulizar ou criar um novo filme
-        $exhibitor = Exhibitor::findOrNew($request->id); // Esse $request->id é uma ação Hidden que faz no HTML para armazenar o ID caso tenha, se tiver em vez de criar um novo filme é apenas recuperado as informações para fazer a att
+        $exhibitor = Exhibitor::findOrNew($request->id);
         $exhibitor->name = $request->name;
         $exhibitor->description = $request->description;
         $exhibitor->category = $request->category;
@@ -41,8 +40,7 @@ class ExhibitorController extends Controller
         return redirect()->route('panel.exhibitors.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
     }
 
-    public function delete($id) // em cada filme listado no index há um botão delete por ter um botao delete por filme, logo o botão delete é vinculado ao ID desse filme
-    //como o botao delete sabe o ID do filme?
+    public function delete($id)
     {
         try {
             $exhibitor = Exhibitor::find($id);
