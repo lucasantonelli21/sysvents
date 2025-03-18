@@ -5,8 +5,8 @@
         <div class="card-header">
 
             <div class="row-title-button">
-                <h2 class="title text-center">Tipos de Ingresso do Evento {{ $event->name }}</h2>
-                <a class="btn btn-outline-primary" href="{{ route('panel.events.tickets.types.register', $event->id) }}">
+                <h2 class="title text-center">Lotes do Ingresso {{ $ticketType->name }} do Evento {{ $event->name }}</h2>
+                <a class="btn btn-outline-primary" href="{{ route('panel.events.tickets.types.batches.register', [$event->id, $ticketType->id]) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-plus-square" viewBox="0 0 16 16">
                         <path
@@ -29,12 +29,12 @@
                         <th>Ações</th>
                     </tr>
 
-                    @foreach ($ticketTypes as $ticketType)
+                    @foreach ($ticketBatches as $ticketBatch)
                         <tr>
-                            <td>{{ $ticketType->name }}</td>
-                            <td>{{ count($batches) }}</td>
-                            <td>{{ formatDate($ticketType->created_at, 'd/m/Y') }}</td>
-                            <td>{{ formatDate($ticketType->updated_at, 'd/m/Y') }}</td>
+                            <td>{{ $ticketBatch->name }}</td>
+                            <td>{{ $ticketBatch->name }}</td>
+                            <td>{{ formatDate($ticketBatch->created_at, 'd/m/Y') }}</td>
+                            <td>{{ formatDate($ticketBatch->updated_at, 'd/m/Y') }}</td>
                             <td>
                                 <div class= "table-buttons">
                                     <a href="{{ route('panel.events.tickets.types.edit', [$event->id, $ticketType->id]) }}"
@@ -58,7 +58,7 @@
                                             </svg>
                                         </button>
                                     </form>
-                                    <a href="{{ route('panel.events.tickets.types.batches.index',[$event->id,$ticketType->id]) }}" class="btn btn-outline-success">
+                                    <a href="{{ route('panel.events.tickets.types.index',$event->id) }}" class="btn btn-outline-success">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-ticket" viewBox="0 0 16 16">
                                             <path
