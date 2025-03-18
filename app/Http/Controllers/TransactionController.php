@@ -9,25 +9,16 @@ class TransactionController extends Controller
 {
     public function index(Request $request)
     {
-        $transactions = Transaction::with(['user', 'tickets'])
-        ->orderBy('id', 'desc')
-        ->paginate($request->pagination ?? 10);
-
-
-    return view('transactions.index', [
-        'transactions' => $transactions
-    ]);
-
-
-        // $transactions = Transaction::find(1)->tickets()
-        //     ->orderBy('id', 'desc')
-        //     ->paginate($request->pagination ?? 10);
-
-        // dd($transactions->all());
-        // return view('transactions.index', [
-        //     'transactions' => $transactions
-        // ]);
+        $transactions = Transaction::search($request)
+            ->orderBy('ts.id', 'desc')
+            ->paginate($request->pagination ?? 10)
+            ->withQueryString();
+        return view('transactions.index', [
+            'transactions' => $transactions
+        ]);
     }
+
+
     public function delete($id)
     {
         try {
@@ -42,12 +33,3 @@ class TransactionController extends Controller
         }
     }
 }
-// $transactions = Transaction::select('transactions.*', 'users.name', 'users.email', 'tickets.id')
-// ->leftJoin('users', 'transactions.user_id', 'users.id')
-// ->leftJoin('tickets', 'transactions.id', 'tickets.transaction_id')
-// ->orderBy('transactions.id', 'desc')
-// ->paginate($request->pagination ?? 10);
-// dd($transactions->all());
-// return view('transactions.index', [
-// 'transactions' => $transactions
-// ]);

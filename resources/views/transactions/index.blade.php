@@ -29,7 +29,7 @@
                     </button>
                 </div>
 
-                {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -38,7 +38,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form class="form-filter" action="{{ route('transactions.index') }}">
+                            <form class="form-filter" action="{{ route('panel.transactions.index') }}">
                                 <div class="modal-body">
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -48,20 +48,29 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="form-label">Categoria</label>
-                                            <select class="form-control" name="category">
-                                                <option value="">Selecione uma opção</option>
-                                                @foreach ($categories as $value => $name)
-                                                    <option {{ Request::get('category') == $value ? 'selected' : '' }}
-                                                        value="{{ $value }}">{{ $name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <label class="form-label">E-mail</label>
+                                            <input class="form-control" type="text" name="email"
+                                                value="{{ Request::get('email') }}" />
                                         </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Quantidade de Ingressos</label>
+                                            <input class="form-control" type="number" name="ticket_amount"
+                                                value="{{ Request::get('email') }}" />
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="form-label">Preço</label>
+                                            <input class="form-control" type="number" name="amount"
+                                                value="{{ Request::get('amount') }}" />
+                                        </div>
+
 
                                     </div>
                                     <div class="modal-footer">
                                         <a type="button" class="btn btn-light"
-                                            href="{{ route('transactions.index') }}">Limpar
+                                            href="{{ route('panel.transactions.index') }}">Limpar
                                             Filtro</a>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Cancelar</button>
@@ -70,7 +79,7 @@
                             </form>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
 
@@ -92,7 +101,7 @@
                             <td>{{ $transaction->user->name }}</td>
                             <td>{{ $transaction->user->email }}</td>
                             <td>{{ $transaction->amount }}</td>
-                            <td>{{ $transaction->tickets->count() }}</td>
+                            <td>{{ $transaction->total_tickets }}</td>
                             <td>
                                 <div class= "table-buttons">
                                     <form action="{{ route('panel.transactions.delete', [$transaction->id]) }}"
@@ -117,9 +126,10 @@
                 </table>
             </div>
         </div>
-        <div class="card-footer text-end">
-            {{ $transactions->links() }}
-        </div>
+    </div>
+    <div class="card-footer text-end">
+        {{ $transactions->links() }}
+    </div>
     </div>
 
 </x-blank>
