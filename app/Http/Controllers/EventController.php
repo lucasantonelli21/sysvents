@@ -33,8 +33,7 @@ class EventController extends Controller
         return view('events.event', $data);
     }
 
-    public function delete($id) // em cada filme listado no index há um botão delete por ter um botao delete por filme, logo o botão delete é vinculado ao ID desse filme
-    //como o botao delete sabe o ID do filme?
+    public function delete($id)
     {
         try {
             $event = Event::find($id);
