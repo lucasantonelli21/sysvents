@@ -114,6 +114,10 @@ body {
   background-color: #150120;
 }
 
+.icons img {
+  filter: invert(1);
+}
+
 .title {
   color: white;
   font-weight: 700;
@@ -351,19 +355,24 @@ body {
   border-color: #495057;
 }
 
+.filter:hover {
+  background-color: #0c182c;
+  opacity: 30%;
+  color: #fff;
+}
+
 .btn-back {
   border-radius: 30px;
   border: none;
+}
+.btn-back img {
+  width: 30px;
+  height: 30px;
 }
 
 .btn-back:hover {
   background-color: #0c182c;
   color: #fff;
-}
-
-.icon-large {
-  width: 30px;
-  height: 30px;
 }
 
 .modal-card .btn-outline-light {
@@ -436,4 +445,103 @@ body {
 }
 .list-group-item .bg-light {
   color: black;
+}
+
+.user-events .event-image {
+  height: 30rem;
+}
+.user-events .media-scroller {
+  display: flex;
+  overflow-x: auto;
+}
+.user-events .media-element {
+  color: white;
+  position: relative;
+  height: 600px;
+  aspect-ratio: 3/4;
+}
+.user-events .media-element > img {
+  height: 598px;
+  width: 448px;
+  object-fit: cover;
+}
+.user-events .image-overlay {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  opacity: 0;
+  overflow-x: hidden;
+}
+.user-events .image-overlay h6 {
+  font-weight: 900;
+}
+.user-events .event-description {
+  overflow: hidden;
+}
+.user-events .media-element:hover {
+  border-style: solid;
+  border-width: 1px;
+}
+.user-events .media-element:hover .image-overlay {
+  opacity: 1;
+}
+.user-events .event-title {
+  font-weight: bold;
+}
+
+.left-section {
+  background-color: #0C182C;
+  border: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: white;
+  width: 30vw;
+}
+
+.right-section {
+  background-color: #0C182C;
+  border: solid;
+  border-width: 1px 1px 1px 0px;
+  border-color: white;
+  width: 70vw;
+}
+
+.event-image-container {
+  border: solid;
+  border-width: 1px;
+  border-color: white;
+  max-height: 600px;
+  aspect-ratio: 3/4;
+}
+
+.event-image-container > img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.map {
+  width: 100%;
+  min-height: 150px;
+  max-height: 300px;
+  height: auto;
+}
+
+@media screen and (min-width: 1550px) {
+  .event-image-container {
+    height: 600px;
+  }
+  .left-section {
+    width: auto;
+  }
+  .right-section {
+    width: 100%;
+  }
+}
+.ticket-button:hover {
+  border: solid;
+  border-width: 1px;
+  border-color: white;
 }
