@@ -23,8 +23,12 @@ class Event extends Model
         if($request->themes) {
             // $query->Where('theme', 'like', $request->theme->first());
             //JOIN?
-            foreach($request->themes as $theme) {
-                $query->orWhere('theme', 'like', $theme);
+            for($i = 0; $i < count($request->themes); $i++) {
+                if($i == 0) {
+                    $query->where('theme', 'like', $request->themes[$i]);
+                }else {
+                    $query->orWhere('theme', 'like', $request->themes[$i]);
+                }
             }
         }
 
