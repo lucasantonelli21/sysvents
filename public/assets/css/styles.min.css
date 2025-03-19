@@ -351,6 +351,21 @@ body {
   border-color: #495057;
 }
 
+.btn-back {
+  border-radius: 30px;
+  border: none;
+}
+
+.btn-back:hover {
+  background-color: #0c182c;
+  color: #fff;
+}
+
+.icon-large {
+  width: 30px;
+  height: 30px;
+}
+
 .modal-card .btn-outline-light {
   margin-right: 4px;
 }
