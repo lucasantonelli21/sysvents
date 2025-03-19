@@ -231,6 +231,11 @@ body {
 .home .event-title {
   font-weight: bold;
 }
+.home .library-button:hover {
+  border: solid;
+  border-width: 1px;
+  border-color: white;
+}
 
 .event {
   color: white;

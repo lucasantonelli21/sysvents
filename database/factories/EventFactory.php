@@ -18,7 +18,7 @@ class EventFactory extends Factory
     public function definition(): array
     {
         $themes = Themes::cases();
-        $theme = $themes[0];
+        $theme = $themes[random_int(0, count($themes)-1)];
 
         return [
             'name'=>fake()->name(),

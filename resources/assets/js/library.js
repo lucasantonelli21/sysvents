@@ -1,4 +1,4 @@
-$(".library", function() {
+$(".library").each(function() {
 
     const url = getUrl('/filtrar');
     const successCallback = function(data) {
@@ -45,5 +45,8 @@ $(".library", function() {
         search();
     });
 
+    $(".media-element").on("click", function() {
+        window.location.href = getUrl('/dasdsaads'+$(this).data("id"));
+    })
 
 });

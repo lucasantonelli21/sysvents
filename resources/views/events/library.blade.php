@@ -43,7 +43,7 @@
             <div class="right-section ms-3 p-3 w-100 d-flex align-items-center">
 
                 <div class="d-flex justify-content-between flex-wrap gap-3">
-                    @foreach ($events as $event)
+                    {{-- @foreach ($events as $event)
                         <a id="{{ 'evento'.$event->id }}" class="evento media-element rounded" href="{{ url('eventos/'.$event->id) }}">
                             <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded">
                             <div class="image-overlay d-flex justify-content-center flex-column rounded">
@@ -51,6 +51,17 @@
                                 <p class="mx-2 event-description">{{ $event->description }}</p>
                             </div>
                         </a>
+
+                    @endforeach --}}
+
+                    @foreach ($events as $event)
+                        <div id="{{ 'evento'.$event->id }}" class="evento media-element rounded" data-id="{{ $event->id }}">
+                            <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded">
+                            <div class="image-overlay d-flex justify-content-center flex-column rounded">
+                                <h3 class="event-title text-center">{{ $event->name }}</h3>
+                                <p class="mx-2 event-description">{{ $event->description }}</p>
+                            </div>
+                        </div>
 
                     @endforeach
 
