@@ -18,7 +18,7 @@
                 @method($ticketBatch->id ? 'PUT' : 'POST')
                 @csrf
 
-                <input type="hidden" name="id" value="{{ $ticketType->id }}">
+                <input type="hidden" name="id" value="{{ $ticketBatch->id }}">
 
                 <div class="form-group">
                     <label class="form-label" for="batch">Número do Lote</label>

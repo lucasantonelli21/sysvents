@@ -54,15 +54,15 @@ class TicketBatchController extends Controller
         $ticketBatch->ticket_type_id = $ticketTypeId;
         $ticketBatch->save();
         if (!$request->id) {
-            return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Tipo de Ingresso ' . $ticketBatch->name . ' Criado com Successo!');
+            return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Lote' . $ticketBatch->name . ' Criado com Successo!');
         }
-        return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Tipo de Ingresso ' . $ticketBatch->name . ' Atualizado com Successo!');
+        return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Lote ' . $ticketBatch->name . ' Atualizado com Successo!');
     }
 
     public function delete($eventId, $ticketTypeId, $id){
         $ticketBatch = TicketBatch::find($id);
         $ticketBatch->delete();
-        return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Lote de Ingresso ' . $ticketBatch->name . ' Deletado com Successo!');
+        return redirect()->route('panel.events.tickets.types.batches.index',[$eventId,$ticketTypeId])->withSuccess('Lote ' . $ticketBatch->name . ' Deletado com Successo!');
     }
 
 
