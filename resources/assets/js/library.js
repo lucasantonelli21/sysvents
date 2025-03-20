@@ -37,6 +37,23 @@ $(".library").each(function() {
         })
     }
 
+    //Diminui width de library-container se sobrar espaço à direita não preenchido por um evento
+    function centralizeLibrary() {
+        let $libraryContainer = $(".library-container");
+        $libraryContainer.css("width", "100%");
+        let totalWidth = parseInt($libraryContainer.width())+16; //+16 desconsidera o padding
+
+        //Cada media-element ocupa 225+16de gap, que é 241, com exceção do último que não tem gap e ocupa 225
+        let remainingSpace = (totalWidth % 241)+16;
+        $libraryContainer.css("width", totalWidth-remainingSpace+"px");
+
+    }
+    centralizeLibrary();
+
+    $( window ).on( "resize", function() {
+        centralizeLibrary();
+    });
+
     $( ".name-search" ).on( "keyup", function() {
         search();
     });
@@ -46,7 +63,7 @@ $(".library").each(function() {
     });
 
     $(".media-element").on("click", function() {
-        window.location.href = getUrl('/dasdsaads'+$(this).data("id"));
+        window.location.href = getUrl('/'+$(this).data("id"));
     })
 
 });

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\Themes;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class Event extends Model
 {
@@ -21,15 +22,9 @@ class Event extends Model
         }
 
         if($request->themes) {
-            // $query->Where('theme', 'like', $request->theme->first());
-            //JOIN?
-            for($i = 0; $i < count($request->themes); $i++) {
-                if($i == 0) {
-                    $query->where('theme', 'like', $request->themes[$i]);
-                }else {
-                    $query->orWhere('theme', 'like', $request->themes[$i]);
-                }
-            }
+
+            $query->whereIn('theme', $request->themes);
+
         }
 
         return $query;
