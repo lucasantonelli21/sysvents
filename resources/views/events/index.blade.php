@@ -1,4 +1,4 @@
-@php
+ @php
     $paginations = [10, 15, 20, 30];
 
     $themes = [
@@ -116,14 +116,7 @@
                     <tr>
                         <th>{{ $event->id }}</th>
                         <td class='name-cell'>{{ $event->name }}</td>
-                        @foreach ($themes as $theme => $name)
-                            @if ($event->theme == $theme)
-                                <td class="themes-cell">{{ $name }}</td>
-                            @endif
-                        @endforeach
-
-
-
+                        <td>{{ $event->theme }}</td>
                         <td class='description-cell'>{{ $event->description }}</td>
                         <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>
