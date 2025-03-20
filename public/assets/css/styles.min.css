@@ -545,3 +545,35 @@ body {
   border-width: 1px;
   border-color: white;
 }
+
+.my-event-page body {
+  background-color: #0C182C;
+  color: white;
+}
+.my-event-page .card {
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+  border: none;
+}
+.my-event-page .card .card-img-top {
+  margin-bottom: 10px;
+}
+.my-event-page .card-ticket {
+  border: none;
+}
+.my-event-page .ticket {
+  border-bottom: 1px solid #495057;
+  background-color: #0C182C;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.my-event-page .map {
+  background-color: #555;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  color: lightgray;
+}
