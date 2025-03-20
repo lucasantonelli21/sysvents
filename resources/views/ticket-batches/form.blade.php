@@ -3,11 +3,16 @@
 
     <div class="card">
         <div class="card-header text-light">
-            @if ($ticketBatch->id)
-                <h2 class="text-center">Atualize o Lote{{ $ticketBatch->name }} o Ingresso do Tipo  {{ $ticketType->name }} do evento : {{ $event->name }}</h2>
-            @else
-                <h2 class="text-center">Crie um novo Lote</h2>
-            @endif
+            <div class="row-title-button">
+                <a href="{{ url()->previous() }}" class="icons btn-back btn btn-outline-light">
+                        <img src="{{ asset('images/icons/arrow-left-circle.svg') }}" alt="">
+                     </a>
+                @if ($ticketBatch->id)
+                    <h2 class="title">Atualize o Lote{{ $ticketBatch->name }} o Ingresso do Tipo  {{ $ticketType->name }} do evento : {{ $event->name }}</h2>
+                @else
+                    <h2 class="title">Crie um novo Lote</h2>
+                @endif
+            </div>
         </div>
 
         <form class="form" action="{{ route($ticketBatch->id ? 'panel.events.tickets.types.batches.update' : 'panel.events.tickets.types.batches.create', $ticketBatch->id ? [$event->id,$ticketType->id,$ticketBatch->id] : [$event->id,$ticketType->id]) }}"
