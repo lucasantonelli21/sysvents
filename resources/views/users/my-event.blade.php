@@ -17,8 +17,7 @@
                     <div class="col-md-4">
                         <div class="card p-3">
                             <div class="card-body">
-                                <img src="{{ $userEvents->first()->image_path ? asset($userEvents->first()->path) : asset('images/default-event-image.jpeg') }}"
-                                    class="card-img-top rounded" alt="Evento">
+                                <img src="{{$userEvents->first()->path ? asset($userEvents->first()->path) : asset('images/default-event-image.jpeg')}}" class="rounded img-fluid">
                                 <p><strong>Evento:</strong> {{ $userEvents->first()->event_name }}</p>
                                 <p><strong>Tema:</strong> {{ $userEvents->first()->event_theme }}</p>
                                 <p><strong>Data:</strong> {{ formatDate($userEvents->first()->start_date, 'd/m/Y') }} -
