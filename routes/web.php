@@ -44,6 +44,7 @@ Route::prefix('/usuarios')->name('users.')->group(function () {
     Route::get('/criar',                            [UserController::class,'createOrEdit'])->name('register');
     Route::get('/{id}/editar',                      [UserController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
     Route::get('/{id}/eventos',                     [UserController::class,'myEvents'])->middleware(VerifyLogin::class)->name('events');
+    Route::get('/{id}/eventos/filtrar',          [EventController::class, 'searchEvents']);
     Route::get('/{id}/eventos/{eventId}',           [UserController::class,'myEvent'])->middleware(VerifyLogin::class)->name('event');
     Route::get('/profile',                          [UserController::class,'showProfile'])->middleware(VerifyLogin::class)->name('profile');
     Route::post('/salvar',                          [UserController::class,'save'])->name('create');
