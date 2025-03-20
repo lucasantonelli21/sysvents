@@ -28,18 +28,6 @@ class TicketController extends Controller
 
     }
 
-    // {
-    //     $events = Event::soldTickets($request)->get();
-    //     $eventsName = [];
-    //     if($request->events) {
-    //         foreach ($request->events as $event) {
-    //             $eventProps = Event::select('id', 'name as text')->where('id', $event)->first();
-    //             $eventsName[$eventProps->id] = $eventProps->text;
-    //         }
-    //     }
-    //     return view('admin.dashboard', ["events" => $events, "eventsName" => $eventsName]);
-    // }
-
     public function delete($eventId, $id)
     {
         try {
@@ -80,7 +68,7 @@ class TicketController extends Controller
         $user = User::where('email', '=', $request->email)->first();
         $ticket_batch = TicketBatch::select('ticket_batches.*')
         ->where('ticket_type_id', '=', $request->ticket_type)
-        ->where('name', '=', 'loteAdmin')->first();
+        ->where('name', '=', 'Cortesia')->first();
         $ticket = Ticket::findOrNew($request->ticketId);
 
         $transaction = new Transaction();
