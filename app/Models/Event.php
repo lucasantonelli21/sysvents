@@ -22,6 +22,11 @@ class Event extends Model
             $query->where('name', 'ilike', '%' . $request->name . '%');
         }
 
+        if($request->theme) {
+            $query->where('theme', $request->theme);
+
+        }
+
         if($request->themes) {
             $query->whereIn('theme', $request->themes);
 

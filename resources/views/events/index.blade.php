@@ -49,7 +49,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <form class="form-filter" action="{{ route('panel.events.index') }}">
-                                <div class="modal-body">
+                                <div class="modal-body">theme
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label class="form-label">Nome</label>
@@ -61,8 +61,9 @@
                                             <label class="form-label">Tema</label>
                                             <select class="form-control" name="theme">
                                                 <option value="">Selecione uma opção</option>
+
                                                 @foreach (Themes::cases() as $value)
-                                                    <option {{ Request::get('theme') == $value ? 'selected' : '' }}
+                                                    <option {{ Request::get('theme') == $value->value ? 'selected' : '' }}
                                                         value="{{ $value }}">{{ $value }}</option>
                                                 @endforeach
                                             </select>
