@@ -15,7 +15,7 @@
 
                 @method($user ? 'PUT' : 'POST')
                 @csrf
-                <input type="hidden" name="id" value="{{ $event->id }}">
+                <input type="hidden" name="ticketId" value="{{ $ticket->id }}">
 
                 <div class="form-group">
                     <label class="form-label" for="email">Email do Usuário</label>

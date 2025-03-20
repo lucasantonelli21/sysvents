@@ -58,10 +58,11 @@ class TicketTypeController extends Controller
         $ticketType->save();
         if (!$request->id) {
             $ticketBatch = new TicketBatch();
-            $ticketBatch->name = 'loteAdmin';
-            $ticketBatch->batch = 1;
+            $ticketBatch->name = 'Cortesia';
+            $ticketBatch->batch = 0;
             $ticketBatch->price = 0;
             $ticketBatch->ticket_type_id = $ticketType->id;
+            $ticketBatch->save();
             return redirect()->route('panel.events.tickets.types.index',$eventId)->withSuccess('Tipo de Ingresso ' . $ticketType->name . ' Criado com Successo!');
         }
         return redirect()->route('panel.events.tickets.types.index',$eventId)->withSuccess('Tipo de Ingresso ' . $ticketType->name . ' Atualizado com Successo!');

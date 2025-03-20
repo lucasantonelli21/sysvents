@@ -66,7 +66,7 @@ class TicketController extends Controller
                 ]);
         }
 
-    public function save(Request $request, $eventId)
+    public function save($eventId, Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255',
@@ -78,8 +78,10 @@ class TicketController extends Controller
                 ->withInput();
         }
         $user = User::where('email', '=', $request->email)->first();
-        $ticket_batch = TicketBatch::where('ticket_type_id', '=', $request->ticket_type)->first();
-        $ticket = Ticket::findOrNew($request->id);
+        $ticket_batch = TicketBatch::select('ticket_batches.*')
+        ->where('ticket_type_id', '=', $request->ticket_type)
+        ->where('name', '=', 'loteAdmin')->first();
+        $ticket = Ticket::findOrNew($request->ticketId);
 
         $transaction = new Transaction();
         $transaction->user_id= $user->id;
@@ -91,6 +93,7 @@ class TicketController extends Controller
         $ticket->user_id= $user->id;
         $ticket->transaction_id= $transaction->id;
         $ticket->ticket_batch_id = $ticket_batch->id;
+
 
         $ticket->save();
 
