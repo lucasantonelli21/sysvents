@@ -2,6 +2,11 @@ body {
     // background-color: rgb(21, 1, 32);
     background-color: #150120;
 }
+.icons {
+    img{
+        filter:invert(1);
+    }
+}
 
 .title {
     color: white;
@@ -16,7 +21,6 @@ body {
     background-color: #0c182c;
 }
 
-
 .table-buttons {
     display: flex;
     justify-content: center;
@@ -30,7 +34,6 @@ body {
 }
 
 .table {
-
     th:last-child {
         text-align: center;
     }
@@ -38,11 +41,9 @@ body {
     .ticket-types {
         text-align: center;
     }
-
 }
 
 .custom-table {
-
     th,
     td {
         background-color: #0c182c;
@@ -117,8 +118,6 @@ body {
         object-fit: cover;
         cursor: pointer;
         position: relative;
-
-
     }
 
     .editImageIcon {
@@ -130,7 +129,6 @@ body {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
     }
 
     &:hover {
@@ -141,6 +139,5 @@ body {
         .editImageIcon {
             visibility: visible;
         }
-
     }
 }

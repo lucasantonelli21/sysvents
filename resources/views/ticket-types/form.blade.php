@@ -10,9 +10,9 @@
                       </svg>
                 </a>
                 @if ($ticketType->id)
-                    <h2 class="title">Atualize o Ingresso do Tipo  {{ $ticketType->name }} do evento : {{ $event->name }}</h2>
+                    <h2 class="title">Atualize o Ingresso do Tipo  {{ $ticketType->name }} do evento <span class="text-info">{{$event->name}}</span></h2>
                 @else
-                    <h2 class="title">Crie um novo Expositor</h2>
+                    <h2 class="title">Crie um novo Tipo de Ingresso do evento <span class="text-info">{{$event->name}}</span></h2>
                 @endif
             </div>
         </div>
