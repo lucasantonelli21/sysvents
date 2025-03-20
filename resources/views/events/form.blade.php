@@ -1,3 +1,7 @@
+@php
+    use App\Enums\Themes;
+@endphp
+
 <x-blank>
     {{-- @dd($movie) --}}
 
@@ -113,18 +117,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        @php
-                            $themes = [
-                                'technology' => 'Tecnologia',
-                                'cultural' => 'Cultura',
-                                'musical' => 'Música',
-                                'art' => 'Arte',
-                                'sport' => 'Esportes',
-                                'gastronomy' => 'Gastronomia',
-                                'health' => 'Saúde e Bem-estar',
-                            ];
-
-                        @endphp
 
                         <div class="form-group col-sm">
 
@@ -132,10 +124,10 @@
 
                             <select class="form-control" name="theme" id="theme" required>
                                 <option value="">Selecione uma opção</option>
-                                @foreach ($themes as $key => $name)
-                                    <option value="{{ $key }}"
-                                        {{ old('theme', $event->theme) == $key ? 'selected' : '' }}>
-                                        {{ $name }}</option>
+                                @foreach (Themes::cases() as $theme)
+                                    <option value="{{ $theme }}"
+                                        {{ old('theme', $event->theme) == $theme ? 'selected' : '' }}>
+                                        {{ $theme }}</option>
                                 @endforeach
                             </select>
                         </div>

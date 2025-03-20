@@ -1,15 +1,6 @@
 @php
     $paginations = [10, 15, 20, 30];
-
-    $themes = [
-        'technology' => 'Tecnologia',
-        'cultural' => 'Cultura',
-        'musical' => 'Música',
-        'art' => 'Arte',
-        'sport' => 'Esportes',
-        'gastronomy' => 'Gastronomia',
-        'health' => 'Saúde e Bem-estar',
-    ];
+    use App\Enums\Themes;
 
 @endphp
 <x-blank>
@@ -82,9 +73,9 @@
                                             <label class="form-label">Tema</label>
                                             <select class="form-control" name="theme">
                                                 <option value="">Selecione uma opção</option>
-                                                @foreach ($themes as $value => $name)
+                                                @foreach (Themes::cases() as $value)
                                                     <option {{ Request::get('theme') == $value ? 'selected' : '' }}
-                                                        value="{{ $value }}">{{ $name }}</option>
+                                                        value="{{ $value }}">{{ $value }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -128,11 +119,12 @@
                     <tr>
                         <th>{{ $event->id }}</th>
                         <td class='name-cell'>{{ $event->name }}</td>
-                        @foreach ($themes as $theme => $name)
+                        <td class="themes-cell">{{ $event->theme }}</td>
+                        {{-- @foreach ($themes as $theme => $name)
                             @if ($event->theme == $theme)
                                 <td class="themes-cell">{{ $name }}</td>
                             @endif
-                        @endforeach
+                        @endforeach --}}
 
 
 
