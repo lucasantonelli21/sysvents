@@ -440,12 +440,6 @@ body {
   transform: translate(0px, -50%);
 }
 
-.list-group-item {
-  background-color: #0c182c;
-}
-.list-group-item .bg-light {
-  color: black;
-}
 .library .left-section {
   min-width: 400px;
   max-width: 400px;
@@ -486,4 +480,11 @@ body {
 }
 .library .event-title {
   font-weight: bold;
+}
+
+.list-group-item {
+  background-color: #0c182c;
+}
+.list-group-item .bg-light {
+  color: black;
 }
