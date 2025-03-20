@@ -155,4 +155,11 @@ class EventController extends Controller
         return Event::select('id','name as text')->where('name', 'ilike', '%'.$request->search.'%')->limit(5)->get();
     }
 
+
+    public function inscrição(Request $request) {
+
+
+
+    }
+
 }
