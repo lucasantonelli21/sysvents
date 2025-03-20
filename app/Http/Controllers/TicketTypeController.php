@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\TicketBatch;
 use App\Models\TicketType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -56,6 +57,12 @@ class TicketTypeController extends Controller
         $ticketType->event_id = $eventId;
         $ticketType->save();
         if (!$request->id) {
+            $ticketBatch = new TicketBatch();
+            $ticketBatch->name = 'Cortesia';
+            $ticketBatch->batch = 0;
+            $ticketBatch->price = 0;
+            $ticketBatch->ticket_type_id = $ticketType->id;
+            $ticketBatch->save();
             return redirect()->route('panel.events.tickets.types.index',$eventId)->withSuccess('Tipo de Ingresso ' . $ticketType->name . ' Criado com Successo!');
         }
         return redirect()->route('panel.events.tickets.types.index',$eventId)->withSuccess('Tipo de Ingresso ' . $ticketType->name . ' Atualizado com Successo!');

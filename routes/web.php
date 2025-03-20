@@ -75,8 +75,13 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
         Route::delete('/{id}/deletar',              [EventController::class, 'delete'])->name('delete');
 
         Route::prefix('{eventId}/ingressos')->name('tickets.')->group(function () {
-            Route::get('/',                         [TicketController::class,'index'])->name('index');
-            Route::delete('/{id}/deletar',          [TicketController::class, 'delete'])->name('delete');
+            Route::get('/',                             [TicketController::class,'index'])->name('index');
+            Route::delete('/{id}/deletar',              [TicketController::class, 'delete'])->name('delete');
+            Route::get('/criar',                        [TicketController::class, 'createOrEdit'])->name('create');
+            Route::get('/{id}/editar',                  [TicketController::class, 'createOrEdit'])->name('edit');
+
+            Route::post('/salvar',                      [TicketController::class, 'save'])->name('save');
+            Route::put('/salvar',                       [TicketController::class, 'save'])->name('update');
 
             Route::prefix('/tipos')->name('types.')->group(function () {
                 Route::get('/',                     [TicketTypeController::class, 'index'])->name('index');

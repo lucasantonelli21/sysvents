@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Ticket;
+use App\Models\TicketBatch;
+use App\Models\TicketType;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Validator;
 
 class TicketController extends Controller
 {
@@ -16,6 +22,10 @@ class TicketController extends Controller
             'tickets' => $tickets,
             'event' => $event
         ]);
+    }
+    public function form()
+    {
+
     }
 
     // {
@@ -43,4 +53,52 @@ class TicketController extends Controller
         } catch (\Throwable $th) {
         }
     }
+        public function createOrEdit( $eventId, $ticket = null,$userId = null){
+            $event = Event::find($eventId);
+            $ticket = Ticket::findOrNew($ticket);
+            $user = User::find($userId);
+            $ticket_types = TicketType::select('ticket_types.*')->where('event_id', 'ilike', '%'.$event->id.'%')->get();
+            return view('tickets.form', [
+                'ticket' => $ticket,
+                'ticket_types' => $ticket_types,
+                'event' => $event,
+                'user' => $user
+                ]);
+        }
+
+    public function save($eventId, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'ticket_type' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors())
+                ->withInput();
+        }
+        $user = User::where('email', '=', $request->email)->first();
+        $ticket_batch = TicketBatch::select('ticket_batches.*')
+        ->where('ticket_type_id', '=', $request->ticket_type)
+        ->where('name', '=', 'loteAdmin')->first();
+        $ticket = Ticket::findOrNew($request->ticketId);
+
+        $transaction = new Transaction();
+        $transaction->user_id= $user->id;
+        $transaction->amount= 0;
+        $transaction->save();
+
+        $ticket->owner_name = $user->name;
+        $ticket->owner_cpf = $user->cpf;
+        $ticket->user_id= $user->id;
+        $ticket->transaction_id= $transaction->id;
+        $ticket->ticket_batch_id = $ticket_batch->id;
+
+
+        $ticket->save();
+
+        return redirect()->route('panel.events.tickets.index', [$eventId])->withSuccess($ticket->id ? "Ingresso criado com sucesso" : "Erro ao cadastrar ingresso");;
+    }
+
 }
+
