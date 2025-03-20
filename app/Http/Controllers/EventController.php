@@ -107,14 +107,8 @@ class EventController extends Controller
         return $this->form($event); //aqui encaminha a pessoa para o Form com os dados para serem atualizados
     }
 
-    private function form(Event $event) //Aqui não deveria ter um ($movie = null)?
+    private function form(Event $event)
     {
-
-        // $teste = new Carbon();
-
-        // $event->start_date = new Carbon($event->start_date);
-
-        // dd($event, $teste->format("d/m/Y H:m:s"));
         $image = asset($event->image_path);
 
         return view('events.form', [

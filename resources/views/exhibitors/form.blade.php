@@ -3,6 +3,7 @@
 
         <div class="card">
             <div class="card-header text-light">
+                @dd($exhibitor)
                 @if ($exhibitor->id)
                     <h2 class="text-center">Atualize o Expositor: {{ $exhibitor->name }}</h2>
                 @else
