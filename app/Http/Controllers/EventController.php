@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Enums\Themes;
 use Illuminate\Validation\Rule;
 
 class EventController extends Controller
@@ -33,8 +34,23 @@ class EventController extends Controller
         return view('events.event', $data);
     }
 
+    public function showLibrary(Request $request) {
+
+        $events = Event::search($request)->orderBy('id', 'desc')->get();
+
+        $themes = Themes::toArray();
+
+        $data = [
+            "events" => $events,
+            "themes" => $themes
+        ];
+
+        return view('events.library', $data);
+    }
+
     public function delete($id)
     {
+        //como o botao delete sabe o ID do filme?
         try {
             $event = Event::find($id);
             if ($event == null) {
@@ -120,6 +136,18 @@ class EventController extends Controller
         return view('events.form', [
             'event' => $event
         ]);
+    }
+
+    public function searchEvents(Request $request) {
+
+        $events = Event::search($request)->select('id')->orderBy('id', 'desc')->get();
+
+        $data = [
+            "events" => $events
+        ];
+
+        return $data;
+
     }
 
 

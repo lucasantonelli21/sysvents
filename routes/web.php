@@ -33,7 +33,9 @@ Route::prefix('/login')->name('login.')->controller(LoginController::class)->gro
 
 //Eventos (Usuário)
 Route::prefix('/eventos')->name('events.')->group(function() {
-    Route::get('/{id}',                             [EventController::class, 'showEvent']);
+    Route::get('/',                 [EventController::class, 'showLibrary']);
+    Route::get('/filtrar',          [EventController::class, 'searchEvents']);
+    Route::get('/{id}',             [EventController::class, 'showEvent']);
 
 });
 

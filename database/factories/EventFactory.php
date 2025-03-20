@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Event;
+use App\Enums\Themes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -12,8 +12,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class EventFactory extends Factory
 {
 
-
-    protected $model = Event::class;
     /**
      * Define the model's default state.
      *
@@ -21,22 +19,16 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-        $themes = [
-            'technology',
-            'cultural',
-            'musical',
-            'art',
-            'sport',
-            'gastronomy',
-            'health',
-        ];
+        $themes = Themes::cases();
+        $theme = $themes[random_int(0, count($themes)-1)];
+
         return [
             'name' => $this->faker->name,
             'description'=>fake()->realText(),
             'image_path' => fake()->randomElement(['/images/default-event-image.jpeg', '/images/evento-image.webp', '']),
             'start_date'=>fake()->dateTime(),
             'end_date'=>fake()->dateTime(),
-            'theme' =>$themes[rand(0,6)],
+            'theme' =>$theme,
             'longitude' => fake()->longitude(),
             'latitude' => fake()->latitude(),
             'batch' => random_int(1, 5)
