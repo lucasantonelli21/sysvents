@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Themes;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -139,7 +140,8 @@ class UserController extends Controller
         if (!$userEvents->first()) {
             return redirect()->route('home')->withErrors('Usuário não possui nenhuma inscrição em eventos!');
         }
-        return view('users.events', ["userEvents" => $userEvents]);
+        $themes = Themes::toArray();
+        return view('users.events', ["userEvents" => $userEvents, "themes" => $themes]);
     }
 
     public function myEvent($id, $eventId){
