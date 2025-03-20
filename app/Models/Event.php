@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\Themes;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class Event extends Model
 {
@@ -22,7 +21,6 @@ class Event extends Model
         }
 
         if($request->themes) {
-
             $query->whereIn('theme', $request->themes);
 
         }
