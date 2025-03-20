@@ -13,9 +13,9 @@ class TicketBatchController extends Controller
 {
     public function index($eventId, $ticketTypeId){
         $event = Event::find($eventId);
-        foreach($event->ticketTypes as $ticketType){
-            if($ticketType->id == $ticketTypeId){
-                $ticketType = $ticketType;
+        foreach($event->ticketTypes as $eventsTicketsType){
+            if($eventsTicketsType->id == $ticketTypeId){
+                $ticketType = $eventsTicketsType;
             }
         }
         $ticketBatches = $ticketType->ticketBatches;
