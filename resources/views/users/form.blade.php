@@ -12,7 +12,12 @@
 <x-blank>
     <div class="page-form-users card ">
         <div class="card-header">
-            <h2 class="title text-center">{{ $user->id ? 'Atualize o Usuário ' . $user->name : 'Se Registre Aqui' }}</h2>
+            <div class="row-title-button">
+                <a href="{{ url()->previous() }}" class="icons btn-back btn btn-outline-light">
+                    <img src="{{ asset('images/icons/arrow-left-circle.svg') }}" alt="">
+                </a>
+                <h2 class="title text-center">{{ $user->id ? 'Atualize o Usuário ' . $user->name : (Auth::check() ? 'Cadastre Um Novo Usuário' : 'Se Cadastre Aqui') }}</h2>
+            </div>
         </div>
         <form action="{{ route($user->id ? 'users.update' : 'users.create', $user->id ?? [$user->id]) }}" method="POST">
             @csrf

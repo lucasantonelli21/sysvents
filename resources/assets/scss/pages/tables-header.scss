@@ -12,6 +12,26 @@
 
 }
 
+.filter:hover{
+    background-color: #0c182c;
+    opacity: 30%;
+    color: #fff;
+}
+
+.btn-back{
+    border-radius: 30px;
+    border: none;
+    img{
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.btn-back:hover{
+    background-color: #0c182c;
+    color: #fff;
+}
+
 .modal-card{
     .btn-outline-light{
         margin-right: 4px;

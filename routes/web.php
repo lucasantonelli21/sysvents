@@ -33,17 +33,21 @@ Route::prefix('/login')->name('login.')->controller(LoginController::class)->gro
 
 //Eventos (Usuário)
 Route::prefix('/eventos')->name('events.')->group(function() {
-    Route::get('/{id}',                             [EventController::class, 'showEvent']);
+    Route::get('/',                 [EventController::class, 'showLibrary']);
+    Route::get('/filtrar',          [EventController::class, 'searchEvents']);
+    Route::get('/{id}',             [EventController::class, 'showEvent']);
 
 });
 
 //Usuários (Usuário)
 Route::prefix('/usuarios')->name('users.')->group(function () {
     Route::get('/criar',                            [UserController::class,'createOrEdit'])->name('register');
-    Route::get('/{id}/editar',                      [UserController::class,'createOrEdit'])->name('edit');
-    Route::get('/profile',                          [UserController::class,'showProfile'])->name('profile');
+    Route::get('/{id}/editar',                      [UserController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
+    Route::get('/{id}/eventos',                     [UserController::class,'myEvents'])->middleware(VerifyLogin::class)->name('events');
+    Route::get('/{id}/eventos/{eventId}',           [UserController::class,'myEvent'])->middleware(VerifyLogin::class)->name('event');
+    Route::get('/profile',                          [UserController::class,'showProfile'])->middleware(VerifyLogin::class)->name('profile');
     Route::post('/salvar',                          [UserController::class,'save'])->name('create');
-    Route::put('/{id}/salvar',                      [UserController::class,'save'])->name('update');
+    Route::put('/{id}/salvar',                      [UserController::class,'save'])->middleware(VerifyLogin::class)->name('update');
 });
 
 //Admin dashboard

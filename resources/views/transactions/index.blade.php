@@ -8,6 +8,9 @@
             <div class="card-row">
                 <div class="select-pagination">
                     <form class="form-pagination" action="{{ route('panel.transactions.index') }}">
+                        <a href="{{ url()->previous() }}" class="icons btn-back btn btn-outline-light">
+                            <img src="{{ asset('images/icons/arrow-left-circle.svg') }}" alt="">
+                        </a>
                         <select class="paginator-selector" name="pagination">
                             @foreach ($paginations as $value)
                                 <option {{ $value == request()->pagination ? 'selected' : '' }}
@@ -19,13 +22,9 @@
                 <h2 class="title text-center">Transações</h2>
                 <div class="modal-card">
 
-                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
+                    <button type="button" class="filter icons btn btn-outline-light" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-funnel" viewBox="0 0 16 16">
-                            <path
-                                d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z" />
-                        </svg>
+                        <img src="{{ asset('images/icons/filter.svg') }}" alt="">
                     </button>
                 </div>
 
@@ -82,44 +81,49 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="card-body ">
-            <div class="table-responsive ">
-                <table class="table table-striped custom-table">
+    <div class="card-body ">
+        <div class="table-responsive ">
+            <table class="table table-striped custom-table">
 
+                <tr>
+                    <th>ID da compra</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Valor Total</th>
+                    <th>Tickets</th>
+                    <th>Deletar</th>
+                </tr>
+                @foreach ($transactions as $transaction)
                     <tr>
-                        <th>ID da compra</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Valor Total</th>
-                        <th>Tickets</th>
-                        <th>Deletar</th>
+                        <td>{{ $transaction->id }}</td>
+                        <td>{{ $transaction->user->name }}</td>
+                        <td>{{ $transaction->user->email }}</td>
+                        <td>R${{ $transaction->amount }}</td>
+                        <td>{{ $transaction->total_tickets }}</td>
+                        <td>
+                            <div class= "table-buttons">
+                                <a href="{{ route('panel.transactions.show', [$transaction->id]) }}"
+                                    class="icons btn btn-outline-primary">
+                                    <img  src="{{ asset('images/icons/search.svg') }}" alt="">
+                                </a>
+                                <form action="{{ route('panel.transactions.delete', [$transaction->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="icons btn btn-outline-danger">
+                                        <img src="{{ asset('images/icons/trash.svg') }}" alt="">
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
-                    @foreach ($transactions as $transaction)
-                        <tr>
-                            <td>{{ $transaction->id }}</td>
-                            <td>{{ $transaction->user->name }}</td>
-                            <td>{{ $transaction->user->email }}</td>
-                            <td>R${{ $transaction->amount }}</td>
-                            <td>{{ $transaction->total_tickets }}</td>
-                            <td>
-                                <div class= "table-buttons">
-                                    <a href="{{ route('panel.transactions.show',[$transaction->id]) }}" class="btn btn-outline-primary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path
-                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                        </svg>
-                                    </a>
+                @endforeach
 
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-
-                </table>
-            </div>
+            </table>
         </div>
+    </div>
     </div>
     <div class="card-footer text-end">
         {{ $transactions->links() }}

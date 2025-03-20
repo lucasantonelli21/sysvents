@@ -132,4 +132,22 @@ class UserController extends Controller
     {
         return view('users.profile');
     }
+
+    public function myEvents($id)
+    {
+        $userEvents = User::events(Auth::user()->is_admin ? $id : Auth::user()->id)->get();
+        if (!$userEvents->first()) {
+            return redirect()->route('home')->withErrors('Usuário não possui nenhuma inscrição em eventos!');
+        }
+        return view('users.events', ["userEvents" => $userEvents]);
+    }
+
+    public function myEvent($id, $eventId){
+        $userEvents = User::event(Auth::user()->is_admin ? $id : Auth::user()->id, $eventId)->get();
+        if (!$userEvents) {
+            return redirect()->route('home')->withErrors('Evento não encontrado para este usuário!');
+        }
+        return view('users.my-event', ["userEvents" => $userEvents]);
+    }
+
 }

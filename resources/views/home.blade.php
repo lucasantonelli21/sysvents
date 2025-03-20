@@ -32,7 +32,7 @@
 
 
 
-        <div class="events-container mt-5">
+        <div class="events-container d-flex flex-column mt-5">
             <div class="text-center">
                 <h2>Eventos</h2>
             </div>
@@ -41,7 +41,7 @@
 
             <div class="media-scroller d-flex gap-3">
 
-                @foreach ($events as $event)
+                {{-- @foreach ($events as $event)
                     <a class="media-element mb-1 rounded" href="{{ url('eventos/'.$event->id) }}">
                         <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded">
                         <div class="image-overlay d-flex justify-content-center flex-column rounded">
@@ -49,8 +49,23 @@
                             <p class="mx-2 event-description">{{ $event->description }}</p>
                         </div>
                     </a>
+                @endforeach --}}
+
+                @foreach ($events as $event)
+                    <div class="media-element mb-1 rounded" data-id="{{ $event->id }}">
+                        <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded">
+                        <div class="image-overlay d-flex justify-content-center flex-column rounded">
+                            <h2 class="event-title text-center">{{ $event->name }}</h2>
+                            <p class="mx-2 event-description">{{ $event->description }}</p>
+                        </div>
+                    </div>
                 @endforeach
 
+
+            </div>
+
+            <div class="mt-2 align-self-end me-2">
+                <button class="library-button btn btn-primary">Ver todos os eventos</button>
 
             </div>
 

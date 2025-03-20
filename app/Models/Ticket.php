@@ -14,6 +14,7 @@ class Ticket extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
+
     public function scopeTicketEvent($query, $eventId, $request)
     {
         $query->from('tickets as t')
@@ -55,61 +56,3 @@ class Ticket extends Model
         return $query;
     }
 }
-
-    // {
-    //     $query->from('tickets as t')
-    //         ->join('ticket_batches as tb', 't.ticket_batch_id', '=', 'tb.id')
-    //         ->join('ticket_types as tp', 'tb.ticket_type_id', '=', 'tp.id')
-    //         ->join('events as e', 'tp.event_id', '=', 'e.id')
-    //         ->select(
-    //             't.id AS ticket_id',
-    //             't.name AS ticket_name',
-    //             'e.name AS event_name' // Caso queira também o nome do evento
-    //         )
-    //         ->groupBy('t.id', 'e.name'); // Aqui 'e.name' também precisa estar no GROUP BY para ser válido no PostgreSQL
-
-    //     if($eventId) {
-    //         $query->whereIn('t.id', $eventId);
-    //     }
-    //     return $query;
-    // }
-
-    // public function scopeSoldTickets($query, $request)
-    // {
-
-    //     $query->from('events as e')
-    //         ->join('ticket_types as tp', 'tp.event_id', '=', 'e.id')
-    //         ->join('ticket_batches as tb', 'tb.ticket_type_id', '=', 'tp.id')
-    //         ->join('tickets as t', 't.ticket_batch_id', '=', 'tb.id')
-    //         ->selectRaw(
-    //             'e.id AS event_id,
-    //             e.name AS event_name,
-    //             count(t.id) AS total_tickets,
-    //             sum(tb.price) AS total_revenue'
-    //         )
-    //         ->groupBy('e.id', 'e.name');
-
-    //     if ($request->events) {
-    //         $query->whereIn('e.id', $request->events);
-    //     }
-
-    //     return $query;
-
-    // }
-
-
-// $query->from('tickets as t')
-// ->join('ticket_batches as tb', 't.ticket_batch_id', 'tb.id')
-// ->join('ticket_types as tp', 'tb.ticket_type_id', 'tp.id')
-// ->join('events as e', 'tp.event_id', 'e.id')
-// ->selectRaw(
-//     't.id AS ticket_id',
-//     't.name AS ticket_name',
-// )
-// ->groupBy('t.id', 'e.name');
-
-// if($eventId) {
-//     $query->whereIn('t.id', $eventId);
-// }
-// return $query;
-// }

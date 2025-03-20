@@ -1,17 +1,26 @@
+@php
+    use App\Enums\Themes;
+@endphp
+
 <x-blank>
     {{-- @dd($movie) --}}
 
 
     <div class="event-Form">
         <div class="card">
-            <div class="card-header text-light text-end">
-                @if ($event->id)
-                    <h2 class="text-center">Atualize o Evento: {{ $event->name }}</h2>
-                @else
-                    <h2 class="text-center">Crie um novo Evento</h2>
-                @endif
+            <div class="card-header">
+                <div class="row-title-button">
+                    <a href="{{ url()->previous() }}" class="icons btn-back btn btn-outline-light">
+                        <img src="{{ asset('images/icons/arrow-left-circle.svg') }}" alt="">
+                    </a>
+                    @if ($event->id)
+                        <h2 class="title">Atualize o Evento: {{ $event->name }}</h2>
+                    @else
+                        <h2 class="title">Crie um novo Evento</h2>
+                    @endif
 
 
+                </div>
             </div>
 
 
@@ -106,18 +115,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        @php
-                            $themes = [
-                                'technology' => 'Tecnologia',
-                                'cultural' => 'Cultura',
-                                'musical' => 'Música',
-                                'art' => 'Arte',
-                                'sport' => 'Esportes',
-                                'gastronomy' => 'Gastronomia',
-                                'health' => 'Saúde e Bem-estar',
-                            ];
-
-                        @endphp
 
                         <div class="form-group col-sm">
 
@@ -125,10 +122,10 @@
 
                             <select class="form-control" name="theme" id="theme" required>
                                 <option value="">Selecione uma opção</option>
-                                @foreach ($themes as $key => $name)
-                                    <option value="{{ $key }}"
-                                        {{ old('theme', $event->theme) == $key ? 'selected' : '' }}>
-                                        {{ $name }}</option>
+                                @foreach (Themes::cases() as $theme)
+                                    <option value="{{ $theme }}"
+                                        {{ old('theme', $event->theme) == $theme ? 'selected' : '' }}>
+                                        {{ $theme }}</option>
                                 @endforeach
                             </select>
                         </div>

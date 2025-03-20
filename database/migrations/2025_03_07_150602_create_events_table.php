@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Themes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->string('theme');
+            $table->enum('theme', Themes::toArray());
             $table->decimal('longitude');
             $table->decimal('latitude');
             $table->integer('batch');

@@ -46,6 +46,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
 
 
     public function scopeSearch($query, $request)
@@ -78,6 +83,52 @@ class User extends Authenticatable
             }
         }
 
+        return $query;
+    }
+
+
+
+    public function scopeEvents($query, $id)
+    {
+        $query->from('users as u')->join('tickets as t', 't.user_id', '=', 'u.id')
+            ->join('ticket_batches as tb', 't.ticket_batch_id', '=', 'tb.id')
+            ->join('ticket_types as tp', 'tb.ticket_type_id', '=', 'tp.id')
+            ->join('events as e', 'tp.event_id', '=', 'e.id')
+            ->where('u.id', $id)
+            ->select([
+                'u.id',
+                'u.name',
+                'e.id as event_id',
+                'e.name as event_name',
+                'e.start_date',
+                'e.end_date',
+                'e.description as event_description',
+                'e.image_path as path'
+            ])->groupBy('e.id','u.id');
+        return $query;
+    }
+
+    public function scopeEvent($query, $id, $eventId)
+    {
+        $query->from('users as u')->join('tickets as t', 't.user_id', '=', 'u.id')
+            ->join('ticket_batches as tb', 't.ticket_batch_id', '=', 'tb.id')
+            ->join('ticket_types as tp', 'tb.ticket_type_id', '=', 'tp.id')
+            ->join('events as e', 'tp.event_id', '=', 'e.id')
+            ->where('u.id', $id)
+            ->select([
+                'u.id',
+                'u.name',
+                'e.id as event_id',
+                'e.name as event_name',
+                'e.start_date',
+                'e.end_date',
+                'e.description as event_description',
+                'e.theme as event_theme',
+                'e.image_path as path',
+                't.owner_name as ticket_owner',
+                't.owner_cpf as ticket_owner_cpf',
+            ]);
+        $query->where('e.id', $eventId);
         return $query;
     }
 }
