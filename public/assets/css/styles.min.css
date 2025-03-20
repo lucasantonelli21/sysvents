@@ -491,15 +491,11 @@ body {
   font-weight: bold;
 }
 
-.list-group-item {
-  background-color: #0c182c;
-}
-.list-group-item .bg-light {
-  color: black;
-}
-
 .user-events .event-image {
   height: 30rem;
+}
+.user-events .events-container {
+  justify-items: center;
 }
 .user-events .media-scroller {
   display: flex;
@@ -627,4 +623,11 @@ body {
   text-align: center;
   border-radius: 10px;
   color: lightgray;
+}
+
+.list-group-item {
+  background-color: #0c182c;
+}
+.list-group-item .bg-light {
+  color: black;
 }
