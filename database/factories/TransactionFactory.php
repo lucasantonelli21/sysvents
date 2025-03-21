@@ -2,7 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Ticket;
+use App\Models\TicketType;
+use App\Models\Transaction;
 use App\Models\User;
+use Database\Seeders\TicketSeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,7 +15,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class TransactionFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Define o estado inicial da transação.
      *
      * @return array<string, mixed>
      */
@@ -19,7 +23,7 @@ class TransactionFactory extends Factory
     {
         return [
             'user_id' => User::all()->random()->id,
-            'amount' => fake()->numberBetween(100, 500),
+            'amount' => 1,  // Valor inicial
         ];
     }
 }
