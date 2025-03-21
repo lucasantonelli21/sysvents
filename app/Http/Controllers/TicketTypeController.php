@@ -16,7 +16,6 @@ class TicketTypeController extends Controller
     {
         $event = Event::find($eventId);
         $ticketTypes = $event->ticketTypes;
-        $batches = [];
 
         foreach ($ticketTypes as $ticketType) {
             $batches[] = $ticketType->ticketBatches;
@@ -24,8 +23,7 @@ class TicketTypeController extends Controller
 
         return view('ticket-types.index', [
             'event' => $event,
-            'ticketTypes' => $ticketTypes,
-            'batches' => $batches
+            'ticketTypes' => $ticketTypes
 
         ]);
     }
