@@ -185,15 +185,8 @@ class EventController extends Controller
             $ticket_type->save();
             $ticket_type_id = DB::table('ticket_types')->where('event_id', $request->event_id)->first()->id;
         }
-        // dd(Auth::user());
 
-        $ticket_batch = new TicketBatch;
-
-        $ticket_batch->name = Auth::user()->name;
-        $ticket_batch->batch = 1;
-        $ticket_batch->ticket_type_id = $ticket_type_id;
-        $ticket_batch->price = 0;
-        $ticket_batch->save();
+        $ticket_batch = DB::table('ticket_batches')->where('batch', 0)->where('ticket_type_id', $ticket_type_id)->get()->first();
 
         $ticket = new Ticket;
 
