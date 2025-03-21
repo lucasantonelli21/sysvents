@@ -34,8 +34,6 @@ class UserFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'birth_date' => fake()->date(),
             'is_admin' => random_int(1, 10) == 1 ? 'true' : 'false',
-
-
         ];
     }
 

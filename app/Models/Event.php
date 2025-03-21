@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\Themes;
+use DateTime;
 
 class Event extends Model
 {
@@ -65,5 +66,26 @@ class Event extends Model
 
         return $query;
 
+    }
+
+
+    public function scopeFindNexts($query){
+        $tomorrow = (new DateTime('tomorrow'))->format('Y-m-d');
+        $query->from('events as e')
+        ->join('ticket_types as tp', 'tp.event_id', '=', 'e.id')
+        ->join('ticket_batches as tb', 'tb.ticket_type_id', '=', 'tp.id')
+        ->join('tickets as t', 't.ticket_batch_id', '=', 'tb.id')
+        ->join('users as u', 'u.id', '=', 't.user_id')
+        ->selectRaw(
+            'e.id AS event_id,
+            e.name AS name,
+            e.start_date AS start_date,
+            e.end_date AS end_date,
+            u.name AS user_name,
+            u.email AS user_email,
+            count(t.id) AS total_tickets'
+        )
+        ->whereDate('e.start_date', '=', $tomorrow)
+        ->groupBy('e.id', 'e.name', 'u.id');
     }
 }
