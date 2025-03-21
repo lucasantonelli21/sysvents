@@ -1,4 +1,11 @@
-<x-blank>
+<style>
+    .map{
+        width: 100%;
+        height: 400px;
+    }
+
+</style>
+<x-blank class="page-maps">
     <div class="card">
         <div class="card-header">
             <div class="row-title-button">
@@ -48,9 +55,8 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="events d-none" data-events="{{ $userEvents->first() }}"></div>
                 <div class="map mt-5">
-                    <div class="map-field"></div>
                 </div>
 
             </div>
