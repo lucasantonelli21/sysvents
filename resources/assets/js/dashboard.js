@@ -1,5 +1,4 @@
-
-$(".page-dashboard", function () {
+$(".page-dashboard").each(function () {
     var $page = $(this);
     var $selectEvents = $page.find("#select2-events");
     var $eventsName = $page.find(".events-name");
@@ -40,11 +39,14 @@ $(".page-dashboard", function () {
     var eventsNames = [];
     var eventsTickets = [];
     var eventsProfit = [];
+    if($eventsName.length > 0){
+    }
     eventsData.forEach((element) => {
         eventsNames.push(element.event_name);
         eventsTickets.push(element.total_tickets);
         eventsProfit.push(element.total_revenue);
     });
+
 
     var backgroundColors = [
         "rgb(255, 99, 132)",

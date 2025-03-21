@@ -1,5 +1,4 @@
 @props(['container' => true])
-
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
 <head>
@@ -12,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/styles.min.css') }}" />
     <script src="{{asset('assets/js/vendor.min.js')}}"></script>
     <script type="module" src="{{asset('assets/js/scripts.min.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('app.maps_key') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body class="d-flex flex-column">

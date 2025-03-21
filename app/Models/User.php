@@ -104,7 +104,7 @@ class User extends Authenticatable
                 'e.end_date',
                 'e.description as event_description',
                 'e.image_path as path'
-            ])->groupBy('e.id','u.id');
+            ])->groupBy('e.id', 'u.id');
         return $query;
     }
 
@@ -121,6 +121,8 @@ class User extends Authenticatable
                 'e.id as event_id',
                 'e.name as event_name',
                 'e.start_date',
+                'e.latitude as latitude',
+                'e.longitude as longitude',
                 'e.end_date',
                 'e.description as event_description',
                 'e.theme as event_theme',
