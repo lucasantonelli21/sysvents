@@ -19,14 +19,20 @@
                     <p class="mb-2">Tema: {{ $event->theme }}</p>
                     <p class="mb-2">Data: {{ $event->start_date == $event->end_date ? formatDate($event->start_date,'d/m/Y')  : formatDate($event->start_date,'d/m/Y').' - '.formatDate($event->end_date,'d/m/Y') }}</p>
 
-                    <form action="{{ route('login.authenticate') }}" action="POST">
+                    <form action="{{ url('/eventos/inscrição') }}" method="POST">
                         @csrf
 
-                        <input type="hidden" value="{{ $event->id }}"></input>
+                        <input name="event_id" type="hidden" value="{{ $event->id }}"></input>
 
+                        @if ($é_inscrito)
+                        <button type="submit" class="btn disabled ticket-button btn-primary w-100 p-2">
+                            Inscrito
+                        </button>
+                        @else
                         <button type="submit" class="btn ticket-button btn-primary w-100 p-2">
                             Inscrever-se
                         </button>
+                        @endif
 
                     </form>
 

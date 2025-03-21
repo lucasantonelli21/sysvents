@@ -19,7 +19,7 @@ class VerifyLogin
         if (Auth::check()) {
             return $next($request);
         } else {
-            return redirect()->route('home')->withErrors('Você precisa se logar antes!');
+            return redirect()->route('login.index')->withErrors('Você precisa se logar antes!');
         }
     }
 }
