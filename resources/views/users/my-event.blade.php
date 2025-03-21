@@ -48,9 +48,11 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="map mt-5">
-                    MAPA
+                    <div class="map-field"></div>
                 </div>
+
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\ExhibitorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\TicketBatchController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketTypeController;
@@ -15,6 +16,8 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Middleware\AuthenticateRoutes;
 use App\Http\Middleware\VerifyLogin;
 use App\Models\Event;
+use App\Mail\Mailtrap;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -44,7 +47,7 @@ Route::prefix('/usuarios')->name('users.')->group(function () {
     Route::get('/criar',                            [UserController::class,'createOrEdit'])->name('register');
     Route::get('/{id}/editar',                      [UserController::class,'createOrEdit'])->middleware(VerifyLogin::class)->name('edit');
     Route::get('/{id}/eventos',                     [UserController::class,'myEvents'])->middleware(VerifyLogin::class)->name('events');
-    Route::get('/{id}/eventos/filtrar',          [EventController::class, 'searchEvents']);
+    Route::get('/{id}/eventos/filtrar',             [EventController::class, 'searchEvents']);
     Route::get('/{id}/eventos/{eventId}',           [UserController::class,'myEvent'])->middleware(VerifyLogin::class)->name('event');
     Route::get('/profile',                          [UserController::class,'showProfile'])->middleware(VerifyLogin::class)->name('profile');
     Route::post('/salvar',                          [UserController::class,'save'])->name('create');
@@ -137,3 +140,4 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
 
 
 });
+
