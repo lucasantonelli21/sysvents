@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Enums\Themes;
+use App\Models\Ticket;
+use App\Models\TicketBatch;
+use App\Models\TicketType;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class EventController extends Controller
@@ -24,11 +30,20 @@ class EventController extends Controller
     }
 
     public function showEvent($id) {
-
         $event = Event::findOrFail($id);
 
+        if(Auth::check()) {
+            //Verifica se o usuário já está inscrito no evento.
+            $ticket_types_from_event = DB::table('ticket_types')->where('event_id', $event->id)->get('id')->pluck('id')->toArray(); // pode ser nulo
+            $ticket_batches = $ticket_types_from_event == NULL ? [] : DB::table('ticket_batches')->whereIn('ticket_type_id', $ticket_types_from_event)->get('id')->pluck('id')->toArray(); //poder ser vazio
+            $é_inscrito = DB::table('tickets')->where('user_id', Auth::user()->id)->whereIn('ticket_batch_id', $ticket_batches)->get()->toArray() == [] ? false : true;
+        }else {
+            $é_inscrito = false;
+        }
+
         $data = [
-            'event' => $event
+            'event' => $event,
+            'é_inscrito' => $é_inscrito
         ];
 
         return view('events.event', $data);
@@ -147,6 +162,51 @@ class EventController extends Controller
 
     public function getEvents(Request $request){
         return Event::select('id','name as text')->where('name', 'ilike', '%'.$request->search.'%')->limit(5)->get();
+    }
+
+
+    public function inscrição(Request $request) {
+        //Valida se a pessoa na verdade já não está inscrita.
+        $ticket_types_from_event = DB::table('ticket_types')->where('event_id', $request->event_id)->get('id')->pluck('id')->toArray(); // pode ser nulo
+        $ticket_batches = $ticket_types_from_event == NULL ? [] : DB::table('ticket_batches')->whereIn('ticket_type_id', $ticket_types_from_event)->get('id')->pluck('id')->toArray(); //poder ser vazio
+        $é_inscrito = DB::table('tickets')->where('user_id', Auth::user()->id)->whereIn('ticket_batch_id', $ticket_batches)->get()->toArray() == [] ? false : true;
+
+        if($é_inscrito) {
+            return redirect(url('eventos/'.$request->event_id))->withErrors("Você já está inscrito nesse evento!");
+        }
+
+        //Pega um ticket type do evento, se não houver, cria um ticket type
+        $ticket_type = DB::table('ticket_types')->where('event_id', $request->event_id)->first();
+        $ticket_type_id = $ticket_type != NULL ? $ticket_type->id : NULL;
+        if($ticket_type == NULL) {
+            $ticket_type = new TicketType;
+            $ticket_type->name = "Inscrição";
+            $ticket_type->event_id = $request->event_id;
+            $ticket_type->save();
+            $ticket_type_id = DB::table('ticket_types')->where('event_id', $request->event_id)->first()->id;
+        }
+        // dd(Auth::user());
+
+        $ticket_batch = new TicketBatch;
+
+        $ticket_batch->name = Auth::user()->name;
+        $ticket_batch->batch = 1;
+        $ticket_batch->ticket_type_id = $ticket_type_id;
+        $ticket_batch->price = 0;
+        $ticket_batch->save();
+
+        $ticket = new Ticket;
+
+        $ticket->owner_name = Auth::user()->name;
+        $ticket->owner_cpf = Auth::user()->cpf;
+        $ticket->user_id = Auth::user()->id;
+        $ticket->transaction_id = 0;
+        $ticket->ticket_batch_id = $ticket_batch->id;
+
+        $ticket->save();
+
+        return redirect(url('eventos/'.$request->event_id));
+
     }
 
 }

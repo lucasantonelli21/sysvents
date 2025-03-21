@@ -36,7 +36,7 @@ Route::prefix('/eventos')->name('events.')->group(function() {
     Route::get('/',                 [EventController::class, 'showLibrary']);
     Route::get('/filtrar',          [EventController::class, 'searchEvents']);
     Route::get('/{id}',             [EventController::class, 'showEvent']);
-
+    Route::post('/inscrição',       [EventController::class, 'inscrição'])->middleware(VerifyLogin::class)->name('events');;
 });
 
 //Usuários (Usuário)
