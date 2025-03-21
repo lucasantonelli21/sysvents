@@ -34,21 +34,21 @@ class Transaction extends Model
                  u.email as use_email,
                  COUNT(t.id) AS total_tickets'
             )
-            ->groupBy('ts.id', 'u.id','u.name','u.email');
+            ->groupBy('ts.id', 'u.id', 'u.name', 'u.email');
         // Aplica filtros se existirem
         if ($request->name) {
-            $query->where('u.name', 'ilike', '%'.$request->name.'%');
+            $query->where('u.name', 'ilike', '%' . $request->name . '%');
         }
 
         if ($request->email) {
-            $query->where('u.email', 'ilike', '%'.$request->email.'%');
+            $query->where('u.email', 'ilike', '%' . $request->email . '%');
         }
 
         if ($request->ticket_amount) {
             $query->havingRaw('COUNT(t.id) = ?', [$request->ticket_amount]);
         }
 
-        if($request->amount){
+        if ($request->amount) {
             $query->where('ts.amount', $request->amount);
         }
 
@@ -90,6 +90,15 @@ class Transaction extends Model
                 'e.name'
             );
         return $query;
+    }
+
+    public function scopeTicketAmount($query, $transactionId)
+    {
+        return $query->from('tickets as t')
+            ->join('transactions as tran', 't.transaction_id', '=', 'tran.id')
+            ->join('ticket_batches as tb', 't.ticket_batch_id', '=', 'tb.id')
+            ->where('tran.id', $transactionId)
+            ->select('tb.price AS ticket_batches_price');
     }
 
 }

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class TicketFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Define o estado inicial do ticket.
      *
      * @return array<string, mixed>
      */
@@ -26,10 +26,6 @@ class TicketFactory extends Factory
             'user_id' => User::all()->random()->id,
             'transaction_id' => Transaction::all()->random()->id,
             'ticket_batch_id' => TicketBatch::all()->random()->id,
-
-            // 'transaction_id' => Transaction::all()->random()->id,
-            // 'ticket_batch_id' => TicketBatches::all()->random()->id,
-            // User::all()->random()->id,
         ];
     }
 }
