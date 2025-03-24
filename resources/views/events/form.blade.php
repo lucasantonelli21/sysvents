@@ -119,8 +119,8 @@
 
                         <div class="form-group col-sm">
                             <label class="form-label" for="longitude">Bairro</label>
-                            <input class="form-control" type="text" name="neighborhood" id="neighborhood"
-                                value="{{ old('neighborhood') }}" required>
+                            <input class="form-control" type="text" name="neighbourhood" id="neighbourhood"
+                                value="{{ old('neighbourhood') }}" required>
                         </div>
                         <div class="form-group col-sm">
                             <label class="form-label" for="latitude">Cidade</label>

@@ -3,6 +3,26 @@ $(".event-Form").each(function () {
     var $cepInput = $page.find("#cep");
     $cepInput.mask("00000-000");
 
+    if($page.find("#latitude").val() !== "" && $page.find('#longitude').val() !== "") {
+        var lat = $page.find("#latitude").val();
+        var lon = $page.find("#longitude").val();
+        var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+        console.log(url);
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            $page.find("#cep").val(data.address.postcode);
+            $page.find("#address").val(data.address.road);
+            $page.find("#neighbourhood").val(data.address.suburb);
+            $page.find("#city").val(data.address.city);
+            $page.find("#state").val(data.address.state);
+        })
+        .catch(error => console.error('Erro ao buscar endereço:', error));
+
+    }
+
+
+
     $cepInput.on("keyup", () => {
         var cep = $cepInput.cleanVal();
 
@@ -15,13 +35,13 @@ $(".event-Form").each(function () {
                 console.log("oi");
             }
             $page.find("#address").val(data.logradouro);
-            $page.find("#neighborhood").val(data.bairro);
+            $page.find("#neighbourhood").val(data.bairro);
             $page.find("#city").val(data.localidade);
             $page.find("#state").val(data.uf);
             var combinedAddress =
             $page.find("#address").val() +
             ", " +
-            $page.find("#neighborhood").val() +
+            $page.find("#neighbourhood").val() +
             ", " +
             $page.find("#city").val() +
             ", " +
