@@ -100,40 +100,6 @@
 
                     </div>
 
-
-                    <div class="row">
-
-                        <div class="form-group col-sm">
-                            <label class="form-label" for="longitude">CEP</label>
-                            <input class="form-control" type="text" name="cep" id="cep"
-                                value="{{ old('cep') }}" required>
-                        </div>
-                        <div class="form-group col-sm">
-                            <label class="form-label" for="latitude">Logradouro</label>
-                            <input class="form-control" type="text" name="address" id="address"
-                                value="{{ old('address') }}" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="form-group col-sm">
-                            <label class="form-label" for="longitude">Bairro</label>
-                            <input class="form-control" type="text" name="neighbourhood" id="neighbourhood"
-                                value="{{ old('neighbourhood') }}" required>
-                        </div>
-                        <div class="form-group col-sm">
-                            <label class="form-label" for="latitude">Cidade</label>
-                            <input class="form-control" type="text" name="city" id="city"
-                                value="{{ old('city') }}" required>
-                        </div>
-                        <div class="form-group col-sm">
-                            <label class="form-label" for="latitude">Estado</label>
-                            <input class="form-control" type="text" name="state" id="state"
-                                value="{{ old('state') }}" required>
-                        </div>
-                    </div>
-
                     <div class="row">
 
                         <div class="form-group col-sm">
@@ -156,19 +122,56 @@
                                 value="{{ old('batch', $event->batch) }}" required>
                         </div>
                     </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="cep">CEP</label>
+                            <input class="form-control" type="text" name="cep" id="cep"
+                                value="{{ old('cep',$event->cep) }}" required>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="address">Logradouro</label>
+                            <input class="form-control" type="text" name="address" id="address"
+                                value="{{ old('address',$event->address) }}" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="neighborhood">Bairro</label>
+                            <input class="form-control" type="text" name="neighborhood" id="neighborhood"
+                                value="{{ old('neighborhood',$event->neighborhood) }}" required>
+                        </div>
+
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="complement">Complemento</label>
+                            <input class="form-control" type="text" name="complement" id="complement"
+                                value="{{ old('complement',$event->complement) }}" required>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="city">Cidade</label>
+                            <input class="form-control" type="text" name="city" id="city"
+                                value="{{ old('city',$event->city) }}" required>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="state">Estado</label>
+                            <input class="form-control" type="text" name="state" id="state"
+                                value="{{ old('state',$event->state) }}" required>
+                        </div>
+
+                    </div>
+
                     <input type="text" value="{{ old('latitude', $event->latitude) }}" name="latitude" id="latitude" hidden>
                     <input type="text" value="{{ old('longitude', $event->longitude) }}" name="longitude" id="longitude" hidden>
 
-                    {{-- $table->string('name');
-                        $table->string('description');
-                        $table->date('start_date');
-                        $table->date('end_date');
-                        $table->string('theme');
-                        $table->decimal('longitude');
-                        $table->decimal('latitude');
-                        $table->integer('batch');
-                        $table->timestamps(); --}}
-
+                    <div class="map"></div>
 
                 </div>
                 <div class="card-footer text-end">

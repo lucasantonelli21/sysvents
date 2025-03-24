@@ -3,25 +3,30 @@ $(".event-Form").each(function () {
     var $cepInput = $page.find("#cep");
     $cepInput.mask("00000-000");
 
-    if($page.find("#latitude").val() !== "" && $page.find('#longitude').val() !== "") {
-        var lat = $page.find("#latitude").val();
-        var lon = $page.find("#longitude").val();
-        var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
-        console.log(url);
-        fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            $page.find("#cep").val(data.address.postcode);
-            $page.find("#address").val(data.address.road);
-            $page.find("#neighbourhood").val(data.address.suburb);
-            $page.find("#city").val(data.address.city);
-            $page.find("#state").val(data.address.state);
-        })
-        .catch(error => console.error('Erro ao buscar endereço:', error));
+    var $lat = $page.find("#latitude");
+    var $long = $page.find("#longitude");
+    const $mapEl = $page.find(".map");
 
+    var map = null;
+    if ($lat && $long) {
+        map = new google.maps.Map($mapEl[0], {
+            center: { lat: $lat.val() * 1  ? $lat.val() * 1 : -23.5505199, lng: $long.val() * 1  ? $long.val() * 1 : -46.6333094 },
+            zoom: 18,
+        });
+
+        map.markers = [];
+
+        const marker = new google.maps.Marker({
+            position: {
+                lat: $lat.val() * 1 ? $lat.val() * 1 : -23.5505199,
+                lng: $long.val() * 1  ? $long.val() * 1 : -46.6333094,
+            },
+            map: map,
+            title: "Evento",
+        });
+
+        map.markers.push(marker);
     }
-
-
 
     $cepInput.on("keyup", () => {
         var cep = $cepInput.cleanVal();
@@ -35,36 +40,54 @@ $(".event-Form").each(function () {
                 console.log("oi");
             }
             $page.find("#address").val(data.logradouro);
-            $page.find("#neighbourhood").val(data.bairro);
+            $page.find("#neighborhood").val(data.bairro);
             $page.find("#city").val(data.localidade);
             $page.find("#state").val(data.uf);
+            var complemento = $page.find("#complement").val() || ""; // se houver um campo de complemento
             var combinedAddress =
-            $page.find("#address").val() +
-            ", " +
-            $page.find("#neighbourhood").val() +
-            ", " +
-            $page.find("#city").val() +
-            ", " +
-            $page.find("#state").val();
+                $page.find("#address").val() +
+                ", " +
+                $page.find("#neighborhood").val() +
+                ", " +
+                $page.find("#city").val() +
+                ", " +
+                $page.find("#state").val() +
+                (complemento ? ", " + complemento : "");
 
-        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-            combinedAddress
-        )}`;
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+                combinedAddress
+            )}`;
 
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.length > 0) {
+                        $page.find("#latitude").val(data[0].lat);
+                        $page.find("#longitude").val(data[0].lon);
+                        map.setCenter({
+                            lat: $lat.val() * 1,
+                            lng: $long.val() * 1,
+                        });
+                        map.markers[0].setPosition({
+                            lat: $lat.val() * 1,
+                            lng: $long.val() * 1,
+                        });
+                    } else {
+                        console.log("deu erro");
+                    }
+                })
+                .catch((error) =>
+                    console.error("Erro ao buscar coordenadas:", error)
+                );
+        });
+    });
 
-        fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data.length > 0) {
-                $page.find('#latitude').val(data[0].lat);
-                $page.find('#longitude').val(data[0].lon);
-            } else {
-                console.log('deu erro');
-            }
-        })
-        .catch(error => console.error('Erro ao buscar coordenadas:', error));
-
-
+    map.addListener("click", (e) => {
+        $lat.val(e.latLng.lat());
+        $long.val(e.latLng.lng());
+        map.markers[0].setPosition({
+            lat: $lat.val() * 1,
+            lng: $long.val() * 1,
         });
     });
 

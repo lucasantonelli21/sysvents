@@ -240,6 +240,11 @@ body {
   visibility: visible;
 }
 
+.event-Form .map {
+  width: 100%;
+  height: 300px;
+}
+
 .home {
   color: white;
 }
