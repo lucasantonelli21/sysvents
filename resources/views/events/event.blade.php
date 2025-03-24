@@ -51,11 +51,23 @@
             <div class="right-section d-flex flex-column">
                 <div class="m-3 d-flex flex-column flex-grow-1">
                     <h2 class="text-center event-title m-0 pb-3">{{ $event->name }}</h2>
-                    <p class="event-description">{{ $event->description }}</p>
+
+                    <div class="d-flex gap-2">
+                        <div class="ticket-types-container w-50 border-right">
+                            Lorem fficia distinctio, debitis accusamus aliquam?
+                        </div>
+
+                        <div class="divider h-100"></div>
+
+                        <div class="description-container w-50">
+                            <p class="event-description">{{ $event->description }}</p>
+                        </div>
+
+                    </div>
+
                     <div class="events d-none" data-events="{{ $event}}"></div>
                     <div class="map bg-secondary flex-grow-1 mt-auto rounded d-flex justify-content-center align-items-center">
                     </div>
-
 
                 </div>
 

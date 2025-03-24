@@ -359,6 +359,11 @@ body {
   border-width: 1px;
   border-color: white;
 }
+.event .divider {
+  border: solid;
+  border-width: 0px 1px 0px 0px;
+  border-color: white;
+}
 
 .select-pagination select {
   margin-right: 4px;
