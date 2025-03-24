@@ -68,7 +68,7 @@ class TicketController extends Controller
         $user = User::where('email', '=', $request->email)->first();
         $ticket_batch = TicketBatch::select('ticket_batches.*')
         ->where('ticket_type_id', '=', $request->ticket_type)
-        ->where('name', '=', 'Cortesia')->first();
+        ->where('batch', '=', '0')->first();
         $ticket = Ticket::findOrNew($request->ticketId);
 
         $transaction = new Transaction();
@@ -81,7 +81,6 @@ class TicketController extends Controller
         $ticket->user_id= $user->id;
         $ticket->transaction_id= $transaction->id;
         $ticket->ticket_batch_id = $ticket_batch->id;
-
 
         $ticket->save();
 
