@@ -101,6 +101,12 @@ class EventController extends Controller
                     'theme' => 'required|',
                     'longitude' =>'required',
                     'latitude' =>'required',
+                    'cep' =>'required',
+                    'address' =>'required',
+                    'neighborhood' =>'required',
+                    'complement' =>'required',
+                    'city' =>'required',
+                    'state' =>'required',
                     'batch' =>'required',
                     ]);
             }
@@ -123,6 +129,12 @@ class EventController extends Controller
         $event->theme = $request->theme;
         $event->longitude = $request->longitude;
         $event->latitude = $request->latitude;
+        $event->cep = $request->cep;
+        $event->address = $request->address;
+        $event->neighborhood = $request->neighborhood;
+        $event->complement = $request->complement;
+        $event->city = $request->city;
+        $event->state = $request->state;
         $event->batch = $request->batch;
 
         $event->save();
