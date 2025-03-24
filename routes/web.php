@@ -63,6 +63,9 @@ Route::prefix('/painel')->name('panel.')->middleware(VerifyLogin::class, Authent
     Route::prefix('/usuarios')->name('users.')->group(function () {
         Route::get('/',                             [UserController::class, 'index'])->name('index');
         Route::delete('/{id}/deletar',              [UserController::class,'delete'])->name('delete');
+        Route::get('/{id}/DigitarEmail',            [UserController::class,'viewEmail'])->name('viewEmail');
+        Route::post('/{id}/EnviarEmail',            [UserController::class,'sendEmail'])->name('sendEmail');
+
     });
 
     //Eventos (Admin)
