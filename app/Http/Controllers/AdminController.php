@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $events = Event::soldTickets($request)->get();
+        $events = Event::soldTickets($request)->limit(10)->get();
         $eventsName = [];
         if($request->events) {
             foreach ($request->events as $event) {

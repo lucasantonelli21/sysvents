@@ -58,7 +58,8 @@ class Event extends Model
                 count(t.id) AS total_tickets,
                 sum(tb.price) AS total_revenue'
             )
-            ->groupBy('e.id', 'e.name');
+            ->groupBy('e.id', 'e.name')
+            ->orderBy('total_tickets', 'desc');
 
         if ($request->events) {
             $query->whereIn('e.id', $request->events);
