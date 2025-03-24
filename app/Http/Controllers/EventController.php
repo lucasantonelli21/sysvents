@@ -36,14 +36,14 @@ class EventController extends Controller
             //Verifica se o usuário já está inscrito no evento.
             $ticket_types_from_event = DB::table('ticket_types')->where('event_id', $event->id)->get('id')->pluck('id')->toArray(); // pode ser nulo
             $ticket_batches = $ticket_types_from_event == NULL ? [] : DB::table('ticket_batches')->whereIn('ticket_type_id', $ticket_types_from_event)->get('id')->pluck('id')->toArray(); //poder ser vazio
-            $é_inscrito = DB::table('tickets')->where('user_id', Auth::user()->id)->whereIn('ticket_batch_id', $ticket_batches)->get()->toArray() == [] ? false : true;
+            $is_subscribed = DB::table('tickets')->where('user_id', Auth::user()->id)->whereIn('ticket_batch_id', $ticket_batches)->get()->toArray() == [] ? false : true;
         }else {
-            $é_inscrito = false;
+            $is_subscribed = false;
         }
 
         $data = [
             'event' => $event,
-            'é_inscrito' => $é_inscrito
+            'is_subscribed' => $is_subscribed
         ];
 
         return view('events.event', $data);
@@ -165,13 +165,13 @@ class EventController extends Controller
     }
 
 
-    public function inscrição(Request $request) {
+    public function subscribe(Request $request) {
         //Valida se a pessoa na verdade já não está inscrita.
         $ticket_types_from_event = DB::table('ticket_types')->where('event_id', $request->event_id)->get('id')->pluck('id')->toArray(); // pode ser nulo
         $ticket_batches = $ticket_types_from_event == NULL ? [] : DB::table('ticket_batches')->whereIn('ticket_type_id', $ticket_types_from_event)->get('id')->pluck('id')->toArray(); //poder ser vazio
-        $é_inscrito = DB::table('tickets')->where('user_id', Auth::user()->id)->whereIn('ticket_batch_id', $ticket_batches)->get()->toArray() == [] ? false : true;
+        $is_subscribed = DB::table('tickets')->where('user_id', Auth::user()->id)->whereIn('ticket_batch_id', $ticket_batches)->get()->toArray() == [] ? false : true;
 
-        if($é_inscrito) {
+        if($is_subscribed) {
             return redirect(url('eventos/'.$request->event_id))->withErrors("Você já está inscrito nesse evento!");
         }
 
@@ -180,13 +180,22 @@ class EventController extends Controller
         $ticket_type_id = $ticket_type != NULL ? $ticket_type->id : NULL;
         if($ticket_type == NULL) {
             $ticket_type = new TicketType;
-            $ticket_type->name = "Inscrição";
+            $ticket_type->name = "Cortesia";
             $ticket_type->event_id = $request->event_id;
             $ticket_type->save();
             $ticket_type_id = DB::table('ticket_types')->where('event_id', $request->event_id)->first()->id;
         }
 
         $ticket_batch = DB::table('ticket_batches')->where('batch', 0)->where('ticket_type_id', $ticket_type_id)->get()->first();
+
+        if(!$ticket_batch){
+            $ticket_batch = new TicketBatch;
+            $ticket_batch->name = "Cortesia";
+            $ticket_batch->batch = 0;
+            $ticket_batch->price = 0;
+            $ticket_batch->ticket_type_id = $ticket_type_id;
+            $ticket_batch->save();
+        }
 
         $ticket = new Ticket;
 
