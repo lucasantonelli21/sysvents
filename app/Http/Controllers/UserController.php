@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Themes;
+use App\Mail\SendEventMail;
+use App\Mail\SendMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -38,7 +42,6 @@ class UserController extends Controller
         $user = User::findOrNew($id);
         return $this->form($user);
     }
-
 
     public function save(Request $request)
     {
@@ -144,7 +147,8 @@ class UserController extends Controller
         return view('users.events', ["userEvents" => $userEvents, "themes" => $themes]);
     }
 
-    public function myEvent($id, $eventId){
+    public function myEvent($id, $eventId)
+    {
         $userEvents = User::event(Auth::user()->is_admin ? $id : Auth::user()->id, $eventId)->get();
         if (!$userEvents) {
             return redirect()->route('home')->withErrors('Evento não encontrado para este usuário!');
@@ -152,4 +156,55 @@ class UserController extends Controller
         return view('users.my-event', ["userEvents" => $userEvents]);
     }
 
+    public function viewEmail($id)
+    {
+        $user = User::find($id);
+        return view(
+            'users.viewEmail',
+            [
+                "user" => $user
+            ]
+        );
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'emailText' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors())
+                ->withInput();
+        }
+        $message = (new SendMail('Email para ' . $request->email, $request->emailText))
+            ->onQueue('emails');
+        try {
+            Mail::to($request->email)->queue($message);
+        } catch (\Exception $e) {
+            Log::error('Error sending email: ' . $e->getMessage());
+        }
+
+
+        return redirect()->route('panel.users.index');
+    }
+
+
+    // public function handle()
+    // {
+
+    //     $events = Event::findNexts()->get();
+
+    //     foreach ($events as $event) {
+
+    //         try {
+
+    //             Mail::to($event->user_email)->send(new SendEventMail('Evento Próximo', 'date-soon-event', $event));
+
+    //         } catch (\Exception $e) {
+    //             Log::error('Error sending email: ' . $e->getMessage());
+    //         }
+
+    //     }
+
+    // }
 }

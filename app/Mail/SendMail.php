@@ -2,23 +2,21 @@
 
 namespace App\Mail;
 
-use App\Models\Event;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Address;
 
-class SendEventMail extends Mailable
+class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct( public $subject, public $type, private $event = null)
+    public function __construct( public $subject, public $type, private $email = null)
     {
         //
     }
@@ -39,8 +37,8 @@ class SendEventMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.'.$this->type,
-            with: ['name' => $this->event->user_name, 'event' => $this->event],
+            view: 'mail.personalized-email',
+            with: ['bodyText' => $this->type]
         );
     }
 

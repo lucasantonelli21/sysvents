@@ -124,18 +124,24 @@
                             <td>{{ formatDate($user->birth_date, 'd/m/Y') }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->is_admin ? 'Administrador' : 'Cliente' }}</td>
-                            <td>{{ formatDate($user->created_at,'d/m/Y') }}</td>
-                            <td>{{ formatDate($user->created_at,'d/m/Y') }}</td>
+                            <td>{{ formatDate($user->created_at, 'd/m/Y') }}</td>
+                            <td>{{ formatDate($user->created_at, 'd/m/Y') }}</td>
                             <td>
                                 <div class="table-buttons">
-                                    <a href="{{ route('users.edit', [$user->id]) }}" class="icons btn btn-outline-info">
-                                       <img src="{{ asset('images/icons/pen.svg') }}" alt="">
+                                    <a href="{{ route('panel.users.viewEmail', [$user->id]) }}"
+                                        class="icons btn btn-outline-warning">
+                                        <img src="{{ asset('images/icons/envelope.svg') }}" alt="">
+                                    </a>
+
+                                    <a href="{{ route('users.edit', [$user->id]) }}"
+                                        class="icons btn btn-outline-info">
+                                        <img src="{{ asset('images/icons/pen.svg') }}" alt="">
                                     </a>
                                     <form action="{{ route('panel.users.delete', [$user->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="icons btn btn-outline-danger">
-                                           <img src="{{ asset('images/icons/trash.svg') }}" alt="">
+                                            <img src="{{ asset('images/icons/trash.svg') }}" alt="">
                                         </button>
                                     </form>
                                 </div>
