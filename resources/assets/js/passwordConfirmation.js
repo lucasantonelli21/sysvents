@@ -1,4 +1,4 @@
-$('page-register',function (){
+$('page-form-users',function (){
     var $page = $(this);
     var $passwordConfirmation = $page.find('.password-confirmation');
     var $password = $page.find('.password');
@@ -13,6 +13,11 @@ $('page-register',function (){
 
     });
 
+
+    var $cpfInput = $page.find('#cpf');
+    $cpfInput.mask('000.000.000-00');
+    var $phoneInput = $page.find('#phone');
+    $phoneInput.mask('(00) 90000-0000');
 });
 
 

@@ -26,7 +26,7 @@
 
                         <input name="event_id" type="hidden" value="{{ $event->id }}"></input>
 
-                        @if ($é_inscrito)
+                        @if ($is_subscribed)
                             <button type="submit" class="btn disabled ticket-button btn-primary w-100 p-2">
                                 Inscrito
                             </button>

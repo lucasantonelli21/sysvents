@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">CPF</label>
-                    <input class="form-control"  type="text" name="cpf" required
+                    <input class="form-control"  type="text" name="cpf" id="cpf" required
                         value="{{ old('cpf') ? old('cpf') : $user->cpf }}" />
                 </div>
                 <div class="form-group">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Telefone</label>
-                    <input class="form-control"  type="phone" name="phone" required
+                    <input class="form-control"  type="phone" name="phone" id="phone" required
                         value="{{ old('phone') ? old('phone') : $user->phone }}" />
                 </div>
 

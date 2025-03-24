@@ -20,8 +20,8 @@ return new class extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->enum('theme', Themes::toArray());
-            $table->decimal('longitude');
-            $table->decimal('latitude');
+            $table->decimal('longitude',11,8);
+            $table->decimal('latitude',10,8);
             $table->integer('batch');
             $table->timestamps();
         });
