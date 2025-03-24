@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Enums\Themes;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Faker\Provider\pt_BR\Address;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
@@ -31,6 +31,12 @@ class EventFactory extends Factory
             'theme' =>$theme,
             'longitude' => fake()->longitude(),
             'latitude' => fake()->latitude(),
+            'cep' => $this->faker->numerify('#####-###'),
+            'address' => fake()->address(),
+            'neighborhood' => fake()->citySuffix(),
+            'city' => fake()->city(),
+            'state' => $this->faker->stateAbbr(),
+            'complement' => fake()->secondaryAddress(),
             'batch' => random_int(1, 5)
         ];
     }

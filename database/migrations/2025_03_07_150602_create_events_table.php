@@ -22,6 +22,12 @@ return new class extends Migration
             $table->enum('theme', Themes::toArray());
             $table->decimal('longitude',11,8);
             $table->decimal('latitude',10,8);
+            $table->string('cep', 9);
+            $table->string('address', 100);
+            $table->string('neighborhood', 50);
+            $table->string('city', 50);
+            $table->string('state', 2);
+            $table->string('complement', 30);
             $table->integer('batch');
             $table->timestamps();
         });
