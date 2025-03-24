@@ -1,0 +1,5 @@
+$(".event").each(function() {
+
+
+
+});

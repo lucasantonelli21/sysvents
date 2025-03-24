@@ -36,7 +36,10 @@
                             </button>
                         @endif
 
+
                     </form>
+
+                    <button class="mt-2 btn schedule-button btn-primary w-100 p-2">Agendar</button>
 
                 </div>
 
