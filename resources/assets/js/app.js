@@ -8,7 +8,7 @@ $(".page-maps", function () {
 
         const map = new google.maps.Map($mapEl[0], {
             center: { lat: eventsData.latitude*1, lng: eventsData.longitude*1 },
-            zoom: 4,
+            zoom: 12,
         });
 
         map.markers = [];

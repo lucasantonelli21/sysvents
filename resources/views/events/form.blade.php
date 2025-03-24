@@ -27,7 +27,7 @@
 
 
             <form class="form" action="{{ route($event->id ? 'panel.events.update' : 'panel.events.save') }}"
-                method="post" enctype="multipart/form-data">
+                method="post" id="form-event" enctype="multipart/form-data">
                 <div class="card-body">
 
 
@@ -104,16 +104,36 @@
                     <div class="row">
 
                         <div class="form-group col-sm">
-                            <label class="form-label" for="longitude">Longitude</label>
-                            <input class="form-control" type="text" name="longitude" id="longitude"
-                                value="{{ old('longitude', $event->longitude) }}" required>
+                            <label class="form-label" for="longitude">CEP</label>
+                            <input class="form-control" type="text" name="cep" id="cep"
+                                value="{{ old('cep') }}" required>
                         </div>
                         <div class="form-group col-sm">
-                            <label class="form-label" for="latitude">Latitude</label>
-                            <input class="form-control" type="text" name="latitude" id="latitude"
-                                value="{{ old('latitude', $event->latitude) }}" required>
+                            <label class="form-label" for="latitude">Logradouro</label>
+                            <input class="form-control" type="text" name="address" id="address"
+                                value="{{ old('address') }}" required>
                         </div>
                     </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="longitude">Bairro</label>
+                            <input class="form-control" type="text" name="neighborhood" id="neighborhood"
+                                value="{{ old('neighborhood') }}" required>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="latitude">Cidade</label>
+                            <input class="form-control" type="text" name="city" id="city"
+                                value="{{ old('city') }}" required>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label class="form-label" for="latitude">Estado</label>
+                            <input class="form-control" type="text" name="state" id="state"
+                                value="{{ old('state') }}" required>
+                        </div>
+                    </div>
+
                     <div class="row">
 
                         <div class="form-group col-sm">
@@ -136,6 +156,8 @@
                                 value="{{ old('batch', $event->batch) }}" required>
                         </div>
                     </div>
+                    <input type="text" value="{{ old('latitude', $event->latitude) }}" name="latitude" id="latitude" hidden>
+                    <input type="text" value="{{ old('longitude', $event->longitude) }}" name="longitude" id="longitude" hidden>
 
                     {{-- $table->string('name');
                         $table->string('description');

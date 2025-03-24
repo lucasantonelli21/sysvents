@@ -88,8 +88,8 @@ class EventController extends Controller
                 'start_date' => 'required|date',
                 'end_date' => 'required|date',
                 'theme' => 'required|',
-                'longitude' =>'required',
-                'latitude' =>'required',
+                // 'longitude' =>'required',
+                // 'latitude' =>'required',
                 'batch' =>'required',
                 ]);
             }else{

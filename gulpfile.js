@@ -77,7 +77,7 @@ var vendorJsFiles = [
 	// 'node_modules/parsleyjs/dist/i18n/pt-br.js',
     // 'node_modules/moment/moment.js',
 	// 'node_modules/moment/locale/pt-br.js',
-    // 'node_modules/jquery-mask-plugin/dist/jquery.mask.js',
+     'node_modules/jquery-mask-plugin/dist/jquery.mask.js',
     // 'node_modules/bootbox/bootbox.js',
     // 'node_modules/@googlemaps/js-api-loader/dist/index.min.js',
     // 'node_modules/@fancyapps/ui/dist/fancybox/fancybox.umd.js',
