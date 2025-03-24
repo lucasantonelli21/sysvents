@@ -36,7 +36,11 @@
                             </button>
                         @endif
 
+
                     </form>
+
+                    <button class="mt-2 btn schedule-button btn-primary w-100 p-2">Agendar</button>
+                    <input class="event-date" type="hidden" value="{{ $event->start_date }}">
 
                 </div>
 
@@ -47,7 +51,7 @@
             <div class="right-section d-flex flex-column">
                 <div class="m-3 d-flex flex-column flex-grow-1">
                     <h2 class="text-center event-title m-0 pb-3">{{ $event->name }}</h2>
-                    <p>{{ $event->description }}</p>
+                    <p class="event-description">{{ $event->description }}</p>
                     <div class="events d-none" data-events="{{ $event}}"></div>
                     <div class="map bg-secondary flex-grow-1 mt-auto rounded d-flex justify-content-center align-items-center">
                     </div>

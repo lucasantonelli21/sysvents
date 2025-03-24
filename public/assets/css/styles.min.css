@@ -354,6 +354,11 @@ body {
   border-width: 1px;
   border-color: white;
 }
+.event .schedule-button:hover {
+  border: solid;
+  border-width: 1px;
+  border-color: white;
+}
 
 .select-pagination select {
   margin-right: 4px;
