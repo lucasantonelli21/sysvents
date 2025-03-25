@@ -10,7 +10,10 @@ $(".event-Form").each(function () {
     var map = null;
     if ($lat && $long) {
         map = new google.maps.Map($mapEl[0], {
-            center: { lat: $lat.val() * 1  ? $lat.val() * 1 : -23.5505199, lng: $long.val() * 1  ? $long.val() * 1 : -46.6333094 },
+            center: {
+                lat: $lat.val() * 1 ? $lat.val() * 1 : -23.5505199,
+                lng: $long.val() * 1 ? $long.val() * 1 : -46.6333094,
+            },
             zoom: 18,
         });
 
@@ -19,7 +22,7 @@ $(".event-Form").each(function () {
         const marker = new google.maps.Marker({
             position: {
                 lat: $lat.val() * 1 ? $lat.val() * 1 : -23.5505199,
-                lng: $long.val() * 1  ? $long.val() * 1 : -46.6333094,
+                lng: $long.val() * 1 ? $long.val() * 1 : -46.6333094,
             },
             map: map,
             title: "Evento",
@@ -29,6 +32,7 @@ $(".event-Form").each(function () {
     }
 
     $cepInput.on("keyup", () => {
+        console.log("oi");
         var cep = $cepInput.cleanVal();
 
         if (cep.length !== 8) {
@@ -89,6 +93,28 @@ $(".event-Form").each(function () {
             lat: $lat.val() * 1,
             lng: $long.val() * 1,
         });
-    });
 
+        var addressLatLong = $lat.val() + "," + $long.val();
+        var urlLatLong = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit-1&q=${encodeURIComponent(
+            addressLatLong
+        )}`;
+        fetch(urlLatLong)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.length > 0) {
+                    $page.find("#cep").val(data[0].address.postcode);
+                    $page.find("#address").val(data[0].address.road);
+                    $page.find("#neighborhood").val(data[0].address.suburb);
+                    $page.find("#city").val(data[0].address.city);
+                    $page.find("#complement").val("");
+                    var uf = getUF(data[0].address.state);
+                    $page.find("#state").val(uf);
+                } else {
+                    console.log("Nenhum resultado retornado pelo Nominatim.");
+                }
+            })
+            .catch((error) =>
+                console.error("Erro ao buscar endereço:", error)
+            );
+    });
 });
