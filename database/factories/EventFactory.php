@@ -33,6 +33,7 @@ class EventFactory extends Factory
             'latitude' => fake()->latitude(),
             'cep' => $this->faker->numerify('#####-###'),
             'address' => fake()->address(),
+            'address_number' => 0,
             'neighborhood' => fake()->citySuffix(),
             'city' => fake()->city(),
             'state' => $this->faker->stateAbbr(),

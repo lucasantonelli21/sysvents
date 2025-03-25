@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('cep', 9);
             $table->string('address', 100);
             $table->string('neighborhood', 50);
+            $table->integer('address_number');
             $table->string('city', 50);
             $table->string('state', 2);
             $table->string('complement', 30);

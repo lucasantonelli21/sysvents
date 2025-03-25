@@ -131,6 +131,7 @@ class EventController extends Controller
         $event->latitude = $request->latitude;
         $event->cep = $request->cep;
         $event->address = $request->address;
+        $event->address_number = $request->address_number ? $request->address_number : 0;
         $event->neighborhood = $request->neighborhood;
         $event->complement = $request->complement;
         $event->city = $request->city;

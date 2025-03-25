@@ -159,6 +159,12 @@
                         </div>
 
                         <div class="form-group col-sm">
+                            <label class="form-label" for="address_number">Número</label>
+                            <input class="form-control" type="text" name="address_number" id="address_number"
+                                value="{{ old('address_number', $event->address_number) }}" >
+                        </div>
+
+                        <div class="form-group col-sm">
                             <label class="form-label" for="complement">Complemento</label>
                             <input class="form-control" type="text" name="complement" id="complement"
                                 value="{{ old('complement', $event->complement) }}" required>

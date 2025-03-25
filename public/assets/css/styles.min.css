@@ -114,10 +114,6 @@ body {
   visibility: hidden;
 }
 
-body {
-  background-color: #150120;
-}
-
 .icons img {
   filter: invert(1);
 }
