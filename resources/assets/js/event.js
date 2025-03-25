@@ -12,6 +12,13 @@ $(".event").each(function() {
         window. open(url, '_blank')
     })
 
+    $(".amount-input").on("change", function() {
+        let ticket_amount = 0;
+        $(".amount-input").each(function() {
+            ticket_amount += parseInt($(this).val());
+        });
 
+        $(".tickets-amount").text(ticket_amount);
+    });
 
 });
