@@ -6,18 +6,12 @@
     <div class="card">
         <div class="card-header">
             <div class="row-title-button">
-                <a href="{{ url()->previous() }}" class="btn-back btn btn-outline-light">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon-large bi bi-arrow-left-circle" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-                      </svg>
+                <a href="{{ url()->previous() }}" class="icons btn-back btn btn-outline-light">
+                    <img src="{{ asset('images/icons/arrow-left-circle.svg') }}" alt="">
                 </a>
                 <h1 class = "title text-center">Perfil de {{ $user->name }}</h1>
-                <a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-info">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-pen" viewBox="0 0 16 16">
-                        <path
-                            d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
-                    </svg>
+                <a href="{{ route('users.edit', $user->id) }}" class="icons btn btn-outline-info">
+                    <img src="{{ asset('images/icons/pen.svg') }}" alt="">
                 </a>
             </div>
         </div>
@@ -43,7 +37,8 @@
                 </li>
                 <li class="list-group-item">
                     <h4><span class="badge rounded-pill bg-dark">Data de Nascimento:</span> <span
-                            class="badge rounded-pill bg-light">{{ date('d/m/Y', strtotime($user->birth_date)) }}</h4></span>
+                            class="badge rounded-pill bg-light">{{ date('d/m/Y', strtotime($user->birth_date)) }}</h4>
+                    </span>
                 </li>
             </ul>
         </div>
