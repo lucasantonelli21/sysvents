@@ -55,37 +55,43 @@
                     <h2 class="text-center event-title m-0 pb-3">{{ $event->name }}</h2>
 
                     <div class="d-flex gap-2 mb-5">
-                        <div class="ticket-types-container w-50 border-right">
+                        <div class="ticket-types-container w-50 border-right px-5">
                             <h4>Tipos de ingressos:</h4>
 
 
-                            <table class="">
+                            <table class="table table-responsive table-hover">
                                 <tr class="">
-                                    <th class="p-3 px-5">Tipos</th>
-                                    <th class="p-3 px-5">Quantidade</th>
-                                    <th class="p-3 px-5">Valor</th>
+                                    <th class="p-3 px-5 text-center">Tipos</th>
+                                    <th class="p-3 px-5 text-center">Quantidade</th>
+                                    <th class="p-3 px-5 text-center">Valor</th>
 
                                 </tr>
 
                                 @foreach($ticket_types as $ticket_type)
                                 <tr>
                                     <td class="align-content-center p-4">
-                                        <div >
+                                        <div>
                                             <label for="" class="">{{ $ticket_type->name }}</label>
                                         </div>
                                     </td>
-                                    <td class="justify-content-center">
+                                    <td class="justify-content-center align-content-center">
                                         <div class="ticket-amount-container">
                                             <input type="number" class="form-control mb-0" value="0" min="0"></input>
                                         </div>
 
                                     </td>
-                                    <td class="text-center">0,00</td>
+                                    <td class="text-center align-content-center">0,00</td>
                                 </tr>
 
 
-                                </div>
                                 @endforeach
+                                <tfoot>
+                                    <tr>
+                                        <td class="text-center">Total:</td>
+                                        <td class="tickets-amount text-center">0</td>
+                                        <td class="text-center">0,00</td>
+                                    </tr>
+                                </tfoot>
                             </table>
 
                             {{-- <div class="p-3 rounded border border-white bg-primary d-flex flex-column gap-2 w-0">
@@ -109,7 +115,8 @@
 
                         <div class="divider h-100"></div>
 
-                        <div class="description-container w-50">
+                        <div class="description-container w-50 px-4">
+                            <h4>Descrição:</h4>
                             <p class="event-description">{{ $event->description }}</p>
                         </div>
 

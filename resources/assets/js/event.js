@@ -12,4 +12,6 @@ $(".event").each(function() {
         window. open(url, '_blank')
     })
 
+
+
 });

@@ -367,14 +367,8 @@ body {
 .event .ticket-types-container {
   width: 20%;
 }
-.event table {
-  border-color: white;
-  border: solid;
-  border-width: 1px;
-}
 .event th, .event td {
   background-color: #142748;
-  border-bottom: 1px solid white;
   justify-items: center;
 }
 .event .ticket-amount-container {
