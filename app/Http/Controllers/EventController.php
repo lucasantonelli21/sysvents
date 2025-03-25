@@ -150,6 +150,17 @@ class EventController extends Controller
             $freeBatch->ticket_type_id = $freeTicketType->id;
             $freeBatch->save();
         }
+        if($request->id && !$request->free){
+            $freeTicketType = TicketType::where('event_id', $event->id)->where('name', 'Gratuito')->first();
+            $freeTicketBatch = TicketBatch::where('ticket_type_id', $freeTicketType->id)->where('batch',0)->first();
+            if($freeTicketType){
+                $freeTicketType->delete();
+                if($freeTicketBatch){
+                    $freeTicketBatch->delete();
+                }
+            }
+
+        }
 
 
         return redirect()->route('panel.events.index')->withSuccess($request->id ? "Evento atualizado com sucesso" : "Evento cadastrado com sucesso");
@@ -166,9 +177,13 @@ class EventController extends Controller
     private function form(Event $event)
     {
         $image = asset($event->image_path);
-
+        $is_free = false;
+        if($event->ticketTypes()->where('name', 'Gratuito')->first()){
+            $is_free = true;
+        }
         return view('events.form', [
-            'event' => $event
+            'event' => $event,
+            'is_free' => $is_free,
         ]);
     }
 
