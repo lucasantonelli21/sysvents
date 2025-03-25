@@ -95,22 +95,19 @@ $(".event-Form").each(function () {
         });
 
         var addressLatLong = $lat.val() + "," + $long.val();
-        var urlLatLong = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+        var urlLatLong = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit-1&q=${encodeURIComponent(
             addressLatLong
         )}`;
         fetch(urlLatLong)
             .then((response) => response.json())
             .then((data) => {
                 if (data.length > 0) {
-                    const info = data[0];
-                    const displayName = info.display_name || "";
-                    const parts = displayName.split(",");
-                    console.log(parts);
-                    $page.find("#cep").val(parts[7].length > 9 ? parts[8] : parts[7]);
-                    $page.find("#address").val(parts[0]);
-                    $page.find("#neighborhood").val(parts[1]);
-                    $page.find("#city").val(parts[2]);
-                    var uf = getUF(parts[5].length > 19 ? parts[6] : parts[5]);
+                    $page.find("#cep").val(data[0].address.postcode);
+                    $page.find("#address").val(data[0].address.road);
+                    $page.find("#neighborhood").val(data[0].address.suburb);
+                    $page.find("#city").val(data[0].address.city);
+                    $page.find("#complement").val("");
+                    var uf = getUF(data[0].address.state);
                     $page.find("#state").val(uf);
                 } else {
                     console.log("Nenhum resultado retornado pelo Nominatim.");
