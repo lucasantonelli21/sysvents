@@ -1,4 +1,4 @@
-$(".page-maps", function () {
+$(".page-maps").each( function () {
     var $page = $(this);
     const $mapEl = $page.find(".map");
     var $events = $page.find(".events");
