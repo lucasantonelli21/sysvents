@@ -158,6 +158,7 @@ class UserController extends Controller
 
     public function viewEmail($id)
     {
+
         $user = User::find($id);
         return view(
             'users.viewEmail',
@@ -176,7 +177,14 @@ class UserController extends Controller
             return back()->withErrors($validator->errors())
                 ->withInput();
         }
-        $message = (new SendMail('Email para ' . $request->email, $request->emailText))
+        $file = $request->file('file');
+
+        $filePath = $file->store('emails');
+        $subject = 'Email para ' . $request->email;
+
+        $filePath = storage_path("app/private/".$filePath);
+
+        $message = (new SendMail($subject, $request->emailText, $filePath))
             ->onQueue('emails');
         try {
             Mail::to($request->email)->queue($message);
@@ -187,24 +195,4 @@ class UserController extends Controller
 
         return redirect()->route('panel.users.index');
     }
-
-
-    // public function handle()
-    // {
-
-    //     $events = Event::findNexts()->get();
-
-    //     foreach ($events as $event) {
-
-    //         try {
-
-    //             Mail::to($event->user_email)->send(new SendEventMail('Evento Próximo', 'date-soon-event', $event));
-
-    //         } catch (\Exception $e) {
-    //             Log::error('Error sending email: ' . $e->getMessage());
-    //         }
-
-    //     }
-
-    // }
 }

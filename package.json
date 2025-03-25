@@ -29,6 +29,7 @@
         "jquery": "^3.7.1",
         "jquery-mask": "^0.0.1-security",
         "jquery-mask-plugin": "^1.14.16",
+        "mask": "^0.2.2",
         "sass": "^1.85.1",
         "select2": "^4.1.0-rc.0",
         "vendor": "^1.7.0"
