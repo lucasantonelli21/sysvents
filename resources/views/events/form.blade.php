@@ -86,6 +86,13 @@
                                 <textarea rows="9" cols="50" class="form-control w-100" type="text" name="description" id="description"
                                     required>{{ old('description', $event->description) }} </textarea>
                             </div>
+
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="free" id="free" value="1"
+                                {{ old('free', $event->free) ? 'checked' : '' }}>
+                                <label class="form-check-label" for='free'>Evento Gratuito?</label>
+                            </div>
+
                         </div>
                     </div>
 

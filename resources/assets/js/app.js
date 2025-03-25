@@ -1,5 +1,6 @@
 $(".page-maps").each( function () {
     var $page = $(this);
+    console.log("oi");
     const $mapEl = $page.find(".map");
     var $events = $page.find(".events");
     var eventsData = $events.data("events");

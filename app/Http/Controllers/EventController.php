@@ -136,10 +136,23 @@ class EventController extends Controller
         $event->city = $request->city;
         $event->state = $request->state;
         $event->batch = $request->batch;
-
         $event->save();
 
-        return redirect()->route('panel.events.index')->withSuccess($request->id ? "Expositor atualizado com sucesso" : "Expositor cadastrado com sucesso");;
+        if($request->free){
+            $freeTicketType = new TicketType;
+            $freeTicketType->name = "Gratuito";
+            $freeTicketType->event_id = $event->id;
+            $freeTicketType->save();
+            $freeBatch = new TicketBatch;
+            $freeBatch->name = "Gratuito";
+            $freeBatch->batch = 0;
+            $freeBatch->price = 0;
+            $freeBatch->ticket_type_id = $freeTicketType->id;
+            $freeBatch->save();
+        }
+
+
+        return redirect()->route('panel.events.index')->withSuccess($request->id ? "Evento atualizado com sucesso" : "Evento cadastrado com sucesso");
     }
     public function createOrEdit($id = null)
     {

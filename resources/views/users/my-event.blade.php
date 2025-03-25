@@ -5,8 +5,8 @@
     }
 
 </style>
-<x-blank class="page-maps">
-    <div class="card">
+<x-blank>
+    <div class="page-maps card">
         <div class="card-header">
             <div class="row-title-button">
                 <a href="{{ url()->previous() }}" class="icons btn-back btn btn-outline-light">
