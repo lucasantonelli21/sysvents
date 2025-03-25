@@ -9,7 +9,7 @@
                 <h1 class = "title text-center">Enviar email para: {{ $user->name }}</h1>
             </div>
         </div>
-        <form class="form" action="{{ route('panel.users.sendEmail', $user->id) }}" method="post">
+        <form class="form" action="{{ route('panel.users.sendEmail', $user->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                     <input type="hidden" class="form-control" data-bs-theme="dark" type="text" name="email"
@@ -18,6 +18,7 @@
                     <textarea rows="9" cols="50" class="form-control w-100" type="text" name="emailText" id="emailText"
                         required> </textarea>
                 </div>
+                <input name = "file" id = "file" class ="form-control" type="file">
                 <div class="card-footer text-end">
                     <button class="btn-actions btn btn-light">{{ 'Enviar' }}</button>
                 </div>

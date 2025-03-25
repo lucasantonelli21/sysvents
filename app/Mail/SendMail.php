@@ -9,16 +9,33 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subject;
+    public $type;
+    private $filePath;
+
     /**
      * Create a new message instance.
      */
-    public function __construct( public $subject, public $type, private $email = null)
+    public function __construct($subject, $type, $filePath = null)
     {
-        //
+        $this->subject = $subject;
+        $this->type = $type;
+        $this->filePath = $filePath;
     }
 
     /**
@@ -45,10 +62,13 @@ class SendMail extends Mailable
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
     public function attachments(): array
     {
-        return [];
+        $attachments = [];
+
+        $attachments[] = Attachment::fromPath($this->filePath);
+
+        return $attachments;
     }
 }
