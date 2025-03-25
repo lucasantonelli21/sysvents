@@ -76,7 +76,7 @@
                                     </td>
                                     <td class="justify-content-center align-content-center">
                                         <div class="ticket-amount-container">
-                                            <input type="number" class="amount-input form-control mb-0" value="0" min="0"></input>
+                                            <input type="number" class="amount-input form-control mb-0" value="0" min="0" max="20"></input>
                                         </div>
 
                                     </td>
