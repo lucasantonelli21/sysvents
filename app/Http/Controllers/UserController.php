@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Themes;
+use App\Jobs\SendEmailJob;
 use App\Mail\SendEventMail;
 use App\Mail\SendMail;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -181,21 +183,23 @@ class UserController extends Controller
         if ($request->file) {
             $file = $request->file('file');
             $filePath = $file->store('emails');
+            $filePathFull = storage_path("app/private/" . $filePath);
+            $message = (new SendEmailJob($request->email, $subject, $request->emailText, $filePathFull))->onQueue('emails');
+            try{
+                dispatch($message);
+            } catch (\Exception $e){
+                Log::error('Erro ao enviar email: ' . $e->getMessage());
+            }
 
-            $filePath = storage_path("app/private/" . $filePath);
-
-            $message = (new SendMail($subject, $request->emailText, $filePath))
-                ->onQueue('emails');
         }else{
             $message = (new SendMail($subject, $request->emailText))
                 ->onQueue('emails');
+            try {
+                Mail::to($request->email)->queue($message);
+            } catch (\Exception $e) {
+                Log::error('Erro ao enviar email: ' . $e->getMessage());
+            }
         }
-        try {
-            Mail::to($request->email)->queue($message);
-        } catch (\Exception $e) {
-            Log::error('Error sending email: ' . $e->getMessage());
-        }
-
 
         return redirect()->route('panel.users.index');
     }
