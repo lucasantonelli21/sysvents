@@ -10,6 +10,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('events.library') }}">Biblioteca</a>
+                </li>
+                @if (Auth::check())
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('users.events',Auth::user()->id) }}">Meus Eventos</a>
+                </li>
+                @endif
                 @if (Auth::check() && Auth::user()->is_admin)
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('panel.users.index') }}">Usuários</a>
@@ -26,11 +34,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('panel.transactions.index')}}">Transações</a>
                     </li>
-                @endif
-                @if (Auth::check())
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('users.events',Auth::user()->id) }}">Meus Eventos</a>
-                </li>
                 @endif
             </ul>
         </div>

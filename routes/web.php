@@ -36,7 +36,7 @@ Route::prefix('/login')->name('login.')->controller(LoginController::class)->gro
 
 //Eventos (Usuário)
 Route::prefix('/eventos')->name('events.')->group(function() {
-    Route::get('/',                 [EventController::class, 'showLibrary']);
+    Route::get('/',                 [EventController::class, 'showLibrary'])->name('library');
     Route::get('/filtrar',          [EventController::class, 'searchEvents']);
     Route::get('/{id}',             [EventController::class, 'showEvent']);
     Route::post('/inscrição',       [EventController::class, 'subscribe'])->middleware(VerifyLogin::class)->name('events');;
