@@ -40,7 +40,7 @@
                             <div class="imageEvent ">
                                 <label for="image_path">
                                     <img id = "output"
-                                        src="{{ $event->image_path ? Storage::disk('public')->url($event->image_path) : Storage::url('events/default-event-image.jpeg') }}"
+                                        src="{{ $event->image_path ? Storage::disk('public')->url($event->image_path) : Storage::url('events/default-image.jpg') }}"
                                         class="rounded">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="editImageIcon bi bi-pencil-square"

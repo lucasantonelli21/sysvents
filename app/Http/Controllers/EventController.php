@@ -71,6 +71,7 @@ class EventController extends Controller
             if ($event == null) {
                 return redirect()->route('panel.events.index')->withErrors("Erro ao deletar o Evento");
             } else {
+                Storage::disk('public')->delete($event->image_path);
                 $event->delete();
                 return redirect()->route('panel.events.index')->withSuccess("Evento deletado com sucesso!");
             }
@@ -120,6 +121,9 @@ class EventController extends Controller
         $event->name = $request->name;
         $event->description = $request->description;
         if($request->image_path){
+            if($request->id && $event->image_path){
+                Storage::disk('public')->delete($event->image_path);
+            }
             $filename =  'events/' . time() . '.' . $request->image_path->extension();
             // $request->image_path->move(public_path('images/'), $filename);
             Storage::disk('public')->put($filename, file_get_contents($request->image_path));
