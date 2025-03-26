@@ -21,7 +21,7 @@ $(".page-maps").each(function () {
                 lng: eventsData.longitude * 1,
             },
             map: map,
-            title: "Estou Aqui",
+            title: "Local do Evento",
         });
 
         map.markers.push(marker);
