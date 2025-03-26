@@ -127,6 +127,11 @@ class User extends Authenticatable
                 'e.description as event_description',
                 'e.theme as event_theme',
                 'e.image_path as path',
+                'e.address as address',
+                'e.neighborhood as neighborhood',
+                'e.address_number as address_number',
+                'e.city as city',
+                'e.state as state',
                 't.owner_name as ticket_owner',
                 't.owner_cpf as ticket_owner_cpf',
             ]);

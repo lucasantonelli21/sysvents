@@ -60,6 +60,9 @@
                 </div>
 
             </div>
+            <div class="card-footer text-center">
+                <button class="mt-4 btn-open-location btn btn-outline-primary">Ver no Maps</button>
+            </div>
         </div>
     </div>
 </x-blank>
