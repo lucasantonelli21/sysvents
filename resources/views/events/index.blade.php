@@ -89,14 +89,15 @@
 
     <div class="card-body ">
         <div class="table-responsive ">
-            <table class="table-events table table-striped custom-table">
+            <table class="table table-striped custom-table">
                 <tr>
                     <th>#</th>
                     <th>Nome</th>
                     <th>Tema</th>
                     <th>Descrição</th>
-                    <th>Data de início</th>
-                    <th>Data do fim</th>
+                    <th>Gratuito</th>
+                    <th>Início</th>
+                    <th>Fim</th>
                     {{-- <th>Longitude</th>
                     <th>Latitude</th> --}}
                     <th>Lote</th>
@@ -109,15 +110,8 @@
                         <th>{{ $event->id }}</th>
                         <td class='name-cell'>{{ $event->name }}</td>
                         <td class="themes-cell">{{ $event->theme }}</td>
-                        {{-- @foreach ($themes as $theme => $name)
-                            @if ($event->theme == $theme)
-                                <td class="themes-cell">{{ $name }}</td>
-                            @endif
-                        @endforeach --}}
-
-
-
-                        <td class='description-cell'>{{ $event->description }}</td>
+                        <td class='description-cell'>Clica aqui</td>
+                        <td>{{ $event->free ? 'Sim' : 'Não' }}</td>
                         <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>
                         {{-- <td>{{ $event->longitude }}</td>
