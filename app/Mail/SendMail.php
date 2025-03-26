@@ -35,7 +35,9 @@ class SendMail extends Mailable
     {
         $this->subject = $subject;
         $this->type = $type;
-        $this->filePath = $filePath;
+        if($filePath){
+            $this->filePath = $filePath;
+        }
     }
 
     /**
@@ -65,6 +67,9 @@ class SendMail extends Mailable
      */
     public function attachments(): array
     {
+        if($this->filePath == null){
+            return [];
+        }
         $attachments = [];
 
         $attachments[] = Attachment::fromPath($this->filePath);

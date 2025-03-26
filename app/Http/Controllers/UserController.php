@@ -177,15 +177,19 @@ class UserController extends Controller
             return back()->withErrors($validator->errors())
                 ->withInput();
         }
-        $file = $request->file('file');
-
-        $filePath = $file->store('emails');
         $subject = 'Email para ' . $request->email;
+        if ($request->file) {
+            $file = $request->file('file');
+            $filePath = $file->store('emails');
 
-        $filePath = storage_path("app/private/".$filePath);
+            $filePath = storage_path("app/private/" . $filePath);
 
-        $message = (new SendMail($subject, $request->emailText, $filePath))
-            ->onQueue('emails');
+            $message = (new SendMail($subject, $request->emailText, $filePath))
+                ->onQueue('emails');
+        }else{
+            $message = (new SendMail($subject, $request->emailText))
+                ->onQueue('emails');
+        }
         try {
             Mail::to($request->email)->queue($message);
         } catch (\Exception $e) {
