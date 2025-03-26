@@ -120,8 +120,9 @@ class EventController extends Controller
         $event->name = $request->name;
         $event->description = $request->description;
         if($request->image_path){
-            $filename =  'images/' . time() . '.' . $request->image_path->extension();
-            $request->image_path->move(public_path('images/'), $filename);
+            $filename =  'events/' . time() . '.' . $request->image_path->extension();
+            // $request->image_path->move(public_path('images/'), $filename);
+            Storage::disk('public')->put($filename, file_get_contents($request->image_path));
             $event->image_path = $filename;
         }
         $event->start_date = $request->start_date;

@@ -25,7 +25,7 @@ class EventFactory extends Factory
         return [
             'name' => $this->faker->name,
             'description'=>fake()->realText(),
-            'image_path' => fake()->randomElement(['/images/default-event-image.jpeg', '/images/evento-image.webp', '']),
+            'image_path' => fake()->randomElement(['/events/default-event-image.jpeg', '/events/evento-image.webp', '']),
             'start_date'=>fake()->dateTime(),
             'end_date'=>fake()->dateTime(),
             'theme' =>$theme,

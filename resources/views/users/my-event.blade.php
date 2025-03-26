@@ -24,7 +24,7 @@
                     <div class="col-md-4">
                         <div class="card p-3">
                             <div class="card-body">
-                                <img src="{{$userEvents->first()->path ? asset($userEvents->first()->path) : asset('images/default-event-image.jpeg')}}" class="imagem rounded img-fluid" alt="">
+                                <img src="{{ $userEvents->first()->path ? Storage::disk('public')->url($userEvents->first()->path) : Storage::url('events/default-event-image.jpeg') }}" class="imagem rounded img-fluid" alt="">
                                 <p><strong>Evento:</strong> {{ $userEvents->first()->event_name }}</p>
                                 <p><strong>Tema:</strong> {{ $userEvents->first()->event_theme }}</p>
                                 <p><strong>Data:</strong> {{ formatDate($userEvents->first()->start_date, 'd/m/Y') }} -

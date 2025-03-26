@@ -17,7 +17,7 @@
             </div>
 
             <div class="">
-                <img src="{{ asset('images/evento-image.webp') }}" class="event-image rounded">
+                <img src="{{ Storage::url('events/evento-image.webp') }}" class="event-image rounded">
             </div>
 
 
@@ -41,19 +41,10 @@
 
             <div class="media-scroller d-flex gap-3">
 
-                {{-- @foreach ($events as $event)
-                    <a class="media-element mb-1 rounded" href="{{ url('eventos/'.$event->id) }}">
-                        <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded">
-                        <div class="image-overlay d-flex justify-content-center flex-column rounded">
-                            <h2 class="event-title text-center">{{ $event->name }}</h2>
-                            <p class="mx-2 event-description">{{ $event->description }}</p>
-                        </div>
-                    </a>
-                @endforeach --}}
 
                 @foreach ($events as $event)
                     <div class="media-element mb-1 rounded" data-id="{{ $event->id }}">
-                        <img src="{{$event->image_path ? asset($event->image_path) : asset('images/default-event-image.jpeg')}}" class="rounded">
+                        <img src="{{ $event->image_path ? Storage::disk('public')->url($event->image_path) : Storage::disk('public')->url('events/default-event-image.jpeg') }}" class="rounded">
                         <div class="image-overlay d-flex justify-content-center flex-column rounded">
                             <h2 class="event-title text-center">{{ $event->name }}</h2>
                             <p class="mx-2 event-description">{{ $event->description }}</p>
