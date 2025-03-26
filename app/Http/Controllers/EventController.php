@@ -32,7 +32,8 @@ class EventController extends Controller
     public function showEvent($id) {
         $event = Event::findOrFail($id);
 
-        $ticket_types= DB::table('ticket_types')->where('event_id', $event->id)->get(); // pode ser nulo
+        $ticket_types = DB::table('ticket_types')->leftJoin('ticket_batches', 'ticket_types.id', 'ticket_batches.ticket_type_id')->where('ticket_types.event_id', $event->id)->where('ticket_batches.batch', $event->batch)
+        ->select("ticket_types.*", "ticket_batches.price")->get();
         if(Auth::check()) {
             //Verifica se o usuário já está inscrito no evento.
             $ticket_types_id = $ticket_types->pluck('id')->toArray();
@@ -47,6 +48,8 @@ class EventController extends Controller
             'ticket_types' => $ticket_types,
             'is_subscribed' => $is_subscribed
         ];
+
+        // dd($ticket_types);
 
         return view('events.event', $data);
     }

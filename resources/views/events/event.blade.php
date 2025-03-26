@@ -58,7 +58,10 @@
                         <div class="ticket-types-container w-50 border-right px-5">
                             <h4>Tipos de ingressos:</h4>
 
-
+                            {{-- Se não encontrar os ingressos, isso pode ocorrer por exemplo quando um evento está com um "batch" que na verdade não existe --}}
+                            @if (count($ticket_types) == 0)
+                            <p class="text-warning">Não foi possível mostrar as informações de ingressos para esse evento, por favor tente novamente mais tarde ou entre em contato conosco.</p>
+                            @else
                             <table class="table table-responsive table-hover">
                                 <tr class="">
                                     <th class="p-3 px-5 text-center">Tipos</th>
@@ -76,11 +79,11 @@
                                     </td>
                                     <td class="justify-content-center align-content-center">
                                         <div class="ticket-amount-container">
-                                            <input type="number" class="amount-input form-control mb-0" value="0" min="0" max="20"></input>
+                                            <input type="number" class="amount-input form-control mb-0" value="0" min="0" max="20" data-ticket-type-id="{{  $ticket_type->id }}"></input>
                                         </div>
 
                                     </td>
-                                    <td class="text-center align-content-center">0,00</td>
+                                    <td class="text-center align-content-center {{ "price-".$ticket_type->id }}">{{ $ticket_type->price }}</td>
                                 </tr>
 
 
@@ -88,27 +91,12 @@
                                 <tfoot>
                                     <tr>
                                         <td class="text-center">Total:</td>
-                                        <td class="tickets-amount text-center">0</td>
-                                        <td class="text-center">0,00</td>
+                                        <td class="tickets-total-amount text-center">0</td>
+                                        <td class="tickets-total-price text-center">0,00</td>
                                     </tr>
                                 </tfoot>
                             </table>
-
-                            {{-- <div class="p-3 rounded border border-white bg-primary d-flex flex-column gap-2 w-0">
-
-
-                                @foreach($ticket_types as $ticket_type)
-                                <div class="d-flex align-items-center w-0">
-
-                                    <div class="ticket-types-container d-flex justify-content-end">
-                                        <label for="" class="text-center me-2">{{ $ticket_type->name }}</label>
-                                    </div>
-                                    <input type="number" class="mb-0 form-control" value="0" min="0"></input>
-                                </div>
-                                @endforeach
-                                botão confirmar
-
-                            </div> --}}
+                            @endif
 
 
                         </div>

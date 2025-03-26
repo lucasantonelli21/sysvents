@@ -12,13 +12,25 @@ $(".event").each(function() {
         window. open(url, '_blank')
     })
 
-    $(".amount-input").on("change", function() {
+    //Atualiza a quantidade total e valor total, de acordo com os valores colocados nos inputs de quantidade de cada ingresso
+    function updateFields() {
         let ticket_amount = 0;
+        let total_value = 0;
+        let ticket_type_id;
         $(".amount-input").each(function() {
+            ticket_type_id = $(this).data("ticket-type-id");
             ticket_amount += parseInt($(this).val());
+            total_value += parseInt($(this).val())*parseFloat($(".price-"+ticket_type_id).text());
         });
 
-        $(".tickets-amount").text(ticket_amount);
+        console.log(total_value)
+
+        $(".tickets-total-price").text(total_value);
+        $(".tickets-total-amount").text(ticket_amount);
+    }
+
+    $(".amount-input").on("change", function() {
+        updateFields();
     });
 
 });
