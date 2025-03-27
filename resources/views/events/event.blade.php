@@ -42,57 +42,55 @@
                             @if (count($ticket_types) == 0)
                             <p class="text-warning">Não foi possível mostrar as informações de ingressos para esse evento, por favor tente novamente mais tarde ou entre em contato conosco.</p>
                             @else
-                            <table class="table table-responsive table-hover">
-                                <tr class="">
-                                    <th class="p-3 px-5 text-center">Tipos</th>
-                                    <th class="p-3 px-5 text-center">Quantidade</th>
-                                    <th class="p-3 px-5 text-center">Valor</th>
-
-                                </tr>
-
-                                @foreach($ticket_types as $ticket_type)
-                                <tr>
-                                    <td class="align-content-center p-4">
-                                        <div>
-                                            <label for="" class="">{{ $ticket_type->name }}</label>
-                                        </div>
-                                    </td>
-                                    <td class="justify-content-center align-content-center">
-                                        <div class="ticket-amount-container">
-                                            <input type="number" class="amount-input form-control mb-0" value=0 min=0 max=20 data-ticket-type-id="{{  $ticket_type->id }}"></input>
-                                        </div>
-
-                                    </td>
-                                    <td class="text-center align-content-center {{ "price-".$ticket_type->id }}">{{ $ticket_type->price }}</td>
-                                </tr>
-
-
-                                @endforeach
-                                <tfoot>
-                                    <tr>
-                                        <td class="text-center">Total:</td>
-                                        <td class="tickets-total-amount text-center">0</td>
-                                        <td class="tickets-total-price text-center">0,00</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
 
                             <form action="{{ url('/eventos/inscrição') }}" method="POST">
                                 @csrf
+
+                                <table class="table table-responsive table-hover">
+                                    <tr class="">
+                                        <th class="p-3 px-5 text-center">Tipos</th>
+                                        <th class="p-3 px-5 text-center">Quantidade</th>
+                                        <th class="p-3 px-5 text-center">Valor</th>
+
+                                    </tr>
+
+                                    @foreach($ticket_types as $ticket_type)
+                                    <tr>
+                                        <td class="align-content-center p-4">
+                                            <div>
+                                                <label for="" class="">{{ $ticket_type->name }}</label>
+                                            </div>
+                                        </td>
+                                        <td class="justify-content-center align-content-center">
+                                            <div class="ticket-amount-container">
+                                                <input type="number" name="ticketAmountOfType{{ $ticket_type->id }}" class="amount-input form-control mb-0" value=0 min=0 max=20 data-ticket-type-id="{{  $ticket_type->id }}"></input>
+                                            </div>
+
+                                        </td>
+                                        <td class="text-center align-content-center {{ "price-".$ticket_type->id }}">{{ $ticket_type->price }}</td>
+                                    </tr>
+
+
+                                    @endforeach
+                                    <tfoot>
+                                        <tr>
+                                            <td class="text-center">Total:</td>
+                                            <td class="tickets-total-amount text-center">0</td>
+                                            <td class="tickets-total-price text-center">0,00</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
 
                                 <input name="event_id" type="hidden" value="{{ $event->id }}"></input>
 
                                 <div class="d-flex justify-content-end">
 
-                                    @if ($is_subscribed)
-                                    <button type="submit" class="btn disabled ticket-button btn-primary p-2">
-                                        Comprou
-                                    </button>
-                                    @else
-                                    <button type="submit" class="btn ticket-button btn-primary w-100 p-2">
+
+                                    <button type="submit" class="btn ticket-button btn-primary p-2">
                                         Comprar
                                     </button>
-                                    @endif
+
                                 </div>
 
                             </form>
