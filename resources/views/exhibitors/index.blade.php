@@ -92,7 +92,7 @@
     </div>
         <div class="card-body ">
             <div class="table-responsive ">
-                <table class="table-exhibitors table table-striped custom-table">
+                <table class="table table-striped custom-table">
                     <tr>
                         <th>Nome</th>
                         <th>Categoria</th>

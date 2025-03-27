@@ -19,6 +19,8 @@ class Exhibitor extends Model
             $query->where('category', 'ilike', $request->category);
         }
 
+        $query->selectRaw("*, LEFT(description, 80) || '...' as description");
+
         return $query;
     }
 }

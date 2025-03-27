@@ -50,55 +50,6 @@ body {
     }
 }
 
-.table-exhibitors {
-    table-layout: fixed;
-
-    th:nth-child(3),
-    td:nth-child(3) {
-        width: 50%;
-    }
-
-    .name-cell,
-    .catgegory-cell,
-    .description-cell {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
-
-.table-events {
-    table-layout: fixed;
-
-    th:nth-child(4),
-    td:nth-child(4) {
-        width: 10%;
-    }
-
-    th:nth-child(1),
-    td:nth-child(1) {
-        width: 3%;
-    }
-
-    th:nth-child(7),
-    td:nth-child(7) {
-        width: 4%;
-    }
-
-    th:last-child {
-        text-align: center;
-        width: 18%;
-    }
-
-    .name-cell,
-    .theme-cell,
-    .description-cell {
-        width: 20%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
 
 .imageEvent {
     max-width: 100%;
