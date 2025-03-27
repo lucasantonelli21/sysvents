@@ -29,9 +29,11 @@ $(".event").each(function() {
     }
 
     $(".amount-input").on("change", function() {
-        let min = parseInt($(this).attr("min"));
-        let max = parseInt($(this).attr("max"));
+        let min = 0
+        let max = 20;
         let atual = parseInt($(this).val());
+
+        $(this).val(parseInt($(this).val()));
 
         if(atual < min)
             $(this).val(min);
