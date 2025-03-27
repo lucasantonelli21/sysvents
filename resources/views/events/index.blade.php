@@ -110,7 +110,7 @@
                         <th>{{ $event->id }}</th>
                         <td class='name-cell'>{{ $event->name }}</td>
                         <td class="themes-cell">{{ $event->theme }}</td>
-                        <td class='description-cell'>Clica aqui</td>
+                        <td class='description-cell'>{{ $event->description }}</td>
                         <td>{{ $event->is_free ? 'Sim' : 'Não' }}</td>
                         <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>

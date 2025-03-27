@@ -33,6 +33,8 @@ class Event extends Model
 
         }
 
+        $query->selectRaw("*,LEFT(description, 17) || '...' as description");
+
         return $query;
     }
 
