@@ -23,13 +23,20 @@ $(".event").each(function() {
             total_value += parseInt($(this).val())*parseFloat($(".price-"+ticket_type_id).text());
         });
 
-        console.log(total_value)
 
         $(".tickets-total-price").text(total_value);
         $(".tickets-total-amount").text(ticket_amount);
     }
 
     $(".amount-input").on("change", function() {
+        let min = parseInt($(this).attr("min"));
+        let max = parseInt($(this).attr("max"));
+        let atual = parseInt($(this).val());
+
+        if(atual < min)
+            $(this).val(min);
+        if(atual > max)
+            $(this).val(max);
         updateFields();
     });
 

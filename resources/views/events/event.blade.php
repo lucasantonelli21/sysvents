@@ -21,26 +21,6 @@
                         {{ $event->start_date == $event->end_date ? formatDate($event->start_date, 'd/m/Y') : formatDate($event->start_date, 'd/m/Y') . ' - ' . formatDate($event->end_date, 'd/m/Y') }}
                     </p>
 
-                    <form action="{{ url('/eventos/inscrição') }}" method="POST">
-                        @csrf
-
-                        <input name="event_id" type="hidden" value="{{ $event->id }}"></input>
-
-                        <div class="">
-
-                            @if ($is_subscribed)
-                            <button type="submit" class="btn disabled ticket-button btn-primary w-100 p-2">
-                                Inscrito
-                            </button>
-                            @else
-                            <button type="submit" class="btn ticket-button btn-primary w-100 p-2">
-                                Inscrever-se
-                            </button>
-                            @endif
-                        </div>
-
-                    </form>
-
                     <button class="mt-2 btn schedule-button btn-primary w-100 p-2">Agendar</button>
                     <input class="event-date" type="hidden" value="{{ $event->start_date }}">
 
@@ -79,7 +59,7 @@
                                     </td>
                                     <td class="justify-content-center align-content-center">
                                         <div class="ticket-amount-container">
-                                            <input type="number" class="amount-input form-control mb-0" value="0" min="0" max="20" data-ticket-type-id="{{  $ticket_type->id }}"></input>
+                                            <input type="number" class="amount-input form-control mb-0" value="0" min=0 max=20 data-ticket-type-id="{{  $ticket_type->id }}"></input>
                                         </div>
 
                                     </td>
@@ -96,6 +76,26 @@
                                     </tr>
                                 </tfoot>
                             </table>
+
+                            <form action="{{ url('/eventos/inscrição') }}" method="POST">
+                                @csrf
+
+                                <input name="event_id" type="hidden" value="{{ $event->id }}"></input>
+
+                                <div class="d-flex justify-content-end">
+
+                                    @if ($is_subscribed)
+                                    <button type="submit" class="btn disabled ticket-button btn-primary p-2">
+                                        Comprou
+                                    </button>
+                                    @else
+                                    <button type="submit" class="btn ticket-button btn-primary w-100 p-2">
+                                        Comprar
+                                    </button>
+                                    @endif
+                                </div>
+
+                            </form>
                             @endif
 
 
