@@ -29,15 +29,16 @@ class EventController extends Controller
         ]);
     }
 
-    public function showEvent($id) {
+    public function showEvent($id)
+    {
         $event = Event::findOrFail($id);
 
-        if(Auth::check()) {
+        if (Auth::check()) {
             //Verifica se o usuário já está inscrito no evento.
             $ticket_types_from_event = DB::table('ticket_types')->where('event_id', $event->id)->get('id')->pluck('id')->toArray(); // pode ser nulo
             $ticket_batches = $ticket_types_from_event == NULL ? [] : DB::table('ticket_batches')->whereIn('ticket_type_id', $ticket_types_from_event)->get('id')->pluck('id')->toArray(); //poder ser vazio
             $is_subscribed = DB::table('tickets')->where('user_id', Auth::user()->id)->whereIn('ticket_batch_id', $ticket_batches)->get()->toArray() == [] ? false : true;
-        }else {
+        } else {
             $is_subscribed = false;
         }
 
@@ -49,7 +50,8 @@ class EventController extends Controller
         return view('events.event', $data);
     }
 
-    public function showLibrary(Request $request) {
+    public function showLibrary(Request $request)
+    {
 
         $events = Event::search($request)->orderBy('id', 'desc')->get();
 
@@ -81,7 +83,7 @@ class EventController extends Controller
 
     public function save(Request $request)
     {
-        if(!$request->id){
+        if (!$request->id) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'description' => 'required|string|min:10',
@@ -91,26 +93,26 @@ class EventController extends Controller
                 'theme' => 'required|',
                 // 'longitude' =>'required',
                 // 'latitude' =>'required',
-                'batch' =>'required',
-                ]);
-            }else{
-                $validator = Validator::make($request->all(), [
-                    'name' => 'required|string|max:255',
-                    'description' => 'required|string|min:10',
-                    'start_date' => 'required|date',
-                    'end_date' => 'required|date',
-                    'theme' => 'required|',
-                    'longitude' =>'required',
-                    'latitude' =>'required',
-                    'cep' =>'required',
-                    'address' =>'required',
-                    'neighborhood' =>'required',
-                    'complement' =>'required',
-                    'city' =>'required',
-                    'state' =>'required',
-                    'batch' =>'required',
-                    ]);
-            }
+                'batch' => 'required',
+            ]);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'description' => 'required|string|min:10',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
+                'theme' => 'required|',
+                'longitude' => 'required',
+                'latitude' => 'required',
+                'cep' => 'required',
+                'address' => 'required',
+                'neighborhood' => 'required',
+                'complement' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+                'batch' => 'required',
+            ]);
+        }
 
         if ($validator->fails()) {
             return back()->withErrors($validator->errors())
@@ -120,8 +122,8 @@ class EventController extends Controller
         $event = Event::findOrNew($request->id);
         $event->name = $request->name;
         $event->description = $request->description;
-        if($request->image_path){
-            if($request->id && $event->image_path){
+        if ($request->image_path) {
+            if ($request->id && $event->image_path) {
                 Storage::disk('public')->delete($event->image_path);
             }
             $filename =  'events/' . time() . '.' . $request->image_path->extension();
@@ -142,35 +144,42 @@ class EventController extends Controller
         $event->city = $request->city;
         $event->state = $request->state;
         $event->batch = $request->batch;
+        $event->is_free = $request->is_free ? true : false;
         $event->save();
 
-        if($request->free){
-            $freeTicketType = new TicketType;
-            $freeTicketType->name = "Gratuito";
-            $freeTicketType->event_id = $event->id;
-            $freeTicketType->save();
-            $freeBatch = new TicketBatch;
-            $freeBatch->name = "Gratuito";
-            $freeBatch->batch = 0;
-            $freeBatch->price = 0;
-            $freeBatch->ticket_type_id = $freeTicketType->id;
-            $freeBatch->save();
-        }
-        if($request->id && !$request->free){
-            $freeTicketType = TicketType::where('event_id', $event->id)->where('name', 'Gratuito')->first();
-            $freeTicketBatch = TicketBatch::where('ticket_type_id', $freeTicketType->id)->where('batch',0)->first();
-            if($freeTicketType){
-                $freeTicketType->delete();
-                if($freeTicketBatch){
-                    $freeTicketBatch->delete();
+        if ($request->id && $request->is_free) {
+            $ticketTypes = TicketType::where('event_id', $event->id)->get();
+            if ($ticketTypes) {
+                foreach ($ticketTypes as $ticketType) {
+
+                    $freeBatch = TicketBatch::where('ticket_type_id', $ticketType->id)->where('name', 'Gratuito')->first();
+                    if (!$freeBatch) {
+                        $freeBatch = new TicketBatch;
+                    }
+                    $freeBatch->name = "Gratuito";
+                    $freeBatch->batch = 0;
+                    $freeBatch->price = 0;
+                    $freeBatch->ticket_type_id = $ticketType->id;
+                    $freeBatch->save();
                 }
             }
-
         }
-
+        if ($request->id && !$request->is_free) {
+            $ticketTypes = TicketType::where('event_id', $event->id)->get();
+            if ($ticketTypes) {
+                foreach ($ticketTypes as $ticketType) {
+                    $freeBatch = TicketBatch::where('ticket_type_id', $ticketType->id)->where('name', 'Gratuito')->first();
+                    if ($freeBatch) {
+                        $freeBatch->delete();
+                    }
+                }
+            }
+        }
 
         return redirect()->route('panel.events.index')->withSuccess($request->id ? "Evento atualizado com sucesso" : "Evento cadastrado com sucesso");
     }
+
+
     public function createOrEdit($id = null)
     {
         //há dois findOrNew nesses códigos um para saber se o botão ira criar/atualizar, este segundo findOrNew se há um ID irá preencher os campos vázios do form para fazer a att
@@ -183,17 +192,13 @@ class EventController extends Controller
     private function form(Event $event)
     {
         $image = asset($event->image_path);
-        $is_free = false;
-        if($event->ticketTypes()->where('name', 'Gratuito')->first()){
-            $is_free = true;
-        }
         return view('events.form', [
             'event' => $event,
-            'is_free' => $is_free,
         ]);
     }
 
-    public function searchEvents(Request $request) {
+    public function searchEvents(Request $request)
+    {
 
         $events = Event::search($request)->select('id')->orderBy('id', 'desc')->get();
 
@@ -202,29 +207,30 @@ class EventController extends Controller
         ];
 
         return $data;
-
     }
 
 
-    public function getEvents(Request $request){
-        return Event::select('id','name as text')->where('name', 'ilike', '%'.$request->search.'%')->limit(5)->get();
+    public function getEvents(Request $request)
+    {
+        return Event::select('id', 'name as text')->where('name', 'ilike', '%' . $request->search . '%')->limit(5)->get();
     }
 
 
-    public function subscribe(Request $request) {
+    public function subscribe(Request $request)
+    {
         //Valida se a pessoa na verdade já não está inscrita.
         $ticket_types_from_event = DB::table('ticket_types')->where('event_id', $request->event_id)->get('id')->pluck('id')->toArray(); // pode ser nulo
         $ticket_batches = $ticket_types_from_event == NULL ? [] : DB::table('ticket_batches')->whereIn('ticket_type_id', $ticket_types_from_event)->get('id')->pluck('id')->toArray(); //poder ser vazio
         $is_subscribed = DB::table('tickets')->where('user_id', Auth::user()->id)->whereIn('ticket_batch_id', $ticket_batches)->get()->toArray() == [] ? false : true;
 
-        if($is_subscribed) {
-            return redirect(url('eventos/'.$request->event_id))->withErrors("Você já está inscrito nesse evento!");
+        if ($is_subscribed) {
+            return redirect(url('eventos/' . $request->event_id))->withErrors("Você já está inscrito nesse evento!");
         }
 
         //Pega um ticket type do evento, se não houver, cria um ticket type
         $ticket_type = DB::table('ticket_types')->where('event_id', $request->event_id)->first();
         $ticket_type_id = $ticket_type != NULL ? $ticket_type->id : NULL;
-        if($ticket_type == NULL) {
+        if ($ticket_type == NULL) {
             $ticket_type = new TicketType;
             $ticket_type->name = "Cortesia";
             $ticket_type->event_id = $request->event_id;
@@ -234,7 +240,7 @@ class EventController extends Controller
 
         $ticket_batch = DB::table('ticket_batches')->where('batch', 0)->where('ticket_type_id', $ticket_type_id)->get()->first();
 
-        if(!$ticket_batch){
+        if (!$ticket_batch) {
             $ticket_batch = new TicketBatch;
             $ticket_batch->name = "Cortesia";
             $ticket_batch->batch = 0;
@@ -253,8 +259,6 @@ class EventController extends Controller
 
         $ticket->save();
 
-        return redirect(url('eventos/'.$request->event_id));
-
+        return redirect(url('eventos/' . $request->event_id));
     }
-
 }

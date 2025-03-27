@@ -86,8 +86,8 @@
                             </div>
 
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" name="free" id="free" value="1"
-                                {{ old('free', $is_free) ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="is_free" id="free" value="1"
+                                {{ old('is_free', $event->is_free) ? 'checked' : '' }}>
                                 <label class="form-check-label" for='free'>Evento Gratuito?</label>
                             </div>
 

@@ -111,11 +111,9 @@
                         <td class='name-cell'>{{ $event->name }}</td>
                         <td class="themes-cell">{{ $event->theme }}</td>
                         <td class='description-cell'>Clica aqui</td>
-                        <td>{{ $event->free ? 'Sim' : 'Não' }}</td>
+                        <td>{{ $event->is_free ? 'Sim' : 'Não' }}</td>
                         <td>{{ formatDate($event->start_date, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->end_date, 'd/m/Y') }}</td>
-                        {{-- <td>{{ $event->longitude }}</td>
-                        <td>{{ $event->latitude }}</td> --}}
                         <td>{{ $event->batch }}</td>
                         <td>{{ formatDate($event->created_at, 'd/m/Y') }}</td>
                         <td>{{ formatDate($event->updated_at, 'd/m/Y') }}</td>
