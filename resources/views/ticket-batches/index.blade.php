@@ -22,8 +22,8 @@
                         <th>Número do Lote</th>
                         <th>Nome</th>
                         <th>Preço</th>
-                        <th>Criado em</th>
-                        <th>Atualizado em</th>
+                        <th>Criado</th>
+                        <th>Atualizado</th>
                         <th>Ações</th>
                     </tr>
 

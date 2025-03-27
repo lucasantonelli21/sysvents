@@ -23,8 +23,8 @@
                     <tr>
                         <th>Nome</th>
                         <th>Lotes Cadastrados</th>
-                        <th>Criado em</th>
-                        <th>Atualizado em</th>
+                        <th>Criado</th>
+                        <th>Atualizado</th>
                         <th>Ações</th>
                     </tr>
 

@@ -96,20 +96,20 @@
                     <tr>
                         <th>Nome</th>
                         <th>Categoria</th>
-                        <th>Descrição</th>
-                        <th>Criado em</th>
-                        <th>Editado em</th>
+                        <th class="text-center">Descrição</th>
+                        <th>Criado</th>
+                        <th>Editado</th>
                         <th>Ações</th>
                     </tr>
                     @foreach ($exhibitors as $exhibitor)
                         <tr>
-                            <td class='name-cell'>{{ $exhibitor->name }}</td>
+                            <td>{{ $exhibitor->name }}</td>
                             @foreach ($categories as $category => $name)
                                 @if ($exhibitor->category == $category)
                                     <td class="category-cell">{{ $name }}</td>
                                 @endif
                             @endforeach
-                            <td class="description-cell">{{ $exhibitor->description }}</td>
+                            <td>{{ $exhibitor->description }}</td>
                             <td>{{ formatDate($exhibitor->created_at, 'd/m/Y') }}</td>
                             <td>{{ formatDate($exhibitor->updated_at, 'd/m/Y') }}</td>
                             <td>

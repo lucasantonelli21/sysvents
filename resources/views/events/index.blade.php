@@ -98,11 +98,9 @@
                     <th>Gratuito</th>
                     <th>Início</th>
                     <th>Fim</th>
-                    {{-- <th>Longitude</th>
-                    <th>Latitude</th> --}}
                     <th>Lote</th>
-                    <th>Criado em</th>
-                    <th>Editado em</th>
+                    <th>Criado</th>
+                    <th>Editado</th>
                     <th>Ações</th>
                 </tr>
                 @foreach ($events as $event)

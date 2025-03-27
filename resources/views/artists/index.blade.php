@@ -99,11 +99,11 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Data de Nascimento</th>
+                        <th scope="col">Nascimento</th>
                         <th scope="col">Cachê</th>
                         <th scope="col">Telefone</th>
-                        <th scope="col">Criado em</th>
-                        <th scope="col">Editado em</th>
+                        <th scope="col">Criado</th>
+                        <th scope="col">Editado</th>
 
                         <th>Ações</th>
                     </tr>
