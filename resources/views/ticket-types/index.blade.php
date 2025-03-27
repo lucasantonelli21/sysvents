@@ -5,7 +5,7 @@
         <div class="card-header">
 
             <div class="row-title-button">
-                <a href="{{ url()->previous() }}" class="icons btn-back btn btn-outline-light">
+                <a href="{{ route('panel.events.index') }}" class="icons btn-back btn btn-outline-light">
                     <img src="{{ asset('images/icons/arrow-left-circle.svg') }}" alt="">
                 </a>
                 <h2 class="title text-center">Tipos de Ingresso do Evento <span
