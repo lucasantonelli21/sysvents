@@ -143,10 +143,10 @@ class UserController extends Controller
     {
         $userEvents = User::events(Auth::user()->is_admin ? $id : Auth::user()->id)->get();
         if (!$userEvents->first()) {
-            return redirect()->route('home')->withErrors('Usuário não possui nenhuma inscrição em eventos!');
+            $user = User::find($id)->first();
         }
         $themes = Themes::toArray();
-        return view('users.events', ["userEvents" => $userEvents, "themes" => $themes]);
+        return view('users.events', ["user" => $user , "userEvents" => $userEvents, "themes" => $themes]);
     }
 
     public function myEvent($id, $eventId)
