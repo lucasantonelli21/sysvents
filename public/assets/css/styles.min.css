@@ -293,7 +293,7 @@ body {
 .event .map {
   width: 100%;
   min-height: 150px;
-  max-height: 300px;
+  max-height: 1000px;
   height: auto;
 }
 @media screen and (min-width: 1550px) {
@@ -316,6 +316,21 @@ body {
   border: solid;
   border-width: 1px;
   border-color: white;
+}
+.event .divider {
+  border: solid;
+  border-width: 0px 1px 0px 0px;
+  border-color: white;
+}
+.event .ticket-types-container {
+  width: 20%;
+}
+.event th, .event td {
+  background-color: #142748;
+  justify-items: center;
+}
+.event .ticket-amount-container {
+  max-width: 75px;
 }
 
 .select-pagination select {

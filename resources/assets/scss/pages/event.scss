@@ -38,7 +38,7 @@
     .map {
         width: 100%;
         min-height: 150px;
-        max-height: 300px;
+        max-height: 1000px;
         height:auto;
     }
 
@@ -70,6 +70,28 @@
         border-color: white;
     }
 
+    .divider {
+        border: solid;
+        border-width: 0px 1px 0px 0px;
+        border-color: white;
+    }
 
+    .ticket-types-container {
+        width: 20%;
+    }
+
+    th, td {
+        background-color: #142748;
+        justify-items: center;
+    }
+
+
+    .ticket-amount-container {
+        max-width: 75px;
+    }
+
+    // .form-control  {
+    //     max-width: 10%;
+    // }
 
 }
